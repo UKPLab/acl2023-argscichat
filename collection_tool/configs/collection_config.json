@@ -1,0 +1,5 @@
+{
+  "collection_db_admin": "your_mephisto_account",
+  "collection_db_name": "your_mephisto_db_name",
+  "collection_db_host": "localhost"
+}
