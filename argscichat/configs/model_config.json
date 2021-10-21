@@ -1,0 +1,89 @@
+{
+    "drinventor_tf_tokens_scibert": {
+        "preloaded_name": {
+            "value": "allenai/scibert_scivocab_uncased",
+            "flags": ["tokenizer", "model_class"]
+        },
+        "optimizer_args": {
+            "value": {
+                "beta_1": 0.9,
+                "beta_2": 0.999,
+                "epsilon": 1e-08,
+                "learning_rate": 5e-06
+            },
+            "flags": [
+                "model_class"
+            ]
+        },
+        "feature_class": {
+            "value": "transformer_tokens_features",
+            "flags": [
+                "converter"
+            ]
+        },
+        "max_tokens_limit": {
+            "value": 300,
+            "flags": [
+                "converter"
+            ]
+        }
+    },
+    "drinventor_tf_components_scibert": {
+        "preloaded_name": {
+            "value": "allenai/scibert_scivocab_uncased",
+            "flags": ["tokenizer", "model_class"]
+        },
+        "optimizer_args": {
+            "value": {
+                "beta_1": 0.9,
+                "beta_2": 0.999,
+                "epsilon": 1e-08,
+                "learning_rate": 5e-06
+            },
+            "flags": [
+                "model_class"
+            ]
+        },
+        "feature_class": {
+            "value": "tf_transformer_components_features",
+            "flags": [
+                "converter"
+            ]
+        },
+        "max_tokens_limit": {
+            "value": 40,
+            "flags": [
+                "converter"
+            ]
+        }
+    },
+    "drinventor_tf_tokens_scibert_crf": {
+        "preloaded_name": {
+            "value": "allenai/scibert_scivocab_uncased",
+            "flags": ["tokenizer", "model_class"]
+        },
+        "optimizer_args": {
+            "value": {
+                "beta_1": 0.9,
+                "beta_2": 0.999,
+                "epsilon": 1e-08,
+                "learning_rate": 5e-06
+            },
+            "flags": [
+                "model_class"
+            ]
+        },
+        "feature_class": {
+            "value": "tf_transformer_tokens_features",
+            "flags": [
+                "converter"
+            ]
+        },
+        "max_tokens_limit": {
+            "value": 300,
+            "flags": [
+                "converter"
+            ]
+        }
+    }
+}

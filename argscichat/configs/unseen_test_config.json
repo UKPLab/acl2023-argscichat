@@ -1,0 +1,36 @@
+{
+    "gpu_end_index": 2,
+    "test_name": "test_scibert",
+    "data_loader_type": "arg_sci_chat_model_components_papers",
+    "training_test": "train_and_test",
+    "save_predictions": true,
+    "save_prefix": null,
+    "test_prefix": null,
+    "repetition_prefix": "0",
+    "compute_test_info": true,
+    "error_metrics": [
+        "tokens_f1"
+    ],
+    "save_model": true,
+    "error_metrics_additional_info": [
+        {}
+    ],
+    "model_type": "drinventor_tf_components_scibert",
+    "gpu_start_index": 1,
+    "error_metrics_nicknames": [
+        "F1"
+    ],
+    "preloaded_model": null,
+    "validation_percentage": null,
+    "rename_folder": "tokens_model",
+    "repetitions": 1,
+    "load_externally": false,
+    "preloaded": false,
+    "init_from_model": false,
+    "label_metrics_map": null,
+    "framework": "tensorflow",
+    "limit_gpu_visibility": true,
+    "callbacks_names": [
+        "predictionretriever"
+    ]
+}

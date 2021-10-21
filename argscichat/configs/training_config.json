@@ -1,0 +1,17 @@
+{
+    "metrics": [
+        "tokens_f1"
+    ],
+    "batch_size": 16,
+    "additional_metrics_info": [
+        {}
+    ],
+    "shuffle": true,
+    "verbose": 1,
+    "epochs": 1000000,
+    "metrics_nicknames": [
+        "F1"
+    ],
+    "label_metrics_map": null,
+    "step_checkpoint": null
+}
