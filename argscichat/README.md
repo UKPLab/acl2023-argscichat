@@ -1,4 +1,4 @@
-# Argumentative Models and Facts selection baselines #
+# Argumentative Models and Facts selection baselines
 
 In this project we provide:
 

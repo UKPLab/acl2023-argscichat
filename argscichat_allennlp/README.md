@@ -27,7 +27,7 @@ In order to run multiple training or prediction runs in a sequence, we have set 
 
 - `scripts/run_experiments.py`: modify the file settings section in order to define your own experiments. Models are saved under `model_runs` folder.
 
-- `scripts/run_predictions.py`: for simplicity, the script executes model inference for every saved model (`model_runs` folder).
+- `scripts/run_predictions.py`: runs model inference on saved models of your choice (check `model_runs` folder).
 
 For what concerns model training, you can try different input combinations and model additional regularizations as follows:
 
@@ -37,7 +37,8 @@ For what concerns model training, you can try different input combinations and m
     'params': {
         'context': ["query", "article"],
         'pytorch_seed': 15371,
-        'use_evidence_scaffold': False
+        'use_evidence_scaffold': False,
+        'include_argument_mask': False
 }
 ```
 
@@ -46,7 +47,11 @@ the model with just the `query` as input, simply define `'context': ["query"]`.
 
 Alike [QASPER](https://github.com/allenai/qasper-led-baseline), you can train your model with direct facts selection supervision 
 by enabling `use_evidence_scaffold`. The code remains unchanged with the only exception that in QASPER there are multiple valid answers
-for a given query. 
+for a given query.
+
+Lastly, you can disable `use_evidence_scaffold` and enable `include_argument_mask` to replace direct fact selection supervision with argument detection objective.
+Note that, `include_argument_mask` is also a dataset reader argument. Make sure `include_argument_mask` is enabled in both dataset
+reader and model settings. 
 
 ### Reproducibility
 
@@ -64,6 +69,12 @@ In order to compare models trained on both ArgSciChat corpus versions, it is nec
 ### Extracting average performance (across multiple seeds)
 
 To quickly compute the average metric score across multiple seed runs, execute the `scripts/compute_avg_score.py` script.
+
+### Adding an argumentative mask
+
+Run `add_argumentative_mask.py` script to add an existing argumentative mask to ArgSciChat corpora.
+Make sure that an existing `papers_model_components_dataset_*threshold*.csv` file is available.
+Please, check `argscichat` project folder for more information.
 
 ### Facts selection baselines
 
