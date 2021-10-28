@@ -40,6 +40,8 @@ class ArgSciChatReader(DatasetReader):
             max_document_length: int = 3300,
             paragraph_separator: Optional[str] = "</s>",
             include_global_attention_mask: bool = True,
+            include_argument_mask: bool = False,
+            argument_mask_threshold: str = None,
             context: list = ["query"],
             for_training: bool = False,
             **kwargs,
@@ -55,6 +57,8 @@ class ArgSciChatReader(DatasetReader):
         )
 
         self._include_global_attention_mask = include_global_attention_mask
+        self._include_argument_mask = include_argument_mask
+        self._argument_mask_threshold = argument_mask_threshold
         self._token_indexers = {
             "tokens": PretrainedTransformerIndexer(transformer_model_name)
         }
@@ -112,25 +116,66 @@ class ArgSciChatReader(DatasetReader):
 
     def _article_to_instances(self, article: Dict[str, Any]) -> Iterable[Instance]:
         paragraphs = self._get_paragraphs_from_article(article)
+
+        if 'article' in self._context:
+            assert len(paragraphs) == len(article['content'])
+            # print('Paragraphs: {0}, Content: {1}'.format(len(paragraphs), len(article['content'])))
+
         tokenized_context = None
         paragraph_start_indices = None
 
+        if self._include_argument_mask:
+            argument_mask = article['argument_mask_{}'.format(self._argument_mask_threshold)]
+            # print('Argument mask: {0}, Expected: {1}'.format(len(argument_mask), len(article['argument_mask'])))
+            assert len(argument_mask) == len(paragraphs), 'Mask = {0} -- Paragraphs = {1}, -- Article {2}'.format(
+                len(argument_mask), len(paragraphs), len(article['content']))
+        else:
+            argument_mask = None
+
         self._stats["number of documents"] += 1
         for pair in article["message_pairs"]:
+            # print('*' * 20)
             self._stats["number of messages"] += 1
 
             facts, history, reply = self._extract_pair_data(pair)
             facts = self._validate_facts(facts=facts, paragraphs=paragraphs, title=article['id'])
+            # print('Paragraphs: {0}, Content: {1}'.format(len(paragraphs), len(article['content'])))
 
             if 'history' in self._context:
-                paragraphs = history + paragraphs
+                pair_paragraphs = history + paragraphs
+                # print('Paragraphs: {0}, Content: {1}, History: {2}'.format(len(pair_paragraphs), len(article['content']), len(history)))
+                assert len(pair_paragraphs) == len(article['content']) + len(history)
 
-            if len(paragraphs):
+                if self._include_argument_mask:
+                    # print('Argument mask: {0}, Expected: {1}'.format(len(argument_mask), len(article['argument_mask'])))
+                    pair_argument_mask = [0] * len(history) + argument_mask
+                    assert len(pair_argument_mask) == len(pair_paragraphs), 'Mask = {0} -- Paragraphs = {1}'.format(
+                        len(pair_argument_mask), len(pair_paragraphs))
+                else:
+                    pair_argument_mask = argument_mask
+            else:
+                pair_paragraphs = paragraphs
+                pair_argument_mask = argument_mask
+
+            if len(pair_paragraphs):
                 tokenized_context, paragraph_start_indices = self._tokenize_paragraphs(
-                    paragraphs
+                    pair_paragraphs
                 )
 
-            facts_mask = self._get_facts_mask(facts, paragraphs, has_article='article' in self._context)
+                # Ignore history!
+                if 'history' in self._context:
+                    assert len(paragraph_start_indices) == len(pair_paragraphs), "Expected {0}, Paragraphs {1}".format(len(paragraph_start_indices), len(pair_paragraphs))
+                    paragraph_start_indices = paragraph_start_indices[len(history):]
+                    assert len(paragraph_start_indices) == len(article['content']), "Expected {0}, Got {1}".format(len(article['content']), len(paragraph_start_indices))
+
+                    if self._include_argument_mask:
+                        pair_argument_mask = pair_argument_mask[len(history):]
+                        assert len(paragraph_start_indices) == len(pair_argument_mask)
+
+            facts_mask = self._get_facts_mask(facts, pair_paragraphs, has_article='article' in self._context)
+
+            if 'history' in self._context:
+                facts_mask = facts_mask[len(history):]
 
             additional_metadata = {
                 "pair_id": pair['id'],
@@ -139,14 +184,20 @@ class ArgSciChatReader(DatasetReader):
                 "all_evidence_masks": [facts_mask]
             }
 
+            if paragraph_start_indices is not None:
+                assert len(facts_mask) == len(paragraph_start_indices), "Facts: {0}, Paragraphs indices: {1}".format(len(facts_mask), len(paragraph_start_indices))
+            if pair_argument_mask is not None:
+                assert len(facts_mask) == len(pair_argument_mask)
+
             yield self.text_to_instance(
                 pair["P_Message"],
-                paragraphs,
+                pair_paragraphs,
                 tokenized_context,
                 paragraph_start_indices,
                 facts_mask,
                 reply,
                 facts,
+                pair_argument_mask,
                 additional_metadata
             )
 
@@ -155,8 +206,6 @@ class ArgSciChatReader(DatasetReader):
         if 'article' in self._context:
             for sentence in article['content']:
                 paragraphs.append(sentence.replace("\n", " ").strip())
-
-            assert len(paragraphs) == len(article['content'])
 
         return paragraphs
 
@@ -174,6 +223,8 @@ class ArgSciChatReader(DatasetReader):
         if self._paragraph_separator:
             # We added the separator after every paragraph, so we remove it after the last one.
             tokenized_context = tokenized_context[:-1]
+
+        assert len(paragraph_start_indices) == len(paragraphs)
         return tokenized_context, paragraph_start_indices
 
     def _validate_facts(self, facts, paragraphs, title):
@@ -267,6 +318,7 @@ class ArgSciChatReader(DatasetReader):
             facts_mask: List[int] = None,
             reply: str = None,
             facts: List[str] = None,
+            argument_mask: List[int] = None,
             additional_metadata: Dict[str, Any] = None,
     ) -> Instance:
         fields = {}
@@ -300,6 +352,9 @@ class ArgSciChatReader(DatasetReader):
             num_paragraphs = len(paragraph_start_indices)
             if facts_mask is not None:
                 facts_mask = facts_mask[:num_paragraphs]
+
+            if argument_mask is not None:
+                argument_mask = argument_mask[:num_paragraphs]
 
         # This is what Iz's code does.
         question_and_context = (
@@ -339,6 +394,10 @@ class ArgSciChatReader(DatasetReader):
             evidence_field = TensorField(torch.tensor(facts_mask))
             fields["evidence"] = evidence_field
 
+        if argument_mask is not None:
+            argument_mask_field = TensorField(torch.tensor(argument_mask))
+            fields['argument_mask'] = argument_mask_field
+
         if reply:
             fields["answer"] = TextField(
                 self._tokenizer.add_special_tokens(self._tokenizer.tokenize(reply))
@@ -362,8 +421,21 @@ class SentenceArgSciChatReader(ArgSciChatReader):
 
     def _article_to_instances(self, article: Dict[str, Any]) -> Iterable[Instance]:
         paragraphs = self._get_paragraphs_from_article(article)
+
+        if 'article' in self._context:
+            assert len(paragraphs) == len(article['content'])
+            # print('Paragraphs: {0}, Content: {1}'.format(len(paragraphs), len(article['content'])))
+
         tokenized_context = None
         paragraph_start_indices = None
+
+        if self._include_argument_mask:
+            argument_mask = article['argument_mask_{}'.format(self._argument_mask_threshold)]
+            # print('Argument mask: {0}, Expected: {1}'.format(len(argument_mask), len(article['argument_mask'])))
+            assert len(argument_mask) == len(paragraphs), 'Mask = {0} -- Paragraphs = {1}, -- Article {2}'.format(
+                len(argument_mask), len(paragraphs), len(article['content']))
+        else:
+            argument_mask = None
 
         self._stats["number of documents"] += 1
         for pair in article["message_pairs"]:
@@ -373,14 +445,39 @@ class SentenceArgSciChatReader(ArgSciChatReader):
             facts = self._validate_facts(facts=facts, paragraphs=paragraphs, title=article['id'])
 
             if 'history' in self._context:
-                paragraphs = history + paragraphs
+                pair_paragraphs = history + paragraphs
+                # print('Paragraphs: {0}, Content: {1}, History: {2}'.format(len(pair_paragraphs), len(article['content']), len(history)))
+                assert len(pair_paragraphs) == len(article['content']) + len(history)
 
-            if len(paragraphs):
+                if self._include_argument_mask:
+                    # print('Argument mask: {0}, Expected: {1}'.format(len(argument_mask), len(article['argument_mask'])))
+                    pair_argument_mask = [0] * len(history) + argument_mask
+                    assert len(pair_argument_mask) == len(pair_paragraphs), 'Mask = {0} -- Paragraphs = {1}'.format(
+                        len(pair_argument_mask), len(pair_paragraphs))
+                else:
+                    pair_argument_mask = argument_mask
+            else:
+                pair_paragraphs = paragraphs
+                pair_argument_mask = argument_mask
+
+            if len(pair_paragraphs):
                 tokenized_context, paragraph_start_indices = self._tokenize_paragraphs(
-                    paragraphs
+                    pair_paragraphs
                 )
+                # Ignore history!
+                if 'history' in self._context:
+                    assert len(paragraph_start_indices) == len(pair_paragraphs), "Expected {0}, Paragraphs {1}".format(len(paragraph_start_indices), len(pair_paragraphs))
+                    paragraph_start_indices = paragraph_start_indices[len(history):]
+                    assert len(paragraph_start_indices) == len(article['content']), "Expected {0}, Got {1}".format(len(article['content']), len(paragraph_start_indices))
 
-            facts_mask = self._get_facts_mask(facts, paragraphs, has_article='article' in self._context)
+                    if self._include_argument_mask:
+                        pair_argument_mask = pair_argument_mask[len(history):]
+                        assert len(paragraph_start_indices) == len(pair_argument_mask)
+
+            facts_mask = self._get_facts_mask(facts, pair_paragraphs, has_article='article' in self._context)
+
+            if 'history' in self._context:
+                facts_mask = facts_mask[len(history):]
 
             additional_metadata = {
                 "pair_id": pair['id'],
@@ -388,6 +485,11 @@ class SentenceArgSciChatReader(ArgSciChatReader):
                 "all_answers": [{'text': reply, 'type': AnswerType.ABSTRACTIVE}],
                 "all_evidence_masks": [facts_mask]
             }
+
+            if paragraph_start_indices is not None:
+                assert len(facts_mask) == len(paragraph_start_indices), "Facts: {0}, Paragraphs indices: {1}".format(len(facts_mask), len(paragraph_start_indices))
+            if pair_argument_mask is not None:
+                assert len(facts_mask) == len(pair_argument_mask)
 
             yield self.text_to_instance(
                 pair["P_Message"],
@@ -398,6 +500,7 @@ class SentenceArgSciChatReader(ArgSciChatReader):
                 facts_mask,
                 reply,
                 facts,
+                argument_mask,
                 additional_metadata
             )
 
@@ -429,6 +532,7 @@ class SentenceArgSciChatReader(ArgSciChatReader):
             facts_mask: List[int] = None,
             reply: str = None,
             facts: List[str] = None,
+            argument_mask: List[int] = None,
             additional_metadata: Dict[str, Any] = None,
     ) -> Instance:
         fields = {}
@@ -474,6 +578,9 @@ class SentenceArgSciChatReader(ArgSciChatReader):
             if facts_mask is not None:
                 facts_mask = facts_mask[:num_paragraphs]
 
+            if argument_mask is not None:
+                argument_mask = argument_mask[:num_paragraphs]
+
         # This is what Iz's code does.
         question_and_context = (
                 self._tokenizer.sequence_pair_start_tokens
@@ -511,6 +618,10 @@ class SentenceArgSciChatReader(ArgSciChatReader):
         if facts_mask is not None:
             evidence_field = TensorField(torch.tensor(facts_mask))
             fields["evidence"] = evidence_field
+
+        if argument_mask is not None:
+            argument_mask_field = TensorField(torch.tensor(argument_mask))
+            fields['argument_mask'] = argument_mask_field
 
         if reply:
             fields["answer"] = TextField(

@@ -34,6 +34,7 @@ def run_experiment(experiment_info, sentence_split=False):
     config_data['validation_dataset_reader']['include_argument_mask'] = experiment_params['include_argument_mask']
     config_data['pytorch_seed'] = experiment_params['pytorch_seed']
     config_data['model']['use_evidence_scaffold'] = experiment_params['use_evidence_scaffold']
+    config_data['model']['include_argument_mask'] = experiment_params['include_argument_mask']
 
     # Save config file
     training_config_path = os.path.join(base_config_path, 'current_argscichat.json')
@@ -61,51 +62,13 @@ if __name__ == '__main__':
 
     experiments = [
         {
-            'folder_name': "query_article_argloss_15371",
+            'folder_name': "test_name",
             'params': {
-                'context': ["query", "article"],
+                'context': ["query"],
                 'pytorch_seed': 15371,
                 'use_evidence_scaffold': False,
-            }
-        },
-        {
-            'folder_name': "query_article_argloss_15372",
-            'params': {
-                'context': ["query", "article"],
-                'pytorch_seed': 15372,
-                'use_evidence_scaffold': False,
-            }
-        },
-        {
-            'folder_name': "query_article_argloss_15373",
-            'params': {
-                'context': ["query", "article"],
-                'pytorch_seed': 15373,
-                'use_evidence_scaffold': False,
-            }
-        },
-        {
-            'folder_name': "query_article_history_argloss_15371",
-            'params': {
-                'context': ["query", "article", "history"],
-                'pytorch_seed': 15371,
-                'use_evidence_scaffold': False,
-            }
-        },
-        {
-            'folder_name': "query_article_history_argloss_15372",
-            'params': {
-                'context': ["query", "article", "history"],
-                'pytorch_seed': 15372,
-                'use_evidence_scaffold': False,
-            }
-        },
-        {
-            'folder_name': "query_article_history_argloss_15373",
-            'params': {
-                'context': ["query", "article", "history"],
-                'pytorch_seed': 15373,
-                'use_evidence_scaffold': False,
+                'include_argument_mask': False,
+                "argument_mask_threshold": "0.7"
             }
         },
     ]

@@ -9,6 +9,7 @@ from allennlp.training.metrics import Average
 from allennlp_models.rc.tools import squad
 from overrides import overrides
 from transformers import AutoConfig, AutoModelForSeq2SeqLM, AutoTokenizer
+import numpy as np
 
 from argscichat_allennlp.argscichat_baselines.dataset_reader import AnswerType
 
@@ -24,6 +25,8 @@ class ArgSciChatBaseline(Model):
             gradient_checkpointing: bool = False,
             evidence_feedforward: FeedForward = None,
             use_evidence_scaffold: bool = True,
+            include_argument_mask: bool = True,
+            argument_feedforward: FeedForward = None,
             **kwargs
     ):
         super().__init__(vocab, **kwargs)
@@ -36,6 +39,11 @@ class ArgSciChatBaseline(Model):
             transformer_model_name,
             add_special_tokens=False
         )
+
+        if use_evidence_scaffold and include_argument_mask:
+            print("Disabling evidence scaffold since argument mask is enabled!")
+            use_evidence_scaffold = False
+
         if evidence_feedforward:
             self.evidence_feedforward = evidence_feedforward
             assert evidence_feedforward.get_output_dim() == 2
@@ -46,6 +54,15 @@ class ArgSciChatBaseline(Model):
 
         self._use_evidence_scaffold = use_evidence_scaffold
 
+        if argument_feedforward:
+            self.argument_feedforward = argument_feedforward
+            assert argument_feedforward.get_output_dim() == 2
+        else:
+            self.argument_feedforward = torch.nn.Linear(
+                self.transformer.config.hidden_size, 2
+            )
+
+        self._include_argument_mask = include_argument_mask
         self._answer_f1 = Average()
         self._answer_f1_by_type = {answer_type: Average() for answer_type in AnswerType}
         self._evidence_f1 = Average()
@@ -59,6 +76,7 @@ class ArgSciChatBaseline(Model):
             paragraph_indices: torch.Tensor,
             global_attention_mask: torch.Tensor = None,
             evidence: torch.Tensor = None,
+            argument_mask: torch.Tensor = None,
             answer: TextFieldTensors = None,
             metadata: Dict[str, Any] = None,
     ) -> Dict[str, torch.Tensor]:
@@ -89,9 +107,7 @@ class ArgSciChatBaseline(Model):
         if answer is not None:
             loss = output['loss']
             if not self.training:
-                # Computing evaluation metrics
-                # max_length: 100 covers 97% of the data. 116 for 98%, 169 for 99%, 390 for 99.9%,
-                # 606 for 100%
+
                 generated_token_ids = self.transformer.generate(
                     input_ids=input_ids,
                     attention_mask=attention_mask,
@@ -146,6 +162,63 @@ class ArgSciChatBaseline(Model):
                     self._evidence_f1(evidence_f1)
                 output_dict['predicted_evidence'] = predicted_evidence_indices
 
+        # Argument selection
+        if self._include_argument_mask and argument_mask is not None and not self._use_evidence_scaffold:
+            paragraph_indices = paragraph_indices.squeeze(-1)
+            encoded_paragraph_tokens = util.batched_index_select(encoded_tokens.contiguous(), paragraph_indices)
+
+            argument_logits = self.argument_feedforward(encoded_paragraph_tokens)
+
+            argument_weight_mask = paragraph_indices != -1
+
+            # Use a loss function that gives higher weight to the positive classes
+            weights = torch.tensor(
+                [
+                    argument_mask.sum() + 1,
+                    argument_weight_mask.sum() - argument_mask.sum() + 1,
+                ],
+                device=argument_logits.device,
+                dtype=argument_logits.dtype,
+            )
+
+            loss_fn = torch.nn.CrossEntropyLoss(weight=weights)
+            argument_loss = loss_fn(argument_logits.view(-1, 2), argument_mask.view(-1))
+
+            self._argument_loss(float(argument_loss.detach().cpu()))
+            if loss is None:
+                loss = argument_loss
+            else:
+                loss = loss + argument_loss
+
+            if not self.training:
+                predicted_argument_indices = argument_logits.argmax(dim=-1).tolist()
+                for argument_f1 in self._compute_evidence_f1(predicted_argument_indices,
+                                                             [argument_mask]):
+                    self._argument_f1(argument_f1)
+                output_dict['predicted_arguments'] = predicted_argument_indices
+
+                # Compute cosine similarity between query and candidates
+                query_index = torch.zeros_like(paragraph_indices)[:, 0].view(-1, 1)
+                encoded_query_token = util.batched_index_select(encoded_tokens.contiguous(), query_index)
+                norm_encoded_query_token = encoded_query_token / encoded_query_token.norm(dim=-1)[:, :, None]
+                norm_encoded_paragraph_tokens = encoded_paragraph_tokens / encoded_paragraph_tokens.norm(dim=-1)[:, :,
+                                                                           None]
+
+                cosine_similarity = torch.matmul(norm_encoded_query_token,
+                                                 norm_encoded_paragraph_tokens.transpose(1, 2))
+                cosine_similarity = cosine_similarity.squeeze(1).tolist()
+
+                gold_evidence_indices = [instance_metadata["all_evidence_masks"]
+                                         for instance_metadata in metadata]
+                evidence_f1, evidence_indices = self._compute_arg_evidence_f1(cosine_similarity,
+                                                                             predicted_argument_indices,
+                                                                             gold_evidence_indices)
+
+                for value in evidence_f1:
+                    self._evidence_f1(value)
+
+                output_dict['predicted_evidence'] = evidence_indices
+
         output_dict["loss"] = loss
         return output_dict
 
@@ -177,6 +250,54 @@ class ArgSciChatBaseline(Model):
             if len(instance_f1s):
                 f1s.append(max(instance_f1s))
         return f1s
+
+    @staticmethod
+    def _compute_arg_evidence_f1(
+            similarities: List[List[float]],
+            predicted_argument_indices: List[List[int]],
+            gold_evidence_indices: List[List[List[int]]]
+    ) -> (List[float], List[int]):
+        f1s = []
+        predicted_indices = []
+        for instance_similarities, instance_argument_indices, instance_gold in zip(similarities,
+                                                                                   predicted_argument_indices,
+                                                                                   gold_evidence_indices):
+
+            assert len(instance_similarities) == len(instance_argument_indices)
+
+            instance_argument_indices = np.where(instance_argument_indices)[0]
+            sorted_sim_indices = np.argsort(instance_similarities, axis=0)
+
+            instance_f1s = []
+            for gold in instance_gold:
+                total_facts = sum(gold)
+                if total_facts == 0:
+                    break
+
+                assert len(gold) == len(instance_similarities), "Gold: {0}, Similarities: {1}".format(len(gold), len(instance_similarities))
+
+                best_indexes = [idx for idx in sorted_sim_indices if idx in instance_argument_indices]
+                best_indexes = best_indexes[-total_facts:]
+
+                if not len(best_indexes):
+                    instance_f1s.append(0.0)
+                else:
+                    predicted = [1 if idx in best_indexes else 0 for idx in range(len(gold))]
+                    true_positives = sum([i and j for i, j in zip(predicted, gold)])
+                    if sum(predicted) == 0:
+                        precision = 1.0 if sum(gold) == 0 else 0.0
+                    else:
+                        precision = true_positives / sum(predicted)
+                    recall = true_positives / sum(gold) if sum(gold) != 0 else 1.0
+                    if precision + recall == 0:
+                        instance_f1s.append(0.0)
+                    else:
+                        instance_f1s.append(2 * precision * recall / (precision + recall))
+
+            if len(instance_f1s):
+                predicted_indices.append(predicted)  # it works since we have just one gold label
+                f1s.append(max(instance_f1s))
+        return f1s, predicted_indices
 
     @overrides
     def get_metrics(self, reset: bool = False) -> Dict[str, float]:

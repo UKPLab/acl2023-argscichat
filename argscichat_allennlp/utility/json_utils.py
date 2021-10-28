@@ -37,6 +37,30 @@ def save_json(filepath, data):
         simplejson.dump(data, f, default=_to_json, tuple_as_array=False, indent=4)
 
 
+def dump_jsonl(data, output_path, append=False):
+    """
+    Write list of objects to a JSON lines file.
+    """
+    mode = 'a+' if append else 'w'
+    with open(output_path, mode, encoding='utf-8') as f:
+        for line in data:
+            json_record = simplejson.dumps(line, ensure_ascii=False)
+            f.write(json_record + '\n')
+    print('Wrote {} records to {}'.format(len(data), output_path))
+
+
+def load_jsonl(input_path) -> list:
+    """
+    Read list of objects from a JSON lines file.
+    """
+    data = []
+    with open(input_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            data.append(simplejson.loads(line.rstrip('\n|\r')))
+    print('Loaded {} records from {}'.format(len(data), input_path))
+    return data
+
+
 def _to_json(python_object):
     """
     Custom JSON serializer

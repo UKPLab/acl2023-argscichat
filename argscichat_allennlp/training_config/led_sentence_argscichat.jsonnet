@@ -4,8 +4,8 @@ local patience = 20;
 local batch_size = 1;
 local num_gradient_accumulation_steps = 1;
 
-local train_data_path = "sentence_train.json";
-local dev_data_path = "sentence_val.json";
+local train_data_path = "/path/to/sentence_train.json";
+local dev_data_path = "/path/to/sentence_val.json";
 
 local training_data_size = 348;
 local num_gpus = 1;
@@ -15,6 +15,8 @@ local num_gpus = 1;
         "type": "sentence_argscichat",
         "transformer_model_name": transformer_model,
 	    "max_document_length": 4000,
+	    "include_argument_mask": false,
+	    "argument_mask_threshold": "0.7",
         "max_query_length": 1000,
         "for_training": true,
         "context": ["query"]
@@ -22,6 +24,8 @@ local num_gpus = 1;
     "validation_dataset_reader": {
         "type": "sentence_argscichat",
         "transformer_model_name": transformer_model,
+        "include_argument_mask": false,
+        "argument_mask_threshold": "0.7",
         "max_document_length": 4000,
         "max_query_length": 1000,
         "for_training": false,
@@ -37,6 +41,7 @@ local num_gpus = 1;
         "transformer_model_name": transformer_model,
         "attention_window_size": 700,
         "gradient_checkpointing": true,
+        "include_argument_mask": false,
         "use_evidence_scaffold": false,
         "attention_dropout": 0.1,
     },

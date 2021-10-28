@@ -12,22 +12,29 @@ from tqdm import tqdm
 import argscichat_allennlp.const_define as cd
 
 
-def run_prediction(folder):
-    os.makedirs(os.path.join(cd.PROJECT_DIR, 'model_predictions', folder))
+def run_prediction(models_path, folder, sentence_split):
+    base_path = os.path.join(cd.PROJECT_DIR, 'model_predictions', folder)
+    if not os.path.isdir(base_path):
+        os.makedirs(base_path)
+
+    if sentence_split:
+        prefix = 'sentence_'
+    else:
+        prefix = ''
 
     # Run script
     cmd = ['allennlp',
            'predict',
            '--output-file',
-           'model_predictions/{}/predictions.json'.format(folder),
+           'model_predictions/{}/predictions.jsonl'.format(folder),
            '--predictor',
            'argscichat',
            '--use-dataset-reader',
            '--silent',
            '--include-package',
            'argscichat_baselines',
-           'model_runs/{}'.format(folder),
-           os.path.join('argscichat_train_dev', 'sentence_val.json')
+           os.path.join(models_path, folder),
+           os.path.join('argscichat_train_dev', '{}val.json'.format(prefix))
            ]
     cmd = ' '.join(cmd)
     print('Executing command: {}'.format(cmd))
@@ -37,10 +44,25 @@ def run_prediction(folder):
 
 if __name__ == '__main__':
 
+    # Settings
+    base_predictions_folder = os.path.join(cd.PROJECT_DIR, 'model_predictions')
     models_path = os.path.join(cd.PROJECT_DIR, 'model_runs')
-    force_prediction = False
 
-    for folder in tqdm(os.listdir(models_path)):
-        if force_prediction or not os.path.isfile(
-                os.path.join(cd.PROJECT_DIR, 'model_predictions', folder, 'predictions.json')):
-            run_prediction(folder)
+    test_names = [
+    ]
+
+    seeds = [
+        15371,
+        15372,
+        15373
+    ]
+
+    force_prediction = True
+    sentence_split = True
+
+    for name in tqdm(test_names):
+        for seed in seeds:
+            folder = '{0}_{1}'.format(name, seed)
+            if force_prediction or not os.path.isfile(
+                    os.path.join(base_predictions_folder, folder, 'predictions.json')):
+                run_prediction(models_path, folder, sentence_split)
