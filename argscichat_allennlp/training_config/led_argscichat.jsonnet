@@ -16,8 +16,6 @@ local num_gpus = 1;
         "transformer_model_name": transformer_model,
         "max_document_length": 4000,
         "max_query_length": 1000,
-        "include_argument_mask": false,
-        "argument_mask_threshold": "0.7",
         "for_training": true,
         "context": ["query"]
     },
@@ -26,8 +24,6 @@ local num_gpus = 1;
         "transformer_model_name": transformer_model,
         "max_document_length": 4000,
         "max_query_length": 1000,
-        "include_argument_mask": false,
-        "argument_mask_threshold": "0.7",
         "for_training": false,
         "context": ["query"]
     },
@@ -42,7 +38,6 @@ local num_gpus = 1;
         "attention_window_size": 700,
         "gradient_checkpointing": true,
         "use_evidence_scaffold": false,
-        "include_argument_mask": false,
         "attention_dropout": 0.1,
     },
     "data_loader": {
@@ -63,7 +58,7 @@ local num_gpus = 1;
       "num_epochs": epochs,
       "num_gradient_accumulation_steps": num_gradient_accumulation_steps,
       "patience": patience,
-      "validation_metric": "+evidence_f1",
+      "validation_metric": "+answer_f1",
       "enable_default_callbacks": false,
       "use_amp": true
     },

@@ -18,7 +18,4 @@ class ArgSciChatPredictor(Predictor):
         if 'predicted_evidence' in outputs:
             to_return['predicted_evidence'] = outputs['predicted_evidence']
 
-        if 'predicted_arguments' in outputs:
-            to_return['predicted_arguments'] = outputs['predicted_arguments']
-
         return json.dumps(to_return) + "\n"

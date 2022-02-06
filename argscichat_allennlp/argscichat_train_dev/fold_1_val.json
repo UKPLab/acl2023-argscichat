@@ -1,0 +1,858 @@
+{
+    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels": {
+        "id": "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels",
+        "title": "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels",
+        "content": [
+            "Recent dialogue coherence models use the coherence features designed for monologue texts, e.g.",
+            "nominal entities, to represent utterances and then explicitly augment them with dialogue-relevant features, e.g., dialogue act labels.",
+            "It indicates two drawbacks, (a) semantics of utterances is limited to entity mentions, and (b) the performance of coherence models strongly relies on the quality of the input dialogue act labels.",
+            "We address these issues by introducing a novel approach to dialogue coherence assessment.",
+            "We use dialogue act prediction as an auxiliary task in a multi-task learning scenario to obtain informative utterance representations for coherence assessment.",
+            "Our approach alleviates the need for explicit dialogue act labels during evaluation.",
+            "The results of our experiments show that our model substantially (more than 20 accuracy points) outperforms its strong competitors on the Dai-lyDialogue corpus, and performs on par with them on the SwitchBoard corpus for ranking dialogues concerning their coherence.",
+            "We release our source code 1 .",
+            "Considering rapid progresses in developing open-domain dialogue agents Ghazvininejad et al., 2018; Dinan et al., 2019; Li et al., 2019) , the need for models that compare these agents in various dialogue aspects becomes extremely important (Liu et al., 2016; Dinan et al., 2019) .",
+            "Most available methods for dialogue evaluation rely on word-overlap metrics, e.g.",
+            "BLEU, and manually collected human feedback.",
+            "The former does not strongly correlate with human judgments (Liu et al., 2016) , and the latter is timeconsuming and subjective.",
+            "A fundamental aspect of dialogue is coherence -what discriminates a Figure 1 : A high-level view of our multi-task learning approach for dialogue coherence modeling.",
+            "high-quality dialogue from a random sequence of dialogue utterances (Halliday and Hasan, 1976; Grosz and Sidner, 1986; Byron and Stent, 1998) .",
+            "Dialogue coherence deals with semantic relations between utterances considering their dialogue acts (Perrault and Allen, 1978; Cervone et al., 2018) .",
+            "A Dialogue Act (henceforth DA) gives a meaning to an utterance in a dialogue at the level of \"illocutionary force\", and therefore, constitutes the basic unit of communication (Searle, 1969; Raheja and Tetreault, 2019) .",
+            "A DA captures what a speaker's intention is of saying an utterance without regard to the actual content of the utterance.",
+            "For example, a DA may indicate whether the intention of stating an utterance is to ask a question or to state a piece of information.",
+            "Recent approaches to dialogue coherence modeling use the coherence features designed for monologue texts, e.g.",
+            "entity transitions (Barzilay and Lapata, 2005) , and augment them with dialogue-relevant features, e.g., DA labels (Cervone et al., 2018) .",
+            "These DA labels are provided by human annotators or DA prediction models.",
+            "Such coherence models suffer from the following drawbacks: (a) they curb semantic representations of utterances to entities, which are sparse in dialogue because of short utterance lengths, and (b) their performance relies on the quality of their input DA labels.",
+            "We propose a novel approach to dialogue coherence assessment by utilizing dialogue act prediction as an auxiliary task for training our coherence model in a multi-task learning (MTL) scenario (Figure 1 ).",
+            "Our approach consists of three high-level components: an utterance encoder, a dialogue coherence model (DiCoh) , and a Dialogue Act Prediction (DAP) model.",
+            "The layers of the utterance encoder are shared between the DAP and the DiCoh model.",
+            "This idea enables our Di-Coh model to learn to focus on salient information presented in utterances considering their DAs and to alleviate the need for explicit DA labels during coherence assessment.",
+            "We evaluate our MTL-based approach on the DailyDialog (Li et al., 2017) and SwitchBoard (Jurafsky and Shriberg, 1997) English dialogue corpora in several discriminating experiments, where our coherence model, DiCoh, is examined to discriminate a dialogue from its perturbations (see Table 1 ).",
+            "We utilize perturbation methods, like utterance ordering and utterance insertion, inherited from coherence evaluation approaches for monologue texts, and also introduce two dialoguerelevant perturbations, named utterance replacement and even utterance ordering.",
+            "Our core contributions are: (1) proposing an MTL-based approach for dialogue coherence assessment using DAP as an auxiliary task, yielding more informative utterance representations for coherence assessment; (2) alleviating the need for DA labels for dialogue coherence assessment during evaluations;\n\n (3) an empirical evaluation on two benchmark dialogue corpora, showing that our model substantially outperforms the state-of-the-art coherence model on DailyDialog, and performs on par with it on SwitchBoard."
+        ],
+        "message_pairs": [
+            {
+                "id": "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_88",
+                "P_Message": "Hello there, what are some examples for explicit dialogue act labels?",
+                "DE_Message": "Hi, The given text does not provide any specific example of DA. However, DA seems to related to what a speaker intention is of saying a sentence",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "A DA captures what a speaker's intention is of saying an utterance without regard to the actual content of the utterance.",
+                    "For example, a DA may indicate whether the intention of stating an utterance is to ask a question or to state a piece of information."
+                ]
+            },
+            {
+                "id": "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_89",
+                "P_Message": "How is dialogue coherence defined?",
+                "DE_Message": "dialogue coherence deals with the semantic and DA's relations between sentence in a dialogue. ",
+                "history_facts": [
+                    [
+                        "A DA captures what a speaker's intention is of saying an utterance without regard to the actual content of the utterance. For example, a DA may indicate whether the intention of stating an utterance is to ask a question or to state a piece of information. "
+                    ]
+                ],
+                "history_ids": [
+                    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_88"
+                ],
+                "history": [
+                    "Hello there, what are some examples for explicit dialogue act labels?",
+                    "Hi, The given text does not provide any specific example of DA.",
+                    "However, DA seems to related to what a speaker intention is of saying a sentence",
+                    "A DA captures what a speaker's intention is of saying an utterance without regard to the actual content of the utterance.",
+                    "For example, a DA may indicate whether the intention of stating an utterance is to ask a question or to state a piece of information."
+                ],
+                "facts": [
+                    "Dialogue coherence deals with semantic relations between utterances considering their dialogue acts"
+                ]
+            },
+            {
+                "id": "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_90",
+                "P_Message": "I see, and how do authors suggest evaluating dialogue coherence without using ecplicit labels?",
+                "DE_Message": "The remove DA labels from the test set. They perturb the order of sentences in a dialogue. Then check how well a coherence model can distinguish an original dialogue from its perturbation..",
+                "history_facts": [
+                    [
+                        "A DA captures what a speaker's intention is of saying an utterance without regard to the actual content of the utterance. For example, a DA may indicate whether the intention of stating an utterance is to ask a question or to state a piece of information. "
+                    ],
+                    [
+                        "Dialogue coherence deals with semantic relations between utterances considering their dialogue acts "
+                    ]
+                ],
+                "history_ids": [
+                    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_88",
+                    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_89"
+                ],
+                "history": [
+                    "Hello there, what are some examples for explicit dialogue act labels?",
+                    "Hi, The given text does not provide any specific example of DA.",
+                    "However, DA seems to related to what a speaker intention is of saying a sentence",
+                    "A DA captures what a speaker's intention is of saying an utterance without regard to the actual content of the utterance.",
+                    "For example, a DA may indicate whether the intention of stating an utterance is to ask a question or to state a piece of information.",
+                    "How is dialogue coherence defined?",
+                    "dialogue coherence deals with the semantic and DA's relations between sentence in a dialogue.",
+                    "Dialogue coherence deals with semantic relations between utterances considering their dialogue acts"
+                ],
+                "facts": [
+                    "We utilize perturbation methods, like utterance ordering and utterance insertion, inherited from coherence evaluation approaches for monologue texts, and also introduce two dialoguerelevant perturbations, named utterance replacement and even utterance ordering."
+                ]
+            },
+            {
+                "id": "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_91",
+                "P_Message": "Sounds like an interesting approach, what type of models are examined for this purpose?",
+                "DE_Message": "A neural model consisting of three modules: sentence encoder, coherence score prediction, and DA prediction. The model is trained in MTL regime. Does it make sense to you? ",
+                "history_facts": [
+                    [
+                        "A DA captures what a speaker's intention is of saying an utterance without regard to the actual content of the utterance. For example, a DA may indicate whether the intention of stating an utterance is to ask a question or to state a piece of information. "
+                    ],
+                    [
+                        "Dialogue coherence deals with semantic relations between utterances considering their dialogue acts "
+                    ],
+                    [
+                        "We utilize perturbation methods, like utterance ordering and utterance insertion, inherited from coherence evaluation approaches for monologue texts, and also introduce two dialoguerelevant perturbations, named utterance replacement and even utterance ordering."
+                    ]
+                ],
+                "history_ids": [
+                    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_88",
+                    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_89",
+                    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_90"
+                ],
+                "history": [
+                    "Hello there, what are some examples for explicit dialogue act labels?",
+                    "Hi, The given text does not provide any specific example of DA.",
+                    "However, DA seems to related to what a speaker intention is of saying a sentence",
+                    "A DA captures what a speaker's intention is of saying an utterance without regard to the actual content of the utterance.",
+                    "For example, a DA may indicate whether the intention of stating an utterance is to ask a question or to state a piece of information.",
+                    "How is dialogue coherence defined?",
+                    "dialogue coherence deals with the semantic and DA's relations between sentence in a dialogue.",
+                    "Dialogue coherence deals with semantic relations between utterances considering their dialogue acts",
+                    "I see, and how do authors suggest evaluating dialogue coherence without using ecplicit labels?",
+                    "The remove DA labels from the test set.",
+                    "They perturb the order of sentences in a dialogue.",
+                    "Then check how well a coherence model can distinguish an original dialogue from its perturbation..",
+                    "We utilize perturbation methods, like utterance ordering and utterance insertion, inherited from coherence evaluation approaches for monologue texts, and also introduce two dialoguerelevant perturbations, named utterance replacement and even utterance ordering."
+                ],
+                "facts": [
+                    "Our approach consists of three high-level components: an utterance encoder, a dialogue coherence model (DiCoh) , and a Dialogue Act Prediction (DAP) model."
+                ]
+            },
+            {
+                "id": "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_92",
+                "P_Message": "Yes, I think it makes sense. How do the models perform? Do the scores they give correlate with expectations?",
+                "DE_Message": "the evaluation is performed on two datasets. On one the model outperforms the SoTA. On the other one the model works on par with SoTA. Do you think that alleviating the need for DA labels during evaluation is important? ",
+                "history_facts": [
+                    [
+                        "A DA captures what a speaker's intention is of saying an utterance without regard to the actual content of the utterance. For example, a DA may indicate whether the intention of stating an utterance is to ask a question or to state a piece of information. "
+                    ],
+                    [
+                        "Dialogue coherence deals with semantic relations between utterances considering their dialogue acts "
+                    ],
+                    [
+                        "We utilize perturbation methods, like utterance ordering and utterance insertion, inherited from coherence evaluation approaches for monologue texts, and also introduce two dialoguerelevant perturbations, named utterance replacement and even utterance ordering."
+                    ],
+                    [
+                        "Our approach consists of three high-level components: an utterance encoder, a dialogue coherence model (DiCoh) , and a Dialogue Act Prediction (DAP) model."
+                    ]
+                ],
+                "history_ids": [
+                    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_88",
+                    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_89",
+                    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_90",
+                    "Dialogue Coherence Assessment Without Explicit Dialogue Act Labels_91"
+                ],
+                "history": [
+                    "Hello there, what are some examples for explicit dialogue act labels?",
+                    "Hi, The given text does not provide any specific example of DA.",
+                    "However, DA seems to related to what a speaker intention is of saying a sentence",
+                    "A DA captures what a speaker's intention is of saying an utterance without regard to the actual content of the utterance.",
+                    "For example, a DA may indicate whether the intention of stating an utterance is to ask a question or to state a piece of information.",
+                    "How is dialogue coherence defined?",
+                    "dialogue coherence deals with the semantic and DA's relations between sentence in a dialogue.",
+                    "Dialogue coherence deals with semantic relations between utterances considering their dialogue acts",
+                    "I see, and how do authors suggest evaluating dialogue coherence without using ecplicit labels?",
+                    "The remove DA labels from the test set.",
+                    "They perturb the order of sentences in a dialogue.",
+                    "Then check how well a coherence model can distinguish an original dialogue from its perturbation..",
+                    "We utilize perturbation methods, like utterance ordering and utterance insertion, inherited from coherence evaluation approaches for monologue texts, and also introduce two dialoguerelevant perturbations, named utterance replacement and even utterance ordering.",
+                    "Sounds like an interesting approach, what type of models are examined for this purpose?",
+                    "A neural model consisting of three modules: sentence encoder, coherence score prediction, and DA prediction.",
+                    "The model is trained in MTL regime.",
+                    "Does it make sense to you?",
+                    "Our approach consists of three high-level components: an utterance encoder, a dialogue coherence model (DiCoh) , and a Dialogue Act Prediction (DAP) model."
+                ],
+                "facts": [
+                    " an empirical evaluation on two benchmark dialogue corpora, showing that our model substantially outperforms the state-of-the-art coherence model on DailyDialog, and performs on par with it on SwitchBoard."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+        ]
+    },
+    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains": {
+        "id": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains",
+        "title": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains",
+        "content": [
+            "Entity linking (EL) is concerned with disambiguating entity mentions in a text against knowledge bases (KB).",
+            "It is crucial in a considerable number of fields like humanities, technical writing and biomedical sciences to enrich texts with semantics and discover more knowledge.",
+            "The use of EL in such domains requires handling noisy texts, low resource settings and domain-specific KBs.",
+            "Existing approaches are mostly inappropriate for this, as they depend on training data.",
+            "However, in the above scenario, there exists hardly annotated data, and it needs to be created from scratch.",
+            "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach: we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users.",
+            "We evaluate our ranking approach in a simulation on difficult texts and show that it greatly outperforms a strong baseline in ranking accuracy.",
+            "In a user study, the annotation speed improves by 35 % compared to annotating without interactive support; users report that they strongly prefer our system.",
+            "An open-source and ready-to-use implementation based on the text annotation platform INCEpTION 1 is made available 2 .",
+            "Entity linking (EL) describes the task of disambiguating entity mentions in a text by linking them to a knowledge base (KB), e.g.",
+            "the text span Earl of Orrery can be linked to the KB entry John Boyle, 5.",
+            "Earl of Cork, thereby disambiguating it.",
+            "EL is highly beneficial in many fields like digital humanities, classics, technical writing or biomedical sciences for applications like search (Meij et al., 1 https://inception-project.github.io 2 https://github.com/UKPLab/ acl2020-interactive-entity-linking Figure 1 : Difficult entity mentions with their linked entities: 1) Name variations, 2) Spelling Variation, 3) Ambiguity 2014), semantic enrichment (Schl\u00f6gl and Lejtovicz, 2017) or information extraction (Nooralahzadeh and \u00d8vrelid, 2018) .",
+            "These are overwhelmingly low-resource settings: often, no data annotated exists; coverage of open-domain knowledge bases like Wikipedia or DBPedia is low.",
+            "Therefore, entity linking is frequently performed against domainspecific knowledge bases (Munnelly and Lawless, 2018a; Bartsch, 2004) .",
+            "In these scenarios, the first crucial step is to obtain annotated data.",
+            "This data can then be either directly used by researchers for their downstream task or to train machine learning models for automatic annotation.",
+            "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+            "Manual annotation is laborious and often prohibitively expensive.",
+            "To improve annotation speed and quality, we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them.",
+            "The more entities are annotated, the better the annotation support will be.",
+            "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents.",
+            "In this domain, texts are noisy as they were written in times where orthography was rather incidental or due to OCR and transcription errors (see Fig.",
+            "1 ).",
+            "Tools like named entity recognizers are unavailable or perform poorly (Erdmann et al., 2019) .",
+            "We demonstrate the effectiveness of our approach with extensive simulation as well as a user study on different, challenging datasets.",
+            "We implement our approach based on the open-source annotation platform INCEpTION (Klie et al., 2018) and publish all datasets and code.",
+            "Our contributions are the following:\n\n 1.",
+            "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases.",
+            "We validate our approach extensively in a simulation and in a user study.",
+            "2.",
+            "We show that statistical machine learning models can be used in an interactive entity linking setting to improve annotation speed by over 35%."
+        ],
+        "message_pairs": [
+            {
+                "id": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_207",
+                "P_Message": "What do you mean with low resource domain?",
+                "DE_Message": "We say low resource domains are domains were data is scare, e.g. because of the language or because of the content. In our case, that is old English texts. Is that what you also understand as low resource?",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents."
+                ]
+            },
+            {
+                "id": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_208",
+                "P_Message": "Interesting, I agree. So how does this approach work?",
+                "DE_Message": "We need to annotate data as it does not exist yet. As annotating is annoying, we support users with machine learning algorithms during that. Do you want to hear more about the support our system can provide?",
+                "history_facts": [
+                    [
+                        "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents. "
+                    ]
+                ],
+                "history_ids": [
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_207"
+                ],
+                "history": [
+                    "What do you mean with low resource domain?",
+                    "We say low resource domains are domains were data is scare, e.g.",
+                    "because of the language or because of the content.",
+                    "In our case, that is old English texts.",
+                    "Is that what you also understand as low resource?",
+                    "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents."
+                ],
+                "facts": [
+                    "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                    "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases."
+                ]
+            },
+            {
+                "id": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_209",
+                "P_Message": "Can you provide a more specific answer, like what algorithms are used and how the support comes in? ",
+                "DE_Message": "We help users to find spans that contain named entities and we help them to select the right one from the knowledge base search by reranking. Models are trained interactively in the loop. Does this clarify things?",
+                "history_facts": [
+                    [
+                        "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents. "
+                    ],
+                    [
+                        "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                        "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases."
+                    ]
+                ],
+                "history_ids": [
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_207",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_208"
+                ],
+                "history": [
+                    "What do you mean with low resource domain?",
+                    "We say low resource domains are domains were data is scare, e.g.",
+                    "because of the language or because of the content.",
+                    "In our case, that is old English texts.",
+                    "Is that what you also understand as low resource?",
+                    "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents.",
+                    "Interesting, I agree.",
+                    "So how does this approach work?",
+                    "We need to annotate data as it does not exist yet.",
+                    "As annotating is annoying, we support users with machine learning algorithms during that.",
+                    "Do you want to hear more about the support our system can provide?",
+                    "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                    "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases."
+                ],
+                "facts": [
+                    "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach:",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users."
+                ]
+            },
+            {
+                "id": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_210",
+                "P_Message": "Only partly. Are the spans identified by the model as well or by the user? ",
+                "DE_Message": "The annotator is still in charge and needs to acutally select spans, the machine learning models are just there to give suggestions.",
+                "history_facts": [
+                    [
+                        "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents. "
+                    ],
+                    [
+                        "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                        "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases."
+                    ],
+                    [
+                        "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach: ",
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users."
+                    ]
+                ],
+                "history_ids": [
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_207",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_208",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_209"
+                ],
+                "history": [
+                    "What do you mean with low resource domain?",
+                    "We say low resource domains are domains were data is scare, e.g.",
+                    "because of the language or because of the content.",
+                    "In our case, that is old English texts.",
+                    "Is that what you also understand as low resource?",
+                    "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents.",
+                    "Interesting, I agree.",
+                    "So how does this approach work?",
+                    "We need to annotate data as it does not exist yet.",
+                    "As annotating is annoying, we support users with machine learning algorithms during that.",
+                    "Do you want to hear more about the support our system can provide?",
+                    "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                    "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases.",
+                    "Can you provide a more specific answer, like what algorithms are used and how the support comes in?",
+                    "We help users to find spans that contain named entities and we help them to select the right one from the knowledge base search by reranking.",
+                    "Models are trained interactively in the loop.",
+                    "Does this clarify things?",
+                    "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach:",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users."
+                ],
+                "facts": [
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text"
+                ]
+            },
+            {
+                "id": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_211",
+                "P_Message": "so the input is the selected span and the model provides a ranking for the labels?",
+                "DE_Message": "For the reranking part, the user selects a span and then searches for the right entity. These are both used as inputs for the reranking.",
+                "history_facts": [
+                    [
+                        "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents. "
+                    ],
+                    [
+                        "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                        "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases."
+                    ],
+                    [
+                        "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach: ",
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users."
+                    ],
+                    [
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                        "we therefore add interactive machine learning annotation support that helps the user find entities in the text"
+                    ]
+                ],
+                "history_ids": [
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_207",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_208",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_209",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_210"
+                ],
+                "history": [
+                    "What do you mean with low resource domain?",
+                    "We say low resource domains are domains were data is scare, e.g.",
+                    "because of the language or because of the content.",
+                    "In our case, that is old English texts.",
+                    "Is that what you also understand as low resource?",
+                    "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents.",
+                    "Interesting, I agree.",
+                    "So how does this approach work?",
+                    "We need to annotate data as it does not exist yet.",
+                    "As annotating is annoying, we support users with machine learning algorithms during that.",
+                    "Do you want to hear more about the support our system can provide?",
+                    "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                    "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases.",
+                    "Can you provide a more specific answer, like what algorithms are used and how the support comes in?",
+                    "We help users to find spans that contain named entities and we help them to select the right one from the knowledge base search by reranking.",
+                    "Models are trained interactively in the loop.",
+                    "Does this clarify things?",
+                    "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach:",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users.",
+                    "Only partly.",
+                    "Are the spans identified by the model as well or by the user?",
+                    "The annotator is still in charge and needs to acutally select spans, the machine learning models are just there to give suggestions.",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text"
+                ],
+                "facts": [
+                    "e use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them"
+                ]
+            },
+            {
+                "id": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_212",
+                "P_Message": "Sounds promising! So how well do the models perform?",
+                "DE_Message": "Using these in a user study, we measured an annotation time improvement of up to 35%. Do you think this is useful?",
+                "history_facts": [
+                    [
+                        "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents. "
+                    ],
+                    [
+                        "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                        "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases."
+                    ],
+                    [
+                        "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach: ",
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users."
+                    ],
+                    [
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                        "we therefore add interactive machine learning annotation support that helps the user find entities in the text"
+                    ],
+                    [
+                        "e use recommenders that suggest potential concepts and adaptive candidate ranking",
+                        "we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them"
+                    ]
+                ],
+                "history_ids": [
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_207",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_208",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_209",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_210",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_211"
+                ],
+                "history": [
+                    "What do you mean with low resource domain?",
+                    "We say low resource domains are domains were data is scare, e.g.",
+                    "because of the language or because of the content.",
+                    "In our case, that is old English texts.",
+                    "Is that what you also understand as low resource?",
+                    "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents.",
+                    "Interesting, I agree.",
+                    "So how does this approach work?",
+                    "We need to annotate data as it does not exist yet.",
+                    "As annotating is annoying, we support users with machine learning algorithms during that.",
+                    "Do you want to hear more about the support our system can provide?",
+                    "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                    "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases.",
+                    "Can you provide a more specific answer, like what algorithms are used and how the support comes in?",
+                    "We help users to find spans that contain named entities and we help them to select the right one from the knowledge base search by reranking.",
+                    "Models are trained interactively in the loop.",
+                    "Does this clarify things?",
+                    "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach:",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users.",
+                    "Only partly.",
+                    "Are the spans identified by the model as well or by the user?",
+                    "The annotator is still in charge and needs to acutally select spans, the machine learning models are just there to give suggestions.",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text",
+                    "so the input is the selected span and the model provides a ranking for the labels?",
+                    "For the reranking part, the user selects a span and then searches for the right entity.",
+                    "These are both used as inputs for the reranking.",
+                    "e use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them"
+                ],
+                "facts": [
+                    "We show that statistical machine learning models can be used in an interactive entity linking setting to improve annotation speed by over 35%."
+                ]
+            },
+            {
+                "id": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_213",
+                "P_Message": "It depends, improvement of 35% compared to what baseline?",
+                "DE_Message": "To not using annotation support. Do you have any more questions?",
+                "history_facts": [
+                    [
+                        "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents. "
+                    ],
+                    [
+                        "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                        "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases."
+                    ],
+                    [
+                        "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach: ",
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users."
+                    ],
+                    [
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                        "we therefore add interactive machine learning annotation support that helps the user find entities in the text"
+                    ],
+                    [
+                        "e use recommenders that suggest potential concepts and adaptive candidate ranking",
+                        "we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them"
+                    ],
+                    [
+                        "We show that statistical machine learning models can be used in an interactive entity linking setting to improve annotation speed by over 35%."
+                    ]
+                ],
+                "history_ids": [
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_207",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_208",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_209",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_210",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_211",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_212"
+                ],
+                "history": [
+                    "What do you mean with low resource domain?",
+                    "We say low resource domains are domains were data is scare, e.g.",
+                    "because of the language or because of the content.",
+                    "In our case, that is old English texts.",
+                    "Is that what you also understand as low resource?",
+                    "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents.",
+                    "Interesting, I agree.",
+                    "So how does this approach work?",
+                    "We need to annotate data as it does not exist yet.",
+                    "As annotating is annoying, we support users with machine learning algorithms during that.",
+                    "Do you want to hear more about the support our system can provide?",
+                    "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                    "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases.",
+                    "Can you provide a more specific answer, like what algorithms are used and how the support comes in?",
+                    "We help users to find spans that contain named entities and we help them to select the right one from the knowledge base search by reranking.",
+                    "Models are trained interactively in the loop.",
+                    "Does this clarify things?",
+                    "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach:",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users.",
+                    "Only partly.",
+                    "Are the spans identified by the model as well or by the user?",
+                    "The annotator is still in charge and needs to acutally select spans, the machine learning models are just there to give suggestions.",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text",
+                    "so the input is the selected span and the model provides a ranking for the labels?",
+                    "For the reranking part, the user selects a span and then searches for the right entity.",
+                    "These are both used as inputs for the reranking.",
+                    "e use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them",
+                    "Sounds promising!",
+                    "So how well do the models perform?",
+                    "Using these in a user study, we measured an annotation time improvement of up to 35%.",
+                    "Do you think this is useful?",
+                    "We show that statistical machine learning models can be used in an interactive entity linking setting to improve annotation speed by over 35%."
+                ],
+                "facts": [
+                    "In a user study, the annotation speed improves by 35 % compared to annotating without interactive support; users report that they strongly prefer our system."
+                ]
+            },
+            {
+                "id": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_214",
+                "P_Message": "Could you quantify if there was any bias introduced due to the recommendations?",
+                "DE_Message": "That we did not measure.",
+                "history_facts": [
+                    [
+                        "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents. "
+                    ],
+                    [
+                        "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                        "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases."
+                    ],
+                    [
+                        "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach: ",
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users."
+                    ],
+                    [
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                        "we therefore add interactive machine learning annotation support that helps the user find entities in the text"
+                    ],
+                    [
+                        "e use recommenders that suggest potential concepts and adaptive candidate ranking",
+                        "we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them"
+                    ],
+                    [
+                        "We show that statistical machine learning models can be used in an interactive entity linking setting to improve annotation speed by over 35%."
+                    ],
+                    [
+                        "In a user study, the annotation speed improves by 35 % compared to annotating without interactive support; users report that they strongly prefer our system."
+                    ]
+                ],
+                "history_ids": [
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_207",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_208",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_209",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_210",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_211",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_212",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_213"
+                ],
+                "history": [
+                    "What do you mean with low resource domain?",
+                    "We say low resource domains are domains were data is scare, e.g.",
+                    "because of the language or because of the content.",
+                    "In our case, that is old English texts.",
+                    "Is that what you also understand as low resource?",
+                    "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents.",
+                    "Interesting, I agree.",
+                    "So how does this approach work?",
+                    "We need to annotate data as it does not exist yet.",
+                    "As annotating is annoying, we support users with machine learning algorithms during that.",
+                    "Do you want to hear more about the support our system can provide?",
+                    "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                    "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases.",
+                    "Can you provide a more specific answer, like what algorithms are used and how the support comes in?",
+                    "We help users to find spans that contain named entities and we help them to select the right one from the knowledge base search by reranking.",
+                    "Models are trained interactively in the loop.",
+                    "Does this clarify things?",
+                    "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach:",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users.",
+                    "Only partly.",
+                    "Are the spans identified by the model as well or by the user?",
+                    "The annotator is still in charge and needs to acutally select spans, the machine learning models are just there to give suggestions.",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text",
+                    "so the input is the selected span and the model provides a ranking for the labels?",
+                    "For the reranking part, the user selects a span and then searches for the right entity.",
+                    "These are both used as inputs for the reranking.",
+                    "e use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them",
+                    "Sounds promising!",
+                    "So how well do the models perform?",
+                    "Using these in a user study, we measured an annotation time improvement of up to 35%.",
+                    "Do you think this is useful?",
+                    "We show that statistical machine learning models can be used in an interactive entity linking setting to improve annotation speed by over 35%.",
+                    "It depends, improvement of 35% compared to what baseline?",
+                    "To not using annotation support.",
+                    "Do you have any more questions?",
+                    "In a user study, the annotation speed improves by 35 % compared to annotating without interactive support; users report that they strongly prefer our system."
+                ],
+                "facts": [
+                    "In a user study, the annotation speed improves by 35 % compared to annotating without interactive support; users report that they strongly prefer our system."
+                ]
+            },
+            {
+                "id": "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_215",
+                "P_Message": "But couldn't it be that users were wrongly biased towards what the model suggested?",
+                "DE_Message": "The model suggest spans, but it does only rerank the candidates, so while it could bias I do not think that it did much",
+                "history_facts": [
+                    [
+                        "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents. "
+                    ],
+                    [
+                        "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                        "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases."
+                    ],
+                    [
+                        "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach: ",
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users."
+                    ],
+                    [
+                        "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                        "we therefore add interactive machine learning annotation support that helps the user find entities in the text"
+                    ],
+                    [
+                        "e use recommenders that suggest potential concepts and adaptive candidate ranking",
+                        "we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them"
+                    ],
+                    [
+                        "We show that statistical machine learning models can be used in an interactive entity linking setting to improve annotation speed by over 35%."
+                    ],
+                    [
+                        "In a user study, the annotation speed improves by 35 % compared to annotating without interactive support; users report that they strongly prefer our system."
+                    ],
+                    [
+                        "In a user study, the annotation speed improves by 35 % compared to annotating without interactive support; users report that they strongly prefer our system."
+                    ]
+                ],
+                "history_ids": [
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_207",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_208",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_209",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_210",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_211",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_212",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_213",
+                    "From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains_214"
+                ],
+                "history": [
+                    "What do you mean with low resource domain?",
+                    "We say low resource domains are domains were data is scare, e.g.",
+                    "because of the language or because of the content.",
+                    "In our case, that is old English texts.",
+                    "Is that what you also understand as low resource?",
+                    "Throughout this work, we focus on texts from digital humanities, to be more precise, texts written in Early Modern English texts, including poems, biographies, novels as well as legal documents.",
+                    "Interesting, I agree.",
+                    "So how does this approach work?",
+                    "We need to annotate data as it does not exist yet.",
+                    "As annotating is annoying, we support users with machine learning algorithms during that.",
+                    "Do you want to hear more about the support our system can provide?",
+                    "For this initial data creation step, we developed a novel Human-In-The-Loop (HITL) annotation approach.",
+                    "We present a generic, KB-agnostic annotation approach for low-resource settings and provide a ready-to-use implementation so that researchers can easily annotate data for their use cases.",
+                    "Can you provide a more specific answer, like what algorithms are used and how the support comes in?",
+                    "We help users to find spans that contain named entities and we help them to select the right one from the knowledge base search by reranking.",
+                    "Models are trained interactively in the loop.",
+                    "Does this clarify things?",
+                    "We therefore present a novel domain-agnostic Human-In-The-Loop annotation approach:",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking, thereby speeding up the overall annotation process and making it less tedious for users.",
+                    "Only partly.",
+                    "Are the spans identified by the model as well or by the user?",
+                    "The annotator is still in charge and needs to acutally select spans, the machine learning models are just there to give suggestions.",
+                    "we use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text",
+                    "so the input is the selected span and the model provides a ranking for the labels?",
+                    "For the reranking part, the user selects a span and then searches for the right entity.",
+                    "These are both used as inputs for the reranking.",
+                    "e use recommenders that suggest potential concepts and adaptive candidate ranking",
+                    "we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them",
+                    "Sounds promising!",
+                    "So how well do the models perform?",
+                    "Using these in a user study, we measured an annotation time improvement of up to 35%.",
+                    "Do you think this is useful?",
+                    "We show that statistical machine learning models can be used in an interactive entity linking setting to improve annotation speed by over 35%.",
+                    "It depends, improvement of 35% compared to what baseline?",
+                    "To not using annotation support.",
+                    "Do you have any more questions?",
+                    "In a user study, the annotation speed improves by 35 % compared to annotating without interactive support; users report that they strongly prefer our system.",
+                    "Could you quantify if there was any bias introduced due to the recommendations?",
+                    "That we did not measure.",
+                    "In a user study, the annotation speed improves by 35 % compared to annotating without interactive support; users report that they strongly prefer our system."
+                ],
+                "facts": [
+                    "To improve annotation speed and quality, we therefore add interactive machine learning annotation support that helps the user find entities in the text and select the correct knowledge base entries for them."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    }
+}

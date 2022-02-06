@@ -1,20 +1,21 @@
 # !/usr/bin/env python3
 
+import os
+import time
+from datetime import datetime
+
+import numpy as np
+import pandas as pd
+import pytz
+from joblib import Parallel, delayed
+from mysql.connector import connect, Error
+from parlai.core.worlds import validate
 # Copyright (c) Facebook, Inc. and its affiliates.
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 from parlai.crowdsourcing.utils.worlds import CrowdOnboardWorld, CrowdTaskWorld
-from parlai.core.worlds import validate
-from joblib import Parallel, delayed
-import numpy as np
-from datetime import datetime
-import time
-import pytz
-from datetime import datetime, timedelta
-from mysql.connector import connect, Error
-import pandas as pd
+
 import collection_tool.const_define as cd
-import os
 
 
 class MultiAgentDialogOnboardWorld(CrowdOnboardWorld):
@@ -138,7 +139,6 @@ class MultiAgentDialogWorld(CrowdTaskWorld):
         except Error as e:
             raise e
 
-        print("Read from db -> ", result)
         return {item[0].upper(): {'proponent_sessions': item[1].split(';'), 'expert_sessions': item[2].split(';')}
                 for item in result}
 
@@ -165,13 +165,10 @@ class MultiAgentDialogWorld(CrowdTaskWorld):
         firstID = self.agents[0].mephisto_agent.get_worker().worker_name.upper()
         secondID = self.agents[1].mephisto_agent.get_worker().worker_name.upper()
         self.workerIds = [firstID, secondID]
-        print("Worker ids -> ", self.workerIds)
 
         # Step 3: Retrieve sessions from DB
         codes = np.array([firstID, secondID])
         workers_sessions = self.read_from_db(codes=codes)
-        print(codes)
-        print(workers_sessions)
 
         # Step 4: Determine roles based on sessions
         # Since both participants were able to connect, it means that there must be a valid session
@@ -375,10 +372,6 @@ class MultiAgentDialogWorld(CrowdTaskWorld):
                 self.has_timed_out = True
                 self.turn_timeout = 1   # force timeout
                 print("[Parley] Ending episode due to timeout!")
-
-            # Update turn timeout when close to time limit
-            # if self.time_limit_end - current_time < self.turn_timeout:
-            #     self.turn_timeout = self.time_limit_end - current_time
 
         for index in [self.proponent_idx, self.domain_expert_idx]:
             try:

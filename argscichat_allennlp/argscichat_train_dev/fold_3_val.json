@@ -1,0 +1,1287 @@
+{
+    "Annotation Curricula to Implicitly Train Non-Expert Annotators": {
+        "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators",
+        "title": "Annotation Curricula to Implicitly Train Non-Expert Annotators",
+        "content": [
+            "Annotation studies often require annotators to familiarize themselves with the task, its annotation scheme, and the data domain.",
+            "This can be overwhelming in the beginning, mentally taxing, and induce errors into the resulting annotations; especially in citizen science or crowd sourcing scenarios where domain expertise is not required and only annotation guidelines are provided.",
+            "To alleviate these issues, this work proposes annotation curricula, a novel approach to implicitly train annotators.",
+            "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum.",
+            "To do so, this work formalizes annotation curricula for sentence-and paragraph-level annotation tasks, defines an ordering strategy, and identifies well-performing heuristics and interactively trained models on three existing English datasets.",
+            "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic.",
+            "The results show that using a simple heuristic to order instances can already significantly reduce the total annotation time while preserving a high annotation quality.",
+            "Annotation curricula thus can provide a novel way to improve data collection.",
+            "To facilitate future research, all code and data from the user study consisting of 2,400 annotations is made available.",
+            "1 Supervised learning and, consequently, annotated corpora are crucial for many downstream tasks to train and develop well-performing models.",
+            "Despite increasing performances of models trained in a semi-or unsupervised fashion (Peters et al.",
+            "2018; Devlin et al.",
+            "2019) , they still substantially benefit from labeled data (Peters, Ruder, and Smith 2019; Gururangan et al.",
+            "2020 ).",
+            "However, labels are costly to obtain and require domain experts or a large crowd of non-expert annotators (Snow et al.",
+            "2008) .",
+            "Past research has mainly investigated two approaches to reduce annotation cost and effort (often approximated by annotation time); namely, active learning and label suggestions.",
+            "Active learning assumes that resources for annotating data are limited and aims to reduce the number of labeled instances by only annotating those which contribute most to model training (Lewis and Gale 1994; Settles 2012 ).",
+            "This often results in sampled instances that are more difficult to annotate, putting an increased cognitive load on annotators, and potentially leading to a lower agreement or an increased annotation time (Settles, Craven, and Friedland 2008) .",
+            "Label suggestions directly target annotators by providing them with suggestions from a pre-trained model.",
+            "Although they are capable of effectively reducing the annotation time (Schulz et al.",
+            "2019; Klie, Eckart de Castilho, and Gurevych 2020) , they bear the risk of biasing annotators towards the (possibly erroneous) suggested label (Fort and Sagot 2010) .",
+            "The above-called shortcomings render existing approaches better suited for domain-expert annotators who are less burdened by difficult annotation instances and are less prone to receiving erroneous label suggestions than non-expert annotators.",
+            "Overall, we can identify a lack of approaches that (1) are less distracting or biasing than label suggestions and (2) focus on easing the annotation process for non-expert annotators.",
+            "At the same time, the rising popularity of large-scale datasets that are annotated by non-expert annotators (\"Bowman et al.",
+            "2015; Sakaguchi et al.",
+            "2020) , further increases the need for better training methods targeting non-expert annotators (Geva, Goldberg, and Berant 2019; Nie et al.",
+            "2020; Rogers 2021) .",
+            "One key element that has so far not been investigated in annotation studies is the use of a curriculum to implicitly teach the task to annotators during annotation.",
+            "The learning curriculum is a fundamental concept in educational research that proposes to order exercises to match a learner's proficiency (Vygotsky 1978; Krashen 1982) and has even motivated training strategies for machine learning models (Bengio et al.",
+            "2009 ).",
+            "Moreover, Kelly (2009) show that such learning curricula can also be used to teach learners implicitly.",
+            "Similarly, the goal of annotation curricula (AC) is to provide an ordering of instances during annotation that is optimized for learning the task.",
+            "We conjecture that a good annotation curriculum can implicitly teach the task to annotators -for instance, by showing easier annotation instances before more difficult ones -consequently reducing the cognitive strain and improving annotation speed and quality.",
+            "In contrast to active learning that may result in only sampling instances that are difficult to annotate, they explicitly emphasize the needs of a human annotator and gradually familiarize them with the annotation task.",
+            "Compared to label suggestions, they are less distracting as they do not bear the risk of providing erroneous suggestions from imperfect models which makes them well-suited for non-expert annotation scenarios.",
+            "Furthermore, AC does not require study conductors to adapt existing annotator training processes or annotation guidelines and hence, can complement their annotation project.",
+            "To provide a first assessment for the viability of such annotation curricula, we investigate the following three research questions: RQ1.",
+            "Does the order in which instances are annotated impact the annotations in terms of annotation time and quality?",
+            "RQ2.",
+            "Do traditional heuristics and recent methods for assessing the reading difficulty already suffice to generate curricula that improve annotation time or quality?",
+            "RQ3.",
+            "Can the generation of annotation curricula be further alleviated by interactively trained models?",
+            "We first identify and formalize two essential parts to deploy AC: (1) a \"strategy\" that defines how instances should be ordered (e.g., by annotation difficulty) and (2) an \"estimator\" that ranks them accordingly.",
+            "We instantiate AC with an \"easy-instancesfirst\" strategy and evaluate heuristic and interactively trained estimators on three English datasets that provide annotation time which we use as an approximation of the annotation difficulty for evaluation.",
+            "Finally, we apply our strategy and its best estimators in a carefully designed user study with 40 participants for annotating English tweets about the Covid-19 pandemic.",
+            "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality.",
+            "Our contributions are: C1.",
+            "A novel approach for training non-expert annotators that is easy to implement and is complementary to existing annotator training approaches."
+        ],
+        "message_pairs": [
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_157",
+                "P_Message": "Hi! What is the main idea of the paper?",
+                "DE_Message": "The main idea of this paper is to train annotators by sorting annotations by e.g. their difficulty so that they are gradually  introduced to the annotation project. Do you think that is a reasonable idea?",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_158",
+                "P_Message": "Yes, that sounds very smart! Is the effect of potential biases introduced this way investigated?",
+                "DE_Message": "We conducted a carefully constructed user study with 40 participants that showed improvements using our methods compared to not sorting and we saw no big impact in annotation quality while reducing annotation speed. Does this answer your question?",
+                "history_facts": [
+                    [
+                        "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_157"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is the main idea of the paper?",
+                    "The main idea of this paper is to train annotators by sorting annotations by e.g.",
+                    "their difficulty so that they are gradually  introduced to the annotation project.",
+                    "Do you think that is a reasonable idea?",
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                ],
+                "facts": [
+                    "Finally, we apply our strategy and its best estimators in a carefully designed user study with 40 participants for annotating English tweets about the Covid-19 pandemic.",
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_159",
+                "P_Message": "Yes, it does! I see that the underlying data domain are tweets on Covid-19 -- can you tell me more about the dataset used??",
+                "DE_Message": "This dataset is about misconceptions about Covid-19, e.g. that Ginger Ale can cure it. Annotators were presented a tweet that mentioned such a misconception and were asked to select the most fitting category from a list of 4. Do you think that is a good task to evaluate on? ",
+                "history_facts": [
+                    [
+                        "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                    ],
+                    [
+                        "Finally, we apply our strategy and its best estimators in a carefully designed user study with 40 participants for annotating English tweets about the Covid-19 pandemic. ",
+                        "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality. "
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_157",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_158"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is the main idea of the paper?",
+                    "The main idea of this paper is to train annotators by sorting annotations by e.g.",
+                    "their difficulty so that they are gradually  introduced to the annotation project.",
+                    "Do you think that is a reasonable idea?",
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum.",
+                    "Yes, that sounds very smart!",
+                    "Is the effect of potential biases introduced this way investigated?",
+                    "We conducted a carefully constructed user study with 40 participants that showed improvements using our methods compared to not sorting and we saw no big impact in annotation quality while reducing annotation speed.",
+                    "Does this answer your question?",
+                    "Finally, we apply our strategy and its best estimators in a carefully designed user study with 40 participants for annotating English tweets about the Covid-19 pandemic.",
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality."
+                ],
+                "facts": [
+                    "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_160",
+                "P_Message": "I see! I think it seems like a moderately difficult task, although I could imagine there are some ambiguities. I would say it is fitting. Can you tell me how the different sorting strategies looked like?",
+                "DE_Message": "We sort by difficulty where difficulty comes either from heuristics like readability or masked language model score or learn to regress annotation times. Do you think annotation time is a good proxy for difficulty?",
+                "history_facts": [
+                    [
+                        "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                    ],
+                    [
+                        "Finally, we apply our strategy and its best estimators in a carefully designed user study with 40 participants for annotating English tweets about the Covid-19 pandemic. ",
+                        "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality. "
+                    ],
+                    [
+                        "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic."
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_157",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_158",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_159"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is the main idea of the paper?",
+                    "The main idea of this paper is to train annotators by sorting annotations by e.g.",
+                    "their difficulty so that they are gradually  introduced to the annotation project.",
+                    "Do you think that is a reasonable idea?",
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum.",
+                    "Yes, that sounds very smart!",
+                    "Is the effect of potential biases introduced this way investigated?",
+                    "We conducted a carefully constructed user study with 40 participants that showed improvements using our methods compared to not sorting and we saw no big impact in annotation quality while reducing annotation speed.",
+                    "Does this answer your question?",
+                    "Finally, we apply our strategy and its best estimators in a carefully designed user study with 40 participants for annotating English tweets about the Covid-19 pandemic.",
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality.",
+                    "Yes, it does!",
+                    "I see that the underlying data domain are tweets on Covid-19 -- can you tell me more about the dataset used?",
+                    "This dataset is about misconceptions about Covid-19, e.g.",
+                    "that Ginger Ale can cure it.",
+                    "Annotators were presented a tweet that mentioned such a misconception and were asked to select the most fitting category from a list of 4.",
+                    "Do you think that is a good task to evaluate on?",
+                    "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic."
+                ],
+                "facts": [
+                    "We instantiate AC with an \"easy-instancesfirst\" strategy and evaluate heuristic and interactively trained estimators on three English datasets that provide annotation time which we use as an approximation of the annotation difficulty for evaluation."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_161",
+                "P_Message": "Yes, while it might not cover the whole complexity of difficulty this is the quantity we are most interested in the end. Time and hereby money for annotation. I am wondering, did the annotation quality of the \"non-trained\" annotators increase towards the end of the study too?",
+                "DE_Message": "The annotation quality stayed mostly the same on a high level for all groups, we just measured improvement in annotation time. Do you have any more question?",
+                "history_facts": [
+                    [
+                        "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                    ],
+                    [
+                        "Finally, we apply our strategy and its best estimators in a carefully designed user study with 40 participants for annotating English tweets about the Covid-19 pandemic. ",
+                        "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality. "
+                    ],
+                    [
+                        "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic."
+                    ],
+                    [
+                        "We instantiate AC with an \"easy-instancesfirst\" strategy and evaluate heuristic and interactively trained estimators on three English datasets that provide annotation time which we use as an approximation of the annotation difficulty for evaluation."
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_157",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_158",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_159",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_160"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is the main idea of the paper?",
+                    "The main idea of this paper is to train annotators by sorting annotations by e.g.",
+                    "their difficulty so that they are gradually  introduced to the annotation project.",
+                    "Do you think that is a reasonable idea?",
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum.",
+                    "Yes, that sounds very smart!",
+                    "Is the effect of potential biases introduced this way investigated?",
+                    "We conducted a carefully constructed user study with 40 participants that showed improvements using our methods compared to not sorting and we saw no big impact in annotation quality while reducing annotation speed.",
+                    "Does this answer your question?",
+                    "Finally, we apply our strategy and its best estimators in a carefully designed user study with 40 participants for annotating English tweets about the Covid-19 pandemic.",
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality.",
+                    "Yes, it does!",
+                    "I see that the underlying data domain are tweets on Covid-19 -- can you tell me more about the dataset used?",
+                    "This dataset is about misconceptions about Covid-19, e.g.",
+                    "that Ginger Ale can cure it.",
+                    "Annotators were presented a tweet that mentioned such a misconception and were asked to select the most fitting category from a list of 4.",
+                    "Do you think that is a good task to evaluate on?",
+                    "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic.",
+                    "I see!",
+                    "I think it seems like a moderately difficult task, although I could imagine there are some ambiguities.",
+                    "I would say it is fitting.",
+                    "Can you tell me how the different sorting strategies looked like?",
+                    "We sort by difficulty where difficulty comes either from heuristics like readability or masked language model score or learn to regress annotation times.",
+                    "Do you think annotation time is a good proxy for difficulty?",
+                    "We instantiate AC with an \"easy-instancesfirst\" strategy and evaluate heuristic and interactively trained estimators on three English datasets that provide annotation time which we use as an approximation of the annotation difficulty for evaluation."
+                ],
+                "facts": [
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_162",
+                "P_Message": "Hello, could you please tell me what is Annotation Curricula?",
+                "DE_Message": "Annotation curricula mean that we sort the instances to be annotated by their difficulty to gradually introduce annotators to the task and data. Do you think that is a good idea?",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_163",
+                "P_Message": "Sounds good but I'm not sure. What kind of task does it use for?",
+                "DE_Message": "We use it to speed up annotation or sentence and paragraph level annotation tasks, e.g. POS, NER or sentence classification. We also conduct a user study for that. Do you want to hear more about the user study?",
+                "history_facts": [
+                    [
+                        "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_162"
+                ],
+                "history": [
+                    "Hello, could you please tell me what is Annotation Curricula?",
+                    "Annotation curricula mean that we sort the instances to be annotated by their difficulty to gradually introduce annotators to the task and data.",
+                    "Do you think that is a good idea?",
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                ],
+                "facts": [
+                    "this work formalizes annotation curricula for sentence-and paragraph-level annotation tasks"
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_164",
+                "P_Message": "Sure tell me more about that.",
+                "DE_Message": "We conduct a user study to test wheter annotation curricula work. The data is about selecting the most fitting misconception about Covid-19 from a list. We show that using our method significantly reduces annotation time while not hurting annotation quality. ",
+                "history_facts": [
+                    [
+                        "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                    ],
+                    [
+                        "this work formalizes annotation curricula for sentence-and paragraph-level annotation tasks"
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_162",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_163"
+                ],
+                "history": [
+                    "Hello, could you please tell me what is Annotation Curricula?",
+                    "Annotation curricula mean that we sort the instances to be annotated by their difficulty to gradually introduce annotators to the task and data.",
+                    "Do you think that is a good idea?",
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum.",
+                    "Sounds good but I'm not sure.",
+                    "What kind of task does it use for?",
+                    "We use it to speed up annotation or sentence and paragraph level annotation tasks, e.g.",
+                    "POS, NER or sentence classification.",
+                    "We also conduct a user study for that.",
+                    "Do you want to hear more about the user study?",
+                    "this work formalizes annotation curricula for sentence-and paragraph-level annotation tasks"
+                ],
+                "facts": [
+                    "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_165",
+                "P_Message": "That's excellent. So how do you measure annotation quality?",
+                "DE_Message": "We have the gold labels, so we compute accuracy. Does this sound reasonable?",
+                "history_facts": [
+                    [
+                        "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                    ],
+                    [
+                        "this work formalizes annotation curricula for sentence-and paragraph-level annotation tasks"
+                    ],
+                    [
+                        "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic. "
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_162",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_163",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_164"
+                ],
+                "history": [
+                    "Hello, could you please tell me what is Annotation Curricula?",
+                    "Annotation curricula mean that we sort the instances to be annotated by their difficulty to gradually introduce annotators to the task and data.",
+                    "Do you think that is a good idea?",
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum.",
+                    "Sounds good but I'm not sure.",
+                    "What kind of task does it use for?",
+                    "We use it to speed up annotation or sentence and paragraph level annotation tasks, e.g.",
+                    "POS, NER or sentence classification.",
+                    "We also conduct a user study for that.",
+                    "Do you want to hear more about the user study?",
+                    "this work formalizes annotation curricula for sentence-and paragraph-level annotation tasks",
+                    "Sure tell me more about that.",
+                    "We conduct a user study to test wheter annotation curricula work.",
+                    "The data is about selecting the most fitting misconception about Covid-19 from a list.",
+                    "We show that using our method significantly reduces annotation time while not hurting annotation quality.",
+                    "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic."
+                ],
+                "facts": [
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_166",
+                "P_Message": "Yes. And you also said you reduced annotation time, what's the baseline you compare to?",
+                "DE_Message": "Our user study has 40 participants some get annotation curriula and others get random orders. We also have a warmup phase with a fixed order that is the same for all groups. Do you have any questions left?",
+                "history_facts": [
+                    [
+                        "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                    ],
+                    [
+                        "this work formalizes annotation curricula for sentence-and paragraph-level annotation tasks"
+                    ],
+                    [
+                        "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic. "
+                    ],
+                    [
+                        "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality. "
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_162",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_163",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_164",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_165"
+                ],
+                "history": [
+                    "Hello, could you please tell me what is Annotation Curricula?",
+                    "Annotation curricula mean that we sort the instances to be annotated by their difficulty to gradually introduce annotators to the task and data.",
+                    "Do you think that is a good idea?",
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum.",
+                    "Sounds good but I'm not sure.",
+                    "What kind of task does it use for?",
+                    "We use it to speed up annotation or sentence and paragraph level annotation tasks, e.g.",
+                    "POS, NER or sentence classification.",
+                    "We also conduct a user study for that.",
+                    "Do you want to hear more about the user study?",
+                    "this work formalizes annotation curricula for sentence-and paragraph-level annotation tasks",
+                    "Sure tell me more about that.",
+                    "We conduct a user study to test wheter annotation curricula work.",
+                    "The data is about selecting the most fitting misconception about Covid-19 from a list.",
+                    "We show that using our method significantly reduces annotation time while not hurting annotation quality.",
+                    "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic.",
+                    "That's excellent.",
+                    "So how do you measure annotation quality?",
+                    "We have the gold labels, so we compute accuracy.",
+                    "Does this sound reasonable?",
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality."
+                ],
+                "facts": [
+                    "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic.",
+                    "The results show that using a simple heuristic to order instances can already significantly reduce the total annotation time while preserving a high annotation quality."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_167",
+                "P_Message": "One last question, how many time did you reduce?",
+                "DE_Message": "We were able to reduce the time by around 20% when using gold order.",
+                "history_facts": [
+                    [
+                        "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum."
+                    ],
+                    [
+                        "this work formalizes annotation curricula for sentence-and paragraph-level annotation tasks"
+                    ],
+                    [
+                        "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic. "
+                    ],
+                    [
+                        "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality. "
+                    ],
+                    [
+                        "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic.",
+                        "The results show that using a simple heuristic to order instances can already significantly reduce the total annotation time while preserving a high annotation quality. "
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_162",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_163",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_164",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_165",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_166"
+                ],
+                "history": [
+                    "Hello, could you please tell me what is Annotation Curricula?",
+                    "Annotation curricula mean that we sort the instances to be annotated by their difficulty to gradually introduce annotators to the task and data.",
+                    "Do you think that is a good idea?",
+                    "The goal is to gradually introduce annotators into the task by ordering instances that are annotated according to a learning curriculum.",
+                    "Sounds good but I'm not sure.",
+                    "What kind of task does it use for?",
+                    "We use it to speed up annotation or sentence and paragraph level annotation tasks, e.g.",
+                    "POS, NER or sentence classification.",
+                    "We also conduct a user study for that.",
+                    "Do you want to hear more about the user study?",
+                    "this work formalizes annotation curricula for sentence-and paragraph-level annotation tasks",
+                    "Sure tell me more about that.",
+                    "We conduct a user study to test wheter annotation curricula work.",
+                    "The data is about selecting the most fitting misconception about Covid-19 from a list.",
+                    "We show that using our method significantly reduces annotation time while not hurting annotation quality.",
+                    "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic.",
+                    "That's excellent.",
+                    "So how do you measure annotation quality?",
+                    "We have the gold labels, so we compute accuracy.",
+                    "Does this sound reasonable?",
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality.",
+                    "Yes.",
+                    "And you also said you reduced annotation time, what's the baseline you compare to?",
+                    "Our user study has 40 participants some get annotation curriula and others get random orders.",
+                    "We also have a warmup phase with a fixed order that is the same for all groups.",
+                    "Do you have any questions left?",
+                    "Finally, a user study is conducted with 40 voluntary participants who are asked to identify the most fitting misconception for English tweets about the Covid-19 pandemic.",
+                    "The results show that using a simple heuristic to order instances can already significantly reduce the total annotation time while preserving a high annotation quality."
+                ],
+                "facts": [
+                    " The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_244",
+                "P_Message": "Hi, what is the paper about?",
+                "DE_Message": "Hi, the paper is about investigating strategies that implicitly train annotators during their annotations.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "To alleviate these issues, this work proposes annotation curricula, a novel approach to implicitly train annotators."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_245",
+                "P_Message": "That is interesting, how are the annotators then training during the annotation?",
+                "DE_Message": "The basic idea comes from curriculum learning that aims to provide exercises to a (human) learner in an ordering that matches their learning proficiency. Our goal is to implement such a learning curriculum for annotation studies by assessing the difficulty of annotated instances.",
+                "history_facts": [
+                    [
+                        "To alleviate these issues, this work proposes annotation curricula, a novel approach to implicitly train annotators."
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_244"
+                ],
+                "history": [
+                    "Hi, what is the paper about?",
+                    "Hi, the paper is about investigating strategies that implicitly train annotators during their annotations.",
+                    "To alleviate these issues, this work proposes annotation curricula, a novel approach to implicitly train annotators."
+                ],
+                "facts": [
+                    "The learning curriculum is a fundamental concept in educational research that proposes to order exercises to match a learner's proficiency (Vygotsky 1978; Krashen 1982) and has even motivated training strategies for machine learning models (Bengio et al.",
+                    "2009 ).",
+                    "Similarly, the goal of annotation curricula (AC) is to provide an ordering of instances during annotation that is optimized for learning the task."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_246",
+                "P_Message": "So the difficulty of their annotations increment over time. Do you think this comes with an increase in total annotation time for the coder?",
+                "DE_Message": "Sorry, I am not sure if I follow the question. By coder, do you mean the person setting up the study? If you mean the annotator; we restricted our experiments to a finite set of instances that is annotated. So the total annotation time for annotating these instances does actually decrease with a good curriculum.",
+                "history_facts": [
+                    [
+                        "To alleviate these issues, this work proposes annotation curricula, a novel approach to implicitly train annotators."
+                    ],
+                    [
+                        "The learning curriculum is a fundamental concept in educational research that proposes to order exercises to match a learner's proficiency (Vygotsky 1978; Krashen 1982) and has even motivated training strategies for machine learning models (Bengio et al. 2009 ).",
+                        "Similarly, the goal of annotation curricula (AC) is to provide an ordering of instances during annotation that is optimized for learning the task."
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_244",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_245"
+                ],
+                "history": [
+                    "Hi, what is the paper about?",
+                    "Hi, the paper is about investigating strategies that implicitly train annotators during their annotations.",
+                    "To alleviate these issues, this work proposes annotation curricula, a novel approach to implicitly train annotators.",
+                    "That is interesting, how are the annotators then training during the annotation?",
+                    "The basic idea comes from curriculum learning that aims to provide exercises to a (human) learner in an ordering that matches their learning proficiency.",
+                    "Our goal is to implement such a learning curriculum for annotation studies by assessing the difficulty of annotated instances.",
+                    "The learning curriculum is a fundamental concept in educational research that proposes to order exercises to match a learner's proficiency (Vygotsky 1978; Krashen 1982) and has even motivated training strategies for machine learning models (Bengio et al.",
+                    "2009 ).",
+                    "Similarly, the goal of annotation curricula (AC) is to provide an ordering of instances during annotation that is optimized for learning the task."
+                ],
+                "facts": [
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality."
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_247",
+                "P_Message": "Ok, that's what I wanted to know. Another point I would be interested is how do you assess the difficulty of a sample? Like how do you determine the order of data you show the annotator?",
+                "DE_Message": "To estimate the difficulty, we investigate several methods. Non-adaptive ones like heuristics (e.g., sentence length) and adaptive ones that are models that are trained interactively to predict the annotation time (we use this as a proxy for difficulty). Finally, in this work we only investigate easy-instances-first strategies, so the annotated instances are sorted in ascending difficulty.",
+                "history_facts": [
+                    [
+                        "To alleviate these issues, this work proposes annotation curricula, a novel approach to implicitly train annotators."
+                    ],
+                    [
+                        "The learning curriculum is a fundamental concept in educational research that proposes to order exercises to match a learner's proficiency (Vygotsky 1978; Krashen 1982) and has even motivated training strategies for machine learning models (Bengio et al. 2009 ).",
+                        "Similarly, the goal of annotation curricula (AC) is to provide an ordering of instances during annotation that is optimized for learning the task."
+                    ],
+                    [
+                        "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality."
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_244",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_245",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_246"
+                ],
+                "history": [
+                    "Hi, what is the paper about?",
+                    "Hi, the paper is about investigating strategies that implicitly train annotators during their annotations.",
+                    "To alleviate these issues, this work proposes annotation curricula, a novel approach to implicitly train annotators.",
+                    "That is interesting, how are the annotators then training during the annotation?",
+                    "The basic idea comes from curriculum learning that aims to provide exercises to a (human) learner in an ordering that matches their learning proficiency.",
+                    "Our goal is to implement such a learning curriculum for annotation studies by assessing the difficulty of annotated instances.",
+                    "The learning curriculum is a fundamental concept in educational research that proposes to order exercises to match a learner's proficiency (Vygotsky 1978; Krashen 1982) and has even motivated training strategies for machine learning models (Bengio et al.",
+                    "2009 ).",
+                    "Similarly, the goal of annotation curricula (AC) is to provide an ordering of instances during annotation that is optimized for learning the task.",
+                    "So the difficulty of their annotations increment over time.",
+                    "Do you think this comes with an increase in total annotation time for the coder?",
+                    "Sorry, I am not sure if I follow the question.",
+                    "By coder, do you mean the person setting up the study?",
+                    "If you mean the annotator; we restricted our experiments to a finite set of instances that is annotated.",
+                    "So the total annotation time for annotating these instances does actually decrease with a good curriculum.",
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality."
+                ],
+                "facts": [
+                    "evaluate heuristic and interactively trained estimators on three English datasets that provide annotation time which we use as an approximation of the annotation difficulty for evaluation.",
+                    "We instantiate AC with an \"easy-instancesfirst\" strategy"
+                ]
+            },
+            {
+                "id": "Annotation Curricula to Implicitly Train Non-Expert Annotators_248",
+                "P_Message": "How do the non-adaptive measures perform compared to the adaptive ones?",
+                "DE_Message": "Overall, we find that the heuristic ones perform quite well. In fact, our best performing estimator was using the BERT mlm loss (this is not in the displayed text, but an analysis is provided in the results section). ",
+                "history_facts": [
+                    [
+                        "To alleviate these issues, this work proposes annotation curricula, a novel approach to implicitly train annotators."
+                    ],
+                    [
+                        "The learning curriculum is a fundamental concept in educational research that proposes to order exercises to match a learner's proficiency (Vygotsky 1978; Krashen 1982) and has even motivated training strategies for machine learning models (Bengio et al. 2009 ).",
+                        "Similarly, the goal of annotation curricula (AC) is to provide an ordering of instances during annotation that is optimized for learning the task."
+                    ],
+                    [
+                        "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality."
+                    ],
+                    [
+                        "evaluate heuristic and interactively trained estimators on three English datasets that provide annotation time which we use as an approximation of the annotation difficulty for evaluation.",
+                        "We instantiate AC with an \"easy-instancesfirst\" strategy "
+                    ]
+                ],
+                "history_ids": [
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_244",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_245",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_246",
+                    "Annotation Curricula to Implicitly Train Non-Expert Annotators_247"
+                ],
+                "history": [
+                    "Hi, what is the paper about?",
+                    "Hi, the paper is about investigating strategies that implicitly train annotators during their annotations.",
+                    "To alleviate these issues, this work proposes annotation curricula, a novel approach to implicitly train annotators.",
+                    "That is interesting, how are the annotators then training during the annotation?",
+                    "The basic idea comes from curriculum learning that aims to provide exercises to a (human) learner in an ordering that matches their learning proficiency.",
+                    "Our goal is to implement such a learning curriculum for annotation studies by assessing the difficulty of annotated instances.",
+                    "The learning curriculum is a fundamental concept in educational research that proposes to order exercises to match a learner's proficiency (Vygotsky 1978; Krashen 1982) and has even motivated training strategies for machine learning models (Bengio et al.",
+                    "2009 ).",
+                    "Similarly, the goal of annotation curricula (AC) is to provide an ordering of instances during annotation that is optimized for learning the task.",
+                    "So the difficulty of their annotations increment over time.",
+                    "Do you think this comes with an increase in total annotation time for the coder?",
+                    "Sorry, I am not sure if I follow the question.",
+                    "By coder, do you mean the person setting up the study?",
+                    "If you mean the annotator; we restricted our experiments to a finite set of instances that is annotated.",
+                    "So the total annotation time for annotating these instances does actually decrease with a good curriculum.",
+                    "The results show that annotators who receive the same instances in an optimized order require significantly less annotation time while retaining a high annotation quality.",
+                    "Ok, that's what I wanted to know.",
+                    "Another point I would be interested is how do you assess the difficulty of a sample?",
+                    "Like how do you determine the order of data you show the annotator?",
+                    "To estimate the difficulty, we investigate several methods.",
+                    "Non-adaptive ones like heuristics (e.g., sentence length) and adaptive ones that are models that are trained interactively to predict the annotation time (we use this as a proxy for difficulty).",
+                    "Finally, in this work we only investigate easy-instances-first strategies, so the annotated instances are sorted in ascending difficulty.",
+                    "evaluate heuristic and interactively trained estimators on three English datasets that provide annotation time which we use as an approximation of the annotation difficulty for evaluation.",
+                    "We instantiate AC with an \"easy-instancesfirst\" strategy"
+                ],
+                "facts": [
+                    "The results show that using a simple heuristic to order instances can already significantly reduce the total annotation time while preserving a high annotation quality."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    "Syntactically-informed word representations from graph neural network": {
+        "id": "Syntactically-informed word representations from graph neural network",
+        "title": "Syntactically-informed word representations from graph neural network",
+        "content": [
+            "Most deep language understanding models depend only on word representations, which are mainly based on language modelling derived from a large amount of raw text.",
+            "These models encode distributional knowledge without considering syntactic structural information, although several studies have shown benefits of including such information.",
+            "Therefore, we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+            "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+            "The model is first pre-trained with only a relatively modest amount of task-independent data that are automatically annotated using existing syntactic tools.",
+            "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations.",
+            "We finally replace word representations in downstream models with SIWRs for applications.",
+            "We evaluate SIWRs on three information extraction tasks, namely nested named entity recognition (NER), binary and n-ary relation extractions (REs).",
+            "The results demonstrate that our SIWRs yield performance gains over the base representations in these NLP tasks with 3-9% relative error reduction.",
+            "Our SIWRs also perform better than finetuning BERT in binary RE.",
+            "We also conduct extensive experiments to analyse the proposed method.",
+            "Word representations have been widely used in natural language processing (NLP) tasks.",
+            "Most approaches rely on language models (LMs) to obtain static word representations [1] [2] [3] , which conflate all possible meanings of a word in a single real-valued vector.",
+            "Recent work investigated contextualised word representations, which assign a different representation to each occurrence of a word based on its local context [4, 5] .",
+            "These contextual word representations have demonstrated improvements in downstream tasks over the static ones.",
+            "Alternatively, large-scale LMs have been proposed to use in downstream application models with fine-tuning approaches [6] [7] [8] .",
+            "These fine-tuning methods have shown promising results with higher performance than contextual word representations in some applications such as text classification and textual entailment [7] .",
+            "However, not all tasks can be easily represented by large-scale LMs, therefore required an additional model architecture to be designed on top of them [9, 10] .",
+            "On the contrary, contextual representations can be easily adopted as plug-in plugout features.",
+            "Also, contextual representations are cheaper to run as they are pre-computed once only for each instance and run in many experiments with smaller models on top.",
+            "In other words, the computational costs for fine-tuning methods are much higher than contextual approaches.",
+            "All of the LMs mentioned above are mainly trained on a large amount of raw text, and thus do not explicitly encode any linguistic structures.",
+            "Recent studies have shown that downstream task performance may benefit from linguistic structures such as syntactic information [11, 12] , even when contextual word representations and pre-trained models are also used [13] [14] [15] .",
+            "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig.",
+            "1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing dependency parsing tools [16, 17] .",
+            "Many task-oriented neural models do not take into account such syntactic information despite potential performance gains.",
+            "To include such information to existing models, it is necessary to change the model architecture.",
+            "This leads to the following research question:\n\n Is there a universal way to include syntactic bias into the model without changing the architecture while retaining large-scale information?",
+            "In this paper, we will demonstrate that syntax can be pre-encoded with contextual word representations which can be beneficial for subsequent applications.",
+            "We introduce Syntactically-Informed Word Representations (SIWRs) that can incorporate syntactic information in neural models without explicitly changing their architecture.",
+            "Syntactic information is integrated into existing word representations such as GloVe [18] , ELMo [5] and BERT [19] by learning from automatically annotated data which are task-independent.",
+            "We propose the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations.",
+            "Since in English word order is important, we preserve it by adding these connections into the graph layer.",
+            "We then obtain SIWRs from the pre-trained SIWR model using a contextualised word representation extraction scheme.",
+            "Finally, we incorporate SIWRs into downstream models by only replacing the word representations with SIWRs.",
+            "We show that SIWRs enrich the base word representations with syntactic information and boost the performance in downstream tasks.",
+            "Unlike previous work [20] , our findings demonstrate that syntactic information is helpful in the advent of contextual word representations and large pre-trained models.",
+            "Fig.",
+            "2 shows the architecture of our SIWR model.",
+            "We first prepare pre-trained static and contextual word representations, e.g., GloVe, ELMo, and contextual BERT, as the base representations.",
+            "We then feed them to our SIWR model, which consists of a twostacked GCN layer over dependency trees along with self and sequential information.",
+            "The GCN is used to include syntactic information into the base word representations.",
+            "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies.",
+            "We only pre-train the SIWR model once with a relatively modest amount of task-agnostic data that are automatically annotated by using existing syntactic tools.",
+            "Once the SIWR model is obtained, we apply the model to downstream task data and obtain SIWRs by combining the outputs of all layers in the model.",
+            "We simply replace word representations in downstream task models with SIWRs to cater for different applications.",
+            "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+            "SIWRs show improvements over the base representations achieving the following relative error reductions: 3.79% in F1-score for nested NER, 6.64% in F1-score for RE, and 6.98% of accuracy for n-ary RE, which results in comparable performance to the state-of-the-art on the three tasks.",
+            "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE.",
+            "We also employ BERT as the base representations in our SIWRs BERT for comparison.",
+            "Surprisingly, our SIWRs BERT based on contextual BERT even perform better than the fine-tuning in binary RE with the F1-score of 72.45% and 66.84% respectively.",
+            "Meanwhile, our enhanced representations perform comparably to the fine-tuning BERT with less training parameters in the nested NER with the F1-score of 82.06% and 82.84% respectively.",
+            "Our extensive analysis also shows that the syntactic inductive bias can be easily transferred to subsequent NLP tasks and beneficial for performance improvement.",
+            "The contributions of our work are as follows:\n\n We propose a method for the construction of syntacticallyinformed representations (SIWRs) based on static and/or contextual representations.",
+            "SIWRs allow us to incorporate syntactic information into existing NLP neural models simply by replacing the original word representations, without altering the architecture of these models with a relatively modest amount of syntactically annotated data.",
+            "We demonstrate that SIWRs improve the performance over base representations on three downstream NLP tasks: nested NER, binary RE, and n-ary RE.",
+            "The improvement can be obtained with only a small number of weight parameters compared with training task-oriented syntactic representations in downstream models.",
+            "Extensive analysis of SIWRs over base representations indicates that syntactic dependencies can be beneficial for both static and contextual embeddings, contrary to previous findings [20] .",
+            "Last, we show that our enhanced representations can be transferred more easily to different linguistic tasks than fine-tuning large-scale language models in downstream tasks that require inference."
+        ],
+        "message_pairs": [
+            {
+                "id": "Syntactically-informed word representations from graph neural network_21",
+                "P_Message": "Hi, interesting paper title. How do you add the syntactic information into the word representations?",
+                "DE_Message": "we build a syntactic graph neural model that takes pre-trained word representations as feature input. The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_22",
+                "P_Message": "Which kind of graph neural network do you experimented with?",
+                "DE_Message": "We use a graph convolutional neural network (GCN). ",
+                "history_facts": [
+                    [
+                        "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_21"
+                ],
+                "history": [
+                    "Hi, interesting paper title.",
+                    "How do you add the syntactic information into the word representations?",
+                    "we build a syntactic graph neural model that takes pre-trained word representations as feature input.",
+                    "The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                ],
+                "facts": [
+                    "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_23",
+                "P_Message": "Do GCNs come with special properties which helps for the task?",
+                "DE_Message": "The word graph is built on syntactic dependency and other types of connections such as word order connections. Do you want to know what objectives the model trained on?",
+                "history_facts": [
+                    [
+                        "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                    ],
+                    [
+                        "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_21",
+                    "Syntactically-informed word representations from graph neural network_22"
+                ],
+                "history": [
+                    "Hi, interesting paper title.",
+                    "How do you add the syntactic information into the word representations?",
+                    "we build a syntactic graph neural model that takes pre-trained word representations as feature input.",
+                    "The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations.",
+                    "Which kind of graph neural network do you experimented with?",
+                    "We use a graph convolutional neural network (GCN).",
+                    "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                ],
+                "facts": [
+                    "Since in English word order is important, we preserve it by adding these connections into the graph layer."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_24",
+                "P_Message": "Yes, please. Which objectives did the model try to solve?",
+                "DE_Message": "The model is trained for part-of-speech tagging and syntactic dependency parsing.",
+                "history_facts": [
+                    [
+                        "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                    ],
+                    [
+                        "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                    ],
+                    [
+                        "Since in English word order is important, we preserve it by adding these connections into the graph layer."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_21",
+                    "Syntactically-informed word representations from graph neural network_22",
+                    "Syntactically-informed word representations from graph neural network_23"
+                ],
+                "history": [
+                    "Hi, interesting paper title.",
+                    "How do you add the syntactic information into the word representations?",
+                    "we build a syntactic graph neural model that takes pre-trained word representations as feature input.",
+                    "The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations.",
+                    "Which kind of graph neural network do you experimented with?",
+                    "We use a graph convolutional neural network (GCN).",
+                    "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations.",
+                    "Do GCNs come with special properties which helps for the task?",
+                    "The word graph is built on syntactic dependency and other types of connections such as word order connections.",
+                    "Do you want to know what objectives the model trained on?",
+                    "Since in English word order is important, we preserve it by adding these connections into the graph layer."
+                ],
+                "facts": [
+                    "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_25",
+                "P_Message": "And which pre-trained word representations did you use?",
+                "DE_Message": "Our model can take both static and contextualized word representations including GloVe, ELMo and BERT.",
+                "history_facts": [
+                    [
+                        "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                    ],
+                    [
+                        "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                    ],
+                    [
+                        "Since in English word order is important, we preserve it by adding these connections into the graph layer."
+                    ],
+                    [
+                        "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_21",
+                    "Syntactically-informed word representations from graph neural network_22",
+                    "Syntactically-informed word representations from graph neural network_23",
+                    "Syntactically-informed word representations from graph neural network_24"
+                ],
+                "history": [
+                    "Hi, interesting paper title.",
+                    "How do you add the syntactic information into the word representations?",
+                    "we build a syntactic graph neural model that takes pre-trained word representations as feature input.",
+                    "The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations.",
+                    "Which kind of graph neural network do you experimented with?",
+                    "We use a graph convolutional neural network (GCN).",
+                    "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations.",
+                    "Do GCNs come with special properties which helps for the task?",
+                    "The word graph is built on syntactic dependency and other types of connections such as word order connections.",
+                    "Do you want to know what objectives the model trained on?",
+                    "Since in English word order is important, we preserve it by adding these connections into the graph layer.",
+                    "Yes, please.",
+                    "Which objectives did the model try to solve?",
+                    "The model is trained for part-of-speech tagging and syntactic dependency parsing.",
+                    "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies."
+                ],
+                "facts": [
+                    "a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                    "We first prepare pre-trained static and contextual word representations, e.g., GloVe, ELMo, and contextual BERT, as the base representations."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_26",
+                "P_Message": "How did you evaluate the improvement of the new word representations?",
+                "DE_Message": "We compare performance of using the word representations in the downstream tasks compared to using the base representations. The downstream tasks include a nested named entity recognition and two relation extraction tasks.",
+                "history_facts": [
+                    [
+                        "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                    ],
+                    [
+                        "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                    ],
+                    [
+                        "Since in English word order is important, we preserve it by adding these connections into the graph layer."
+                    ],
+                    [
+                        "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies."
+                    ],
+                    [
+                        "a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                        "We first prepare pre-trained static and contextual word representations, e.g., GloVe, ELMo, and contextual BERT, as the base representations."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_21",
+                    "Syntactically-informed word representations from graph neural network_22",
+                    "Syntactically-informed word representations from graph neural network_23",
+                    "Syntactically-informed word representations from graph neural network_24",
+                    "Syntactically-informed word representations from graph neural network_25"
+                ],
+                "history": [
+                    "Hi, interesting paper title.",
+                    "How do you add the syntactic information into the word representations?",
+                    "we build a syntactic graph neural model that takes pre-trained word representations as feature input.",
+                    "The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations.",
+                    "Which kind of graph neural network do you experimented with?",
+                    "We use a graph convolutional neural network (GCN).",
+                    "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations.",
+                    "Do GCNs come with special properties which helps for the task?",
+                    "The word graph is built on syntactic dependency and other types of connections such as word order connections.",
+                    "Do you want to know what objectives the model trained on?",
+                    "Since in English word order is important, we preserve it by adding these connections into the graph layer.",
+                    "Yes, please.",
+                    "Which objectives did the model try to solve?",
+                    "The model is trained for part-of-speech tagging and syntactic dependency parsing.",
+                    "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies.",
+                    "And which pre-trained word representations did you use?",
+                    "Our model can take both static and contextualized word representations including GloVe, ELMo and BERT.",
+                    "a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                    "We first prepare pre-trained static and contextual word representations, e.g., GloVe, ELMo, and contextual BERT, as the base representations."
+                ],
+                "facts": [
+                    "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                    "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_27",
+                "P_Message": "Hi! Thanks for joining. Can you explain what is the main idea of the paper?",
+                "DE_Message": "This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                    "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_28",
+                "P_Message": "What type of syntactic information do you use? Is it based on dependency or constituency? ",
+                "DE_Message": "We use part-of-speech and syntactic dependency. ",
+                "history_facts": [
+                    [
+                        "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                        "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_27"
+                ],
+                "history": [
+                    "Hi!",
+                    "Thanks for joining.",
+                    "Can you explain what is the main idea of the paper?",
+                    "This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.",
+                    "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                    "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                ],
+                "facts": [
+                    "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig.",
+                    "1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing"
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_29",
+                "P_Message": "Sounds great! What tasks do you test?",
+                "DE_Message": "We evaluate the extracted word representations on a nested named entity recognition task and two relation extraction tasks.",
+                "history_facts": [
+                    [
+                        "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                        "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                    ],
+                    [
+                        "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig. 1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing "
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_27",
+                    "Syntactically-informed word representations from graph neural network_28"
+                ],
+                "history": [
+                    "Hi!",
+                    "Thanks for joining.",
+                    "Can you explain what is the main idea of the paper?",
+                    "This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.",
+                    "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                    "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                    "What type of syntactic information do you use?",
+                    "Is it based on dependency or constituency?",
+                    "We use part-of-speech and syntactic dependency.",
+                    "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig.",
+                    "1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing"
+                ],
+                "facts": [
+                    "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                    "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_30",
+                "P_Message": "Can you tell me why you only select part-of-speech and dependency as the syntactic information you want to use to help pretraining?",
+                "DE_Message": "Previous work shows that part-of-speech and dependency are useful for downstream tasks. However, this doesn't limit the use of other information such as coreference in our model.",
+                "history_facts": [
+                    [
+                        "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                        "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                    ],
+                    [
+                        "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig. 1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing "
+                    ],
+                    [
+                        "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                        "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_27",
+                    "Syntactically-informed word representations from graph neural network_28",
+                    "Syntactically-informed word representations from graph neural network_29"
+                ],
+                "history": [
+                    "Hi!",
+                    "Thanks for joining.",
+                    "Can you explain what is the main idea of the paper?",
+                    "This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.",
+                    "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                    "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                    "What type of syntactic information do you use?",
+                    "Is it based on dependency or constituency?",
+                    "We use part-of-speech and syntactic dependency.",
+                    "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig.",
+                    "1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing",
+                    "Sounds great!",
+                    "What tasks do you test?",
+                    "We evaluate the extracted word representations on a nested named entity recognition task and two relation extraction tasks.",
+                    "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                    "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE."
+                ],
+                "facts": [
+                    "Recent studies have shown that downstream task performance may benefit from linguistic structures such as syntactic information [11, 12] , even when contextual word representations and pre-trained models are also used [13] [14] [15] ."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_31",
+                "P_Message": "Thanks for explaining. I love to see the results of injecting other types of information. Do you think if it would be a good idea if you try to inject syntactic information beginning from pretraining from scratch?",
+                "DE_Message": "We cannot answer given the current content. We can inject syntactic information during pre-training from scratch, however, this will cost more time and computational resources. Intermediate pretraining allows us to directly incorporate additional information into pre-trained models.",
+                "history_facts": [
+                    [
+                        "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                        "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                    ],
+                    [
+                        "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig. 1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing "
+                    ],
+                    [
+                        "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                        "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE."
+                    ],
+                    [
+                        "Recent studies have shown that downstream task performance may benefit from linguistic structures such as syntactic information [11, 12] , even when contextual word representations and pre-trained models are also used [13] [14] [15] ."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_27",
+                    "Syntactically-informed word representations from graph neural network_28",
+                    "Syntactically-informed word representations from graph neural network_29",
+                    "Syntactically-informed word representations from graph neural network_30"
+                ],
+                "history": [
+                    "Hi!",
+                    "Thanks for joining.",
+                    "Can you explain what is the main idea of the paper?",
+                    "This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.",
+                    "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                    "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                    "What type of syntactic information do you use?",
+                    "Is it based on dependency or constituency?",
+                    "We use part-of-speech and syntactic dependency.",
+                    "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig.",
+                    "1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing",
+                    "Sounds great!",
+                    "What tasks do you test?",
+                    "We evaluate the extracted word representations on a nested named entity recognition task and two relation extraction tasks.",
+                    "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                    "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE.",
+                    "Can you tell me why you only select part-of-speech and dependency as the syntactic information you want to use to help pretraining?",
+                    "Previous work shows that part-of-speech and dependency are useful for downstream tasks.",
+                    "However, this doesn't limit the use of other information such as coreference in our model.",
+                    "Recent studies have shown that downstream task performance may benefit from linguistic structures such as syntactic information [11, 12] , even when contextual word representations and pre-trained models are also used [13] [14] [15] ."
+                ],
+                "facts": [
+                    "We propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+        ]
+    }
+}

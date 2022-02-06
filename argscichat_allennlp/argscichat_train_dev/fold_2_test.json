@@ -1,0 +1,1264 @@
+{
+    "When Do You Need Billions of Words of Pretraining Data?": {
+        "id": "When Do You Need Billions of Words of Pretraining Data?",
+        "title": "When Do You Need Billions of Words of Pretraining Data?",
+        "content": [
+            "NLP is currently dominated by generalpurpose pretrained language models like RoBERTa, which achieve strong performance on NLU tasks through pretraining on billions of words.",
+            "But what exact knowledge or skills do Transformer LMs learn from largescale pretraining that they cannot learn from less data?",
+            "We adopt four probing methods classifier probing, information-theoretic probing, unsupervised relative acceptability judgment, and fine-tuning on NLU tasks-and draw learning curves that track the growth of these different measures of linguistic ability with respect to pretraining data volume using the MiniBERTas, a group of RoBERTa models pretrained on 1M, 10M, 100M and 1B words.",
+            "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+            "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks.",
+            "The results suggest that, while the ability to encode linguistic features is almost certainly necessary for language understanding, it is likely that other forms of knowledge are the major drivers of recent improvements in language understanding among large pretrained models.",
+            "Pretrained language models (LMs) like BERT and RoBERTa have become ubiquitous in NLP.",
+            "These\nmodels use massive datasets on the order of tens or even hundreds of billions of words (Brown et al., 2020) to learn linguistic features and world knowledge, and they can be fine-tuned to achieve good erformance on many downstream tasks.",
+            "Much recent work has used probing methods to evaluate what these models have and have not\nlearned (Belinkov and Glass, 2019; Tenney et al., 2019b; Rogers et al., 2020; Ettinger, 2020).",
+            "Since most of these works only focus on models pretrained on a fixed data volume (usually billions of words), many interesting questions regarding\nthe effect of the amount of pretraining data remain unanswered: What do data-rich models know that models with less pretraining data do not?",
+            "How much pretraining data is required for LMs to learn\ndifferent grammatical features and linguistic phenomena?",
+            "Which of these skills do we expect to improve if we increase the pretraining data to over 30 billion words?",
+            "Which aspects of grammar can be learned from data volumes on par with the input to human learners, around 10M to 100M words (Hart and Risley, 1992)?",
+            "With these questions in mind, we probe the MiniBERTas (Warstadt et al., 2020b), a group of RoBERTa models pretrained on 1M, 10M, 100M, and 1B words, and RoBERTaBASE(Liu et al., 2019) pretrained on about 30B words, using four methods:\nFirst we use standard classifier probing on the edge probing suite of NLP tasks (Tenney et al., 2019b) to measure the quality of the syntactic and semantic features that can be extracted by a downstream classifier with each level of pretraining.",
+            "Second, we apply minimum description length probing (Voita and Titov, 2020) to the edge probing suite, with the goal of quantifying the accessibility of these features.",
+            "Third, we probe the models\u2019 knowledge of various syntactic phenomena using unsupervised acceptability judgments on the BLiMP suite (Warstadt et al., 2020a).",
+            "Fourth, we fine-tune the models on five tasks from SuperGLUE (Wang et al., 2019), to measure their ability to solve conventional NLU tasks.",
+            "Figure 1 shows the interpolated learning curves for these four methods as a function of the amount of pretraining data.",
+            "We have two main findings:\nFirst, the results of three probing methods we adopt show that the linguistic knowledge of RoBERTa pretrained on 100M words is already very close to that of RoBERTaBASE, which is pretrained on around 30B words.",
+            "Second, RoBERTa requires billions of words of pretraining data to make substantial improvements in performance on dowstream NLU tasks.",
+            "From these results, we conclude that there are skills critical to solving downstream NLU tasks that LMs can only acquire with billions of words of pretraining data and that we need to look beyond probing for linguistic features to explain why LMs improve at these large data scales."
+        ],
+        "message_pairs": [
+            {
+                "id": "When Do You Need Billions of Words of Pretraining Data?_32",
+                "P_Message": "Hello! Interesting question as the title. Do you have any conclusion in this paper?",
+                "DE_Message": "Yes! We show that most linguistic features can be learned with training data between 10 million and 100 million, while the rest requires more.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                    "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks."
+                ]
+            },
+            {
+                "id": "When Do You Need Billions of Words of Pretraining Data?_33",
+                "P_Message": "10 to 100 million is a rather large range of data. What is the difference between learning from 10 or 100 million words?",
+                "DE_Message": "The performances of our four testing cases related to syntactic information leverage the most compared to other scales.",
+                "history_facts": [
+                    [
+                        "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                        "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks."
+                    ]
+                ],
+                "history_ids": [
+                    "When Do You Need Billions of Words of Pretraining Data?_32"
+                ],
+                "history": [
+                    "Hello!",
+                    "Interesting question as the title.",
+                    "Do you have any conclusion in this paper?",
+                    "Yes!",
+                    "We show that most linguistic features can be learned with training data between 10 million and 100 million, while the rest requires more.",
+                    "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                    "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks."
+                ],
+                "facts": [
+                    "We adopt four probing methods classifier probing, information-theoretic probing, unsupervised relative acceptability judgment, and fine-tuning on NLU tasks-and draw learning curves that track the growth of these different measures of linguistic ability with respect to pretraining data volume"
+                ]
+            },
+            {
+                "id": "When Do You Need Billions of Words of Pretraining Data?_34",
+                "P_Message": "Can you tell me more about the information-theoretic probing?",
+                "DE_Message": "Sorry but I can only answer the questions where I can find in the abstract or introduction.",
+                "history_facts": [
+                    [
+                        "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                        "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks."
+                    ],
+                    [
+                        "We adopt four probing methods classifier probing, information-theoretic probing, unsupervised relative acceptability judgment, and fine-tuning on NLU tasks-and draw learning curves that track the growth of these different measures of linguistic ability with respect to pretraining data volume"
+                    ]
+                ],
+                "history_ids": [
+                    "When Do You Need Billions of Words of Pretraining Data?_32",
+                    "When Do You Need Billions of Words of Pretraining Data?_33"
+                ],
+                "history": [
+                    "Hello!",
+                    "Interesting question as the title.",
+                    "Do you have any conclusion in this paper?",
+                    "Yes!",
+                    "We show that most linguistic features can be learned with training data between 10 million and 100 million, while the rest requires more.",
+                    "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                    "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks.",
+                    "10 to 100 million is a rather large range of data.",
+                    "What is the difference between learning from 10 or 100 million words?",
+                    "The performances of our four testing cases related to syntactic information leverage the most compared to other scales.",
+                    "We adopt four probing methods classifier probing, information-theoretic probing, unsupervised relative acceptability judgment, and fine-tuning on NLU tasks-and draw learning curves that track the growth of these different measures of linguistic ability with respect to pretraining data volume"
+                ],
+                "facts": []
+            },
+            {
+                "id": "When Do You Need Billions of Words of Pretraining Data?_35",
+                "P_Message": "Which model did you use in your experiments?",
+                "DE_Message": "We use RoBERTa-base and MiniBERTas which are RoBERTa models pretrained on scaled down data.",
+                "history_facts": [
+                    [
+                        "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                        "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks."
+                    ],
+                    [
+                        "We adopt four probing methods classifier probing, information-theoretic probing, unsupervised relative acceptability judgment, and fine-tuning on NLU tasks-and draw learning curves that track the growth of these different measures of linguistic ability with respect to pretraining data volume"
+                    ],
+                    []
+                ],
+                "history_ids": [
+                    "When Do You Need Billions of Words of Pretraining Data?_32",
+                    "When Do You Need Billions of Words of Pretraining Data?_33",
+                    "When Do You Need Billions of Words of Pretraining Data?_34"
+                ],
+                "history": [
+                    "Hello!",
+                    "Interesting question as the title.",
+                    "Do you have any conclusion in this paper?",
+                    "Yes!",
+                    "We show that most linguistic features can be learned with training data between 10 million and 100 million, while the rest requires more.",
+                    "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                    "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks.",
+                    "10 to 100 million is a rather large range of data.",
+                    "What is the difference between learning from 10 or 100 million words?",
+                    "The performances of our four testing cases related to syntactic information leverage the most compared to other scales.",
+                    "We adopt four probing methods classifier probing, information-theoretic probing, unsupervised relative acceptability judgment, and fine-tuning on NLU tasks-and draw learning curves that track the growth of these different measures of linguistic ability with respect to pretraining data volume",
+                    "Can you tell me more about the information-theoretic probing?",
+                    "Sorry but I can only answer the questions where I can find in the abstract or introduction."
+                ],
+                "facts": [
+                    "with respect to pretraining data volume using the MiniBERTas, a group of RoBERTa models pretrained on 1M, 10M, 100M and 1B words."
+                ]
+            },
+            {
+                "id": "When Do You Need Billions of Words of Pretraining Data?_36",
+                "P_Message": "Besides the finding regarding number of training data, do you also have other findings?",
+                "DE_Message": "We also find that commonsense knowledge could be a direction guiding pretraining of language models.",
+                "history_facts": [
+                    [
+                        "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                        "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks."
+                    ],
+                    [
+                        "We adopt four probing methods classifier probing, information-theoretic probing, unsupervised relative acceptability judgment, and fine-tuning on NLU tasks-and draw learning curves that track the growth of these different measures of linguistic ability with respect to pretraining data volume"
+                    ],
+                    [],
+                    [
+                        "with respect to pretraining data volume using the MiniBERTas, a group of RoBERTa models pretrained on 1M, 10M, 100M and 1B words."
+                    ]
+                ],
+                "history_ids": [
+                    "When Do You Need Billions of Words of Pretraining Data?_32",
+                    "When Do You Need Billions of Words of Pretraining Data?_33",
+                    "When Do You Need Billions of Words of Pretraining Data?_34",
+                    "When Do You Need Billions of Words of Pretraining Data?_35"
+                ],
+                "history": [
+                    "Hello!",
+                    "Interesting question as the title.",
+                    "Do you have any conclusion in this paper?",
+                    "Yes!",
+                    "We show that most linguistic features can be learned with training data between 10 million and 100 million, while the rest requires more.",
+                    "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                    "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks.",
+                    "10 to 100 million is a rather large range of data.",
+                    "What is the difference between learning from 10 or 100 million words?",
+                    "The performances of our four testing cases related to syntactic information leverage the most compared to other scales.",
+                    "We adopt four probing methods classifier probing, information-theoretic probing, unsupervised relative acceptability judgment, and fine-tuning on NLU tasks-and draw learning curves that track the growth of these different measures of linguistic ability with respect to pretraining data volume",
+                    "Can you tell me more about the information-theoretic probing?",
+                    "Sorry but I can only answer the questions where I can find in the abstract or introduction.",
+                    "Which model did you use in your experiments?",
+                    "We use RoBERTa-base and MiniBERTas which are RoBERTa models pretrained on scaled down data.",
+                    "with respect to pretraining data volume using the MiniBERTas, a group of RoBERTa models pretrained on 1M, 10M, 100M and 1B words."
+                ],
+                "facts": [
+                    "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks.",
+                    "it is likely that other forms of knowledge are the major drivers of recent improvements in language understanding among large pretrained models."
+                ]
+            },
+            {
+                "id": "When Do You Need Billions of Words of Pretraining Data?_37",
+                "P_Message": "To integrate other forms of knowledge in a less data scenario, does the model require labeled data? Can we include such knowledge by defining knowledge-specific objectives and learning on the unlabeled data?",
+                "DE_Message": "I believe we can define specific objectives regarding this, though we didn't mention what exactly to do in the paper.",
+                "history_facts": [
+                    [
+                        "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                        "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks."
+                    ],
+                    [
+                        "We adopt four probing methods classifier probing, information-theoretic probing, unsupervised relative acceptability judgment, and fine-tuning on NLU tasks-and draw learning curves that track the growth of these different measures of linguistic ability with respect to pretraining data volume"
+                    ],
+                    [],
+                    [
+                        "with respect to pretraining data volume using the MiniBERTas, a group of RoBERTa models pretrained on 1M, 10M, 100M and 1B words."
+                    ],
+                    [
+                        "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks.",
+                        "it is likely that other forms of knowledge are the major drivers of recent improvements in language understanding among large pretrained models."
+                    ]
+                ],
+                "history_ids": [
+                    "When Do You Need Billions of Words of Pretraining Data?_32",
+                    "When Do You Need Billions of Words of Pretraining Data?_33",
+                    "When Do You Need Billions of Words of Pretraining Data?_34",
+                    "When Do You Need Billions of Words of Pretraining Data?_35",
+                    "When Do You Need Billions of Words of Pretraining Data?_36"
+                ],
+                "history": [
+                    "Hello!",
+                    "Interesting question as the title.",
+                    "Do you have any conclusion in this paper?",
+                    "Yes!",
+                    "We show that most linguistic features can be learned with training data between 10 million and 100 million, while the rest requires more.",
+                    "We find that LMs require only about 10M or 100M words to learn representations that reliably encode most syntactic and semantic features we test.",
+                    "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks.",
+                    "10 to 100 million is a rather large range of data.",
+                    "What is the difference between learning from 10 or 100 million words?",
+                    "The performances of our four testing cases related to syntactic information leverage the most compared to other scales.",
+                    "We adopt four probing methods classifier probing, information-theoretic probing, unsupervised relative acceptability judgment, and fine-tuning on NLU tasks-and draw learning curves that track the growth of these different measures of linguistic ability with respect to pretraining data volume",
+                    "Can you tell me more about the information-theoretic probing?",
+                    "Sorry but I can only answer the questions where I can find in the abstract or introduction.",
+                    "Which model did you use in your experiments?",
+                    "We use RoBERTa-base and MiniBERTas which are RoBERTa models pretrained on scaled down data.",
+                    "with respect to pretraining data volume using the MiniBERTas, a group of RoBERTa models pretrained on 1M, 10M, 100M and 1B words.",
+                    "Besides the finding regarding number of training data, do you also have other findings?",
+                    "We also find that commonsense knowledge could be a direction guiding pretraining of language models.",
+                    "A much larger quantity of data is needed in order to acquire enough commonsense knowledge and other skills required to master typical downstream NLU tasks.",
+                    "it is likely that other forms of knowledge are the major drivers of recent improvements in language understanding among large pretrained models."
+                ],
+                "facts": [
+                    "The results suggest that, while the ability to encode linguistic features is almost certainly necessary for language understanding, it is likely that other forms of knowledge are the major drivers of recent improvements in language understanding among large pretrained models."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW": {
+        "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW",
+        "title": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW",
+        "content": [
+            "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+            "By definition a Transformer is invariant with respect to reorderings of the input.",
+            "However, language is inherently sequential and word order is essential to the semantics and syntax of an utterance.",
+            "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+            "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering; iii) indicate what characteristics of an application should be taken into account when selecting a position encoding; iv) provide stimuli for future research.",
+            "The Transformer model as introduced by Vaswani et al.",
+            "(2017) has been found to perform well for many tasks, such as machine translation or language modeling.",
+            "With the rise of pretrained language models (PLMs) (Peters et al., 2018; Howard & Ruder, 2018; Devlin et al., 2019; Brown et al., 2020) Transformer models have become even more popular.",
+            "As a result they are at the core of many state of the art natural language processing (NLP) models.",
+            "A Transformer model consists of several layers, or blocks.",
+            "Each layer is a self-attention (Vaswani et al., 2017) module followed by a feed-forward layer.",
+            "Layer normalization and residual connections are additional components of a layer.",
+            "A Transformer model itself is invariant with respect to re-orderings of the input.",
+            "However, text data is inherently sequential.",
+            "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+            "Clearly it should be beneficial to incorporate this essential inductive bias into any model that processes text data.",
+            "Therefore, there is a range of different methods to incorporate position information into NLP models, especially PLMs that are based on Transformer models.",
+            "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+            "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+            "Similarly, many papers analyze and compare a subset of position embedding variants.",
+            "But, to the best of our knowledge, there is no broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them.",
+            "The objective of this paper is to provide an overview of methods that incorporate and analyze position information in Transformer models.",
+            "More specifically we aim at i) showcasing that position information in Transformer is a vibrant and extensive research area ii) enabling the reader to compare existing methods by providing a unified notation and meaningful clustering iii) indicating what characteristics of an application should be taken into account when selecting a position encoding iv) providing stimuli for future research.",
+            "This paper is work in progress.",
+            "We plan to actively continue adding papers that we missed or that are newly published.",
+            "If you want to contribute, spot an error or miss a paper, please do reach out to us.",
+            "Figure 1 : A rough overview of a plain Transformer Encoder Block (grey block) without any position information.",
+            "They grey block is usually repeated for l layers.",
+            "An overview of the actual attention computation is shown on the right."
+        ],
+        "message_pairs": [
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                "P_Message": "Hi!",
+                "DE_Message": "Hi!",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": []
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131",
+                "P_Message": "What is the paper about?",
+                "DE_Message": "The paper is about position models in the Transformer architecture.",
+                "history_facts": [
+                    []
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!"
+                ],
+                "facts": [
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_132",
+                "P_Message": "Can you give me more information about what a position model is?",
+                "DE_Message": "The Transformer itself cannot see the order of its input tokens. A position model is what helps the Transformer to see the order. This can be embeddings or other manipulations of the self-attention.",
+                "history_facts": [
+                    [],
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "What is the paper about?",
+                    "The paper is about position models in the Transformer architecture.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                ],
+                "facts": [
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "A Transformer model itself is invariant with respect to re-orderings of the input."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_133",
+                "P_Message": "So embeddings and self-attention manipulations are the main position modes, is it correct?",
+                "DE_Message": "Yes, this is correct. There are a lot of variants but these are the two main categories.",
+                "history_facts": [
+                    [],
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                        "A Transformer model itself is invariant with respect to re-orderings of the input."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_132"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "What is the paper about?",
+                    "The paper is about position models in the Transformer architecture.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Can you give me more information about what a position model is?",
+                    "The Transformer itself cannot see the order of its input tokens.",
+                    "A position model is what helps the Transformer to see the order.",
+                    "This can be embeddings or other manipulations of the self-attention.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "A Transformer model itself is invariant with respect to re-orderings of the input."
+                ],
+                "facts": [
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_134",
+                "P_Message": "Does the authors provide a common benchmark to compare the methods?",
+                "DE_Message": "No, there is no empirical evaluation mentioned. But they compare the methods on a theoretical level. They also characterize which position model should go with what type of application. Do you think this is useful without a new benchmark?",
+                "history_facts": [
+                    [],
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                        "A Transformer model itself is invariant with respect to re-orderings of the input."
+                    ],
+                    [
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_132",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_133"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "What is the paper about?",
+                    "The paper is about position models in the Transformer architecture.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Can you give me more information about what a position model is?",
+                    "The Transformer itself cannot see the order of its input tokens.",
+                    "A position model is what helps the Transformer to see the order.",
+                    "This can be embeddings or other manipulations of the self-attention.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "A Transformer model itself is invariant with respect to re-orderings of the input.",
+                    "So embeddings and self-attention manipulations are the main position modes, is it correct?",
+                    "Yes, this is correct.",
+                    "There are a lot of variants but these are the two main categories.",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                ],
+                "facts": [
+                    "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_135",
+                "P_Message": "I think the theoretical comparison is much more important than the experimental one. Which one of two categories of position models is better?",
+                "DE_Message": "I agree that the theoretical comparison can give a lot of insights. I do not think that it can really answer the question which position model is \"best\". What criterion for \"being best\" do you have in mind?",
+                "history_facts": [
+                    [],
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                        "A Transformer model itself is invariant with respect to re-orderings of the input."
+                    ],
+                    [
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_132",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_133",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_134"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "What is the paper about?",
+                    "The paper is about position models in the Transformer architecture.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Can you give me more information about what a position model is?",
+                    "The Transformer itself cannot see the order of its input tokens.",
+                    "A position model is what helps the Transformer to see the order.",
+                    "This can be embeddings or other manipulations of the self-attention.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "A Transformer model itself is invariant with respect to re-orderings of the input.",
+                    "So embeddings and self-attention manipulations are the main position modes, is it correct?",
+                    "Yes, this is correct.",
+                    "There are a lot of variants but these are the two main categories.",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Does the authors provide a common benchmark to compare the methods?",
+                    "No, there is no empirical evaluation mentioned.",
+                    "But they compare the methods on a theoretical level.",
+                    "They also characterize which position model should go with what type of application.",
+                    "Do you think this is useful without a new benchmark?",
+                    "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ],
+                "facts": []
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_136",
+                "P_Message": "I was wondering if one of the two is more spread than the other.",
+                "DE_Message": "I do not have information about the frequency that the different types of position models occur. I believe that showing the large variety of models and analyzing their differences and common points is the main contribution of the paper.",
+                "history_facts": [
+                    [],
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                        "A Transformer model itself is invariant with respect to re-orderings of the input."
+                    ],
+                    [
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ],
+                    []
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_132",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_133",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_134",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_135"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "What is the paper about?",
+                    "The paper is about position models in the Transformer architecture.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Can you give me more information about what a position model is?",
+                    "The Transformer itself cannot see the order of its input tokens.",
+                    "A position model is what helps the Transformer to see the order.",
+                    "This can be embeddings or other manipulations of the self-attention.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "A Transformer model itself is invariant with respect to re-orderings of the input.",
+                    "So embeddings and self-attention manipulations are the main position modes, is it correct?",
+                    "Yes, this is correct.",
+                    "There are a lot of variants but these are the two main categories.",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Does the authors provide a common benchmark to compare the methods?",
+                    "No, there is no empirical evaluation mentioned.",
+                    "But they compare the methods on a theoretical level.",
+                    "They also characterize which position model should go with what type of application.",
+                    "Do you think this is useful without a new benchmark?",
+                    "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding",
+                    "I think the theoretical comparison is much more important than the experimental one.",
+                    "Which one of two categories of position models is better?",
+                    "I agree that the theoretical comparison can give a lot of insights.",
+                    "I do not think that it can really answer the question which position model is \"best\".",
+                    "What criterion for \"being best\" do you have in mind?"
+                ],
+                "facts": [
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                "P_Message": "Hi, what is this work about?",
+                "DE_Message": "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                "P_Message": "What do you mean with position information? Like indices of tokens?",
+                "DE_Message": "Yes, I mean word order. A sentence only makes sense in the right order. A bag of words is ambiguous.",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                ],
+                "facts": [
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139",
+                "P_Message": "So what approaches of encoding position information does this work investigate?",
+                "DE_Message": "There is a large variety of position models that is investigated. One contribution of the paper is to show this variety. Shall I give you some examples?",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                ],
+                "facts": [
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_140",
+                "P_Message": "Yes, some examples would be great!",
+                "DE_Message": "Position embeddings representing absolute token index or the relative distance between tokens is an example. Another is injecting this information into the self-attention matrix. One work also uses an RNN to \"positionalize\" the input.",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+                    "So what approaches of encoding position information does this work investigate?",
+                    "There is a large variety of position models that is investigated.",
+                    "One contribution of the paper is to show this variety.",
+                    "Shall I give you some examples?",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                ],
+                "facts": [
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_141",
+                "P_Message": "So between those two, what works better and for which tasks?",
+                "DE_Message": "Unfortunately, I do not have access to that information. But there is a discussion of matching position models to tasks later in the paper.",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_140"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+                    "So what approaches of encoding position information does this work investigate?",
+                    "There is a large variety of position models that is investigated.",
+                    "One contribution of the paper is to show this variety.",
+                    "Shall I give you some examples?",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Yes, some examples would be great!",
+                    "Position embeddings representing absolute token index or the relative distance between tokens is an example.",
+                    "Another is injecting this information into the self-attention matrix.",
+                    "One work also uses an RNN to \"positionalize\" the input.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                ],
+                "facts": [
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_142",
+                "P_Message": "Then let me ask a different question; is there a possibility of including positional information can hurt the model's performance? Has this been observed?",
+                "DE_Message": "This is an interesting question. For natural language, this does not seem to be the case. What do you think about that?",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                    ],
+                    [
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_140",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_141"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+                    "So what approaches of encoding position information does this work investigate?",
+                    "There is a large variety of position models that is investigated.",
+                    "One contribution of the paper is to show this variety.",
+                    "Shall I give you some examples?",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Yes, some examples would be great!",
+                    "Position embeddings representing absolute token index or the relative distance between tokens is an example.",
+                    "Another is injecting this information into the self-attention matrix.",
+                    "One work also uses an RNN to \"positionalize\" the input.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "So between those two, what works better and for which tasks?",
+                    "Unfortunately, I do not have access to that information.",
+                    "But there is a discussion of matching position models to tasks later in the paper.",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ],
+                "facts": [
+                    "it should be beneficial to incorporate this essential inductive bias into any model that processes text data."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_143",
+                "P_Message": "Good question, I'd expect that in situations where positional information does not matter, models may get biased with additional noise.",
+                "DE_Message": "I agree. A task like this should have a lightweight position model if any.",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                    ],
+                    [
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ],
+                    [
+                        "it should be beneficial to incorporate this essential inductive bias into any model that processes text data."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_140",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_141",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_142"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+                    "So what approaches of encoding position information does this work investigate?",
+                    "There is a large variety of position models that is investigated.",
+                    "One contribution of the paper is to show this variety.",
+                    "Shall I give you some examples?",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Yes, some examples would be great!",
+                    "Position embeddings representing absolute token index or the relative distance between tokens is an example.",
+                    "Another is injecting this information into the self-attention matrix.",
+                    "One work also uses an RNN to \"positionalize\" the input.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "So between those two, what works better and for which tasks?",
+                    "Unfortunately, I do not have access to that information.",
+                    "But there is a discussion of matching position models to tasks later in the paper.",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding",
+                    "Then let me ask a different question; is there a possibility of including positional information can hurt the model's performance?",
+                    "Has this been observed?",
+                    "This is an interesting question.",
+                    "For natural language, this does not seem to be the case.",
+                    "What do you think about that?",
+                    "it should be beneficial to incorporate this essential inductive bias into any model that processes text data."
+                ],
+                "facts": []
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_144",
+                "P_Message": "Maybe an attention based approach that is explicitly trained in both kind of tasks could handle them separately. What do you think?",
+                "DE_Message": "In my opinion, the invariance to order can also be a strength for certain tasks. But I think it would be harder for an attention-based approach to ignore the position model if it is once trained without and once trained with it. Was this your suggestion?",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                    ],
+                    [
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ],
+                    [
+                        "it should be beneficial to incorporate this essential inductive bias into any model that processes text data."
+                    ],
+                    []
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_140",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_141",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_142",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_143"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+                    "So what approaches of encoding position information does this work investigate?",
+                    "There is a large variety of position models that is investigated.",
+                    "One contribution of the paper is to show this variety.",
+                    "Shall I give you some examples?",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Yes, some examples would be great!",
+                    "Position embeddings representing absolute token index or the relative distance between tokens is an example.",
+                    "Another is injecting this information into the self-attention matrix.",
+                    "One work also uses an RNN to \"positionalize\" the input.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "So between those two, what works better and for which tasks?",
+                    "Unfortunately, I do not have access to that information.",
+                    "But there is a discussion of matching position models to tasks later in the paper.",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding",
+                    "Then let me ask a different question; is there a possibility of including positional information can hurt the model's performance?",
+                    "Has this been observed?",
+                    "This is an interesting question.",
+                    "For natural language, this does not seem to be the case.",
+                    "What do you think about that?",
+                    "it should be beneficial to incorporate this essential inductive bias into any model that processes text data.",
+                    "Good question, I'd expect that in situations where positional information does not matter, models may get biased with additional noise.",
+                    "I agree.",
+                    "A task like this should have a lightweight position model if any."
+                ],
+                "facts": [
+                    "a Transformer is invariant with respect to reorderings of the input"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145",
+                "P_Message": "Hi, the title sounds interesting, can you tell me more about the paper?",
+                "DE_Message": "Hi, I agree that the title sounds interesting. The main topic of the paper is the Transformer model. Do you need information on this model?",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_146",
+                "P_Message": "No thanks, I am familiar with transformers. Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",
+                "DE_Message": "It is a survey paper. The main contribution is a theoretical overview of existing position models and no empirical analysis.",
+                "history_facts": [
+                    [
+                        "The Transformer model as introduced by Vaswani et al. (2017)",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145"
+                ],
+                "history": [
+                    "Hi, the title sounds interesting, can you tell me more about the paper?",
+                    "Hi, I agree that the title sounds interesting.",
+                    "The main topic of the paper is the Transformer model.",
+                    "Do you need information on this model?",
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                ],
+                "facts": [
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_147",
+                "P_Message": "Ah I see, so they state if there are better and worse ones?",
+                "DE_Message": "I do not think that the main goal is to define better or worse. It is more about identifying similarities and differences (supported by the unified notation). They do have a discussion on matching a given task to a certain kind of application though.",
+                "history_facts": [
+                    [
+                        "The Transformer model as introduced by Vaswani et al. (2017)",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_146"
+                ],
+                "history": [
+                    "Hi, the title sounds interesting, can you tell me more about the paper?",
+                    "Hi, I agree that the title sounds interesting.",
+                    "The main topic of the paper is the Transformer model.",
+                    "Do you need information on this model?",
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "No thanks, I am familiar with transformers.",
+                    "Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",
+                    "It is a survey paper.",
+                    "The main contribution is a theoretical overview of existing position models and no empirical analysis.",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                ],
+                "facts": [
+                    "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_148",
+                "P_Message": "Do they state if there are particular things to look out for when working with long documents?",
+                "DE_Message": "I do not have access to any concrete findings. But the position models of long document Transformers are certainly part of the survey. The authors state that they aim to complete the paper with newly published papers.",
+                "history_facts": [
+                    [
+                        "The Transformer model as introduced by Vaswani et al. (2017)",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                    ],
+                    [
+                        "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_146",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_147"
+                ],
+                "history": [
+                    "Hi, the title sounds interesting, can you tell me more about the paper?",
+                    "Hi, I agree that the title sounds interesting.",
+                    "The main topic of the paper is the Transformer model.",
+                    "Do you need information on this model?",
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "No thanks, I am familiar with transformers.",
+                    "Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",
+                    "It is a survey paper.",
+                    "The main contribution is a theoretical overview of existing position models and no empirical analysis.",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;",
+                    "Ah I see, so they state if there are better and worse ones?",
+                    "I do not think that the main goal is to define better or worse.",
+                    "It is more about identifying similarities and differences (supported by the unified notation).",
+                    "They do have a discussion on matching a given task to a certain kind of application though.",
+                    "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ],
+                "facts": [
+                    "We plan to actively continue adding papers that we missed or that are newly published."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_149",
+                "P_Message": "Ah that is interesting. Is there a specific purpose for the paper?",
+                "DE_Message": "They main purpose is to highlight the similarities and differences in existing position models. In that way, new possibilities for position encodings might be more evident. I think this work can be useful for the creators of new models.",
+                "history_facts": [
+                    [
+                        "The Transformer model as introduced by Vaswani et al. (2017)",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                    ],
+                    [
+                        "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ],
+                    [
+                        "We plan to actively continue adding papers that we missed or that are newly published."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_146",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_147",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_148"
+                ],
+                "history": [
+                    "Hi, the title sounds interesting, can you tell me more about the paper?",
+                    "Hi, I agree that the title sounds interesting.",
+                    "The main topic of the paper is the Transformer model.",
+                    "Do you need information on this model?",
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "No thanks, I am familiar with transformers.",
+                    "Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",
+                    "It is a survey paper.",
+                    "The main contribution is a theoretical overview of existing position models and no empirical analysis.",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;",
+                    "Ah I see, so they state if there are better and worse ones?",
+                    "I do not think that the main goal is to define better or worse.",
+                    "It is more about identifying similarities and differences (supported by the unified notation).",
+                    "They do have a discussion on matching a given task to a certain kind of application though.",
+                    "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding",
+                    "Do they state if there are particular things to look out for when working with long documents?",
+                    "I do not have access to any concrete findings.",
+                    "But the position models of long document Transformers are certainly part of the survey.",
+                    "The authors state that they aim to complete the paper with newly published papers.",
+                    "We plan to actively continue adding papers that we missed or that are newly published."
+                ],
+                "facts": [
+                    "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                    "providing stimuli for future research"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_150",
+                "P_Message": "Is there a predominant method for position encodings that most people use?",
+                "DE_Message": "No, not really. There is a lot going on and even \"old\" position models sometimes come back in a slight variant because they have a specific property that is useful for a new model or task.",
+                "history_facts": [
+                    [
+                        "The Transformer model as introduced by Vaswani et al. (2017)",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                    ],
+                    [
+                        "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ],
+                    [
+                        "We plan to actively continue adding papers that we missed or that are newly published."
+                    ],
+                    [
+                        "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                        "providing stimuli for future research"
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_146",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_147",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_148",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_149"
+                ],
+                "history": [
+                    "Hi, the title sounds interesting, can you tell me more about the paper?",
+                    "Hi, I agree that the title sounds interesting.",
+                    "The main topic of the paper is the Transformer model.",
+                    "Do you need information on this model?",
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "No thanks, I am familiar with transformers.",
+                    "Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",
+                    "It is a survey paper.",
+                    "The main contribution is a theoretical overview of existing position models and no empirical analysis.",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;",
+                    "Ah I see, so they state if there are better and worse ones?",
+                    "I do not think that the main goal is to define better or worse.",
+                    "It is more about identifying similarities and differences (supported by the unified notation).",
+                    "They do have a discussion on matching a given task to a certain kind of application though.",
+                    "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding",
+                    "Do they state if there are particular things to look out for when working with long documents?",
+                    "I do not have access to any concrete findings.",
+                    "But the position models of long document Transformers are certainly part of the survey.",
+                    "The authors state that they aim to complete the paper with newly published papers.",
+                    "We plan to actively continue adding papers that we missed or that are newly published.",
+                    "Ah that is interesting.",
+                    "Is there a specific purpose for the paper?",
+                    "They main purpose is to highlight the similarities and differences in existing position models.",
+                    "In that way, new possibilities for position encodings might be more evident.",
+                    "I think this work can be useful for the creators of new models.",
+                    "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                    "providing stimuli for future research"
+                ],
+                "facts": [
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+        ]
+    }
+}

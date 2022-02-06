@@ -38,7 +38,6 @@ For what concerns model training, you can try different input combinations and m
         'context': ["query", "article"],
         'pytorch_seed': 15371,
         'use_evidence_scaffold': False,
-        'include_argument_mask': False
 }
 ```
 
@@ -49,33 +48,11 @@ Alike [QASPER](https://github.com/allenai/qasper-led-baseline), you can train yo
 by enabling `use_evidence_scaffold`. The code remains unchanged with the only exception that in QASPER there are multiple valid answers
 for a given query.
 
-Lastly, you can disable `use_evidence_scaffold` and enable `include_argument_mask` to replace direct fact selection supervision with argument detection objective.
-Note that, `include_argument_mask` is also a dataset reader argument. Make sure `include_argument_mask` is enabled in both dataset
-reader and model settings. 
-
 ### Reproducibility
 
 If you want to reproduce our experiments, we have used the following seeds: `[15371, 15372, 15373]`.
 Other seeds (e.g. numpy) are fixed and are equal to the ones employed in [QASPER](https://github.com/allenai/qasper-led-baseline).
 
-### Evaluating sentence-split models
-
-In order to compare models trained on both ArgSciChat corpus versions, it is necessary to merge sentence-split predictions belonging to the same DE message.
-
-- Run model predictions by executing `scripts/run_predictions.py`.
-- Saved predictions will be stored under `model_runs` folder.
-- Run  `scripts/unify_sentence_predictions.py` to extract performance results of sentence-split models. In case of multiple seeds, results are averaged.
-
-### Extracting average performance (across multiple seeds)
-
-To quickly compute the average metric score across multiple seed runs, execute the `scripts/compute_avg_score.py` script.
-
-### Adding an argumentative mask
-
-Run `add_argumentative_mask.py` script to add an existing argumentative mask to ArgSciChat corpora.
-Make sure that an existing `papers_model_components_dataset_*threshold*.csv` file is available.
-Please, check `argscichat` project folder for more information.
-
 ### Facts selection baselines
 
-Please, check `argscichat` project folder for more information about running described facts selection baselines.
+Run `scripts/fact_selection_baselines.py` to compute baseline performance on all test folds.

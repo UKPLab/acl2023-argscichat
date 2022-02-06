@@ -1,0 +1,1402 @@
+{
+    "A Multimodal Dataset of Images and Text to Study Abusive Language": {
+        "id": "A Multimodal Dataset of Images and Text to Study Abusive Language",
+        "title": "A Multimodal Dataset of Images and Text to Study Abusive Language",
+        "content": [
+            "English.",
+            "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+            "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category.",
+            "Our analysis shows that the presence of human subjects, as well as the gender of the people present in the pictures trigger different types of comment, and provides novel insight into the connection between images posted on social media and offensive messages.",
+            "We also compare our corpus with a similar one obtained with What-sApp, showing that comments to images show different characteristics compared to text-only interactions.",
+            "1 In order to study abusive language online, the availability of datasets containing the linguistic phenomena of interest are of crucial importance.",
+            "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+            "Furthermore, while text-only datasets for abusive language detection have been widely developed and used by the NLP community, limitations set by image-based social media platforms like Instagram make it difficult for researchers to experiment with multimodal data.",
+            "We therefore present a novel corpus containing images and potentially offensive Italian comments and we analyse it from different perspectives, to investi-gate whether the subject of the images plays a role in triggering a comment.",
+            "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+            "The dataset is freely available on Github 2 and, since the comments were collected with the written consent of parents and teachers, they can be freely used for research purposes, without the ethical implications that would derive from using real data posted by teenage users.",
+            "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+        ],
+        "message_pairs": [
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_69",
+                "P_Message": "Hello! Can you give me a general overview of what is this paper about?",
+                "DE_Message": "The paper explais how a novel dataset of images and potentially offensive comments was created.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "In this paper, we present a novel dataset composed of images and comments in Italian"
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_70",
+                "P_Message": "Interesting! How did they select those images?",
+                "DE_Message": "The images were taken randomly from Instagram, but cannot be shared as pictures.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian"
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_69"
+                ],
+                "history": [
+                    "Hello!",
+                    "Can you give me a general overview of what is this paper about?",
+                    "The paper explais how a novel dataset of images and potentially offensive comments was created.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian"
+                ],
+                "facts": [
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_71",
+                "P_Message": "How did they annotate those images? using human annotators or in some unsupervised fashion?",
+                "DE_Message": "The comments were made by teenagers during their school hours, then they were manually assigned to a semantic category.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian"
+                    ],
+                    [
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_69",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_70"
+                ],
+                "history": [
+                    "Hello!",
+                    "Can you give me a general overview of what is this paper about?",
+                    "The paper explais how a novel dataset of images and potentially offensive comments was created.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian",
+                    "Interesting!",
+                    "How did they select those images?",
+                    "The images were taken randomly from Instagram, but cannot be shared as pictures.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                ],
+                "facts": [
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_72",
+                "P_Message": "Oh interesting! and have the researchers also conducted any experiment on this dataset?",
+                "DE_Message": "Unfortunately, I connot provide this information, but the dataset is freely available on Github and can be used for research purposes.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian"
+                    ],
+                    [
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                    ],
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                        "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_69",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_70",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_71"
+                ],
+                "history": [
+                    "Hello!",
+                    "Can you give me a general overview of what is this paper about?",
+                    "The paper explais how a novel dataset of images and potentially offensive comments was created.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian",
+                    "Interesting!",
+                    "How did they select those images?",
+                    "The images were taken randomly from Instagram, but cannot be shared as pictures.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "How did they annotate those images?",
+                    "using human annotators or in some unsupervised fashion?",
+                    "The comments were made by teenagers during their school hours, then they were manually assigned to a semantic category.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category."
+                ],
+                "facts": [
+                    "The dataset is freely available on Github 2 and, since the comments were collected with the written consent of parents and teachers, they can be freely used for research purposes, without the ethical implications that would derive from using real data posted by teenage users."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_73",
+                "P_Message": "Why is dataset multimodal?",
+                "DE_Message": "The dataset was analysed from different perspectives. For example the analysys could consider the presence of human subjects or the gender of the people.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian"
+                    ],
+                    [
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                    ],
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                        "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category."
+                    ],
+                    [
+                        "The dataset is freely available on Github 2 and, since the comments were collected with the written consent of parents and teachers, they can be freely used for research purposes, without the ethical implications that would derive from using real data posted by teenage users."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_69",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_70",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_71",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_72"
+                ],
+                "history": [
+                    "Hello!",
+                    "Can you give me a general overview of what is this paper about?",
+                    "The paper explais how a novel dataset of images and potentially offensive comments was created.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian",
+                    "Interesting!",
+                    "How did they select those images?",
+                    "The images were taken randomly from Instagram, but cannot be shared as pictures.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "How did they annotate those images?",
+                    "using human annotators or in some unsupervised fashion?",
+                    "The comments were made by teenagers during their school hours, then they were manually assigned to a semantic category.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category.",
+                    "Oh interesting!",
+                    "and have the researchers also conducted any experiment on this dataset?",
+                    "Unfortunately, I connot provide this information, but the dataset is freely available on Github and can be used for research purposes.",
+                    "The dataset is freely available on Github 2 and, since the comments were collected with the written consent of parents and teachers, they can be freely used for research purposes, without the ethical implications that would derive from using real data posted by teenage users."
+                ],
+                "facts": [
+                    "We therefore present a novel corpus containing images and potentially offensive Italian comments and we analyse it from different perspectives, to investi-gate whether the subject of the images plays a role in triggering a comment.",
+                    "Our analysis shows that the presence of human subjects, as well as the gender of the people present in the pictures trigger different types of comment, and provides novel insight into the connection between images posted on social media and offensive messages."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_74",
+                "P_Message": "Thank you, is there any other aspect worth of mention?",
+                "DE_Message": "The corpus was also compared with a similar one obtained using whatsapp. This comparison showed that comments to images have different characteristics.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian"
+                    ],
+                    [
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                    ],
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                        "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category."
+                    ],
+                    [
+                        "The dataset is freely available on Github 2 and, since the comments were collected with the written consent of parents and teachers, they can be freely used for research purposes, without the ethical implications that would derive from using real data posted by teenage users."
+                    ],
+                    [
+                        "We therefore present a novel corpus containing images and potentially offensive Italian comments and we analyse it from different perspectives, to investi-gate whether the subject of the images plays a role in triggering a comment.",
+                        "Our analysis shows that the presence of human subjects, as well as the gender of the people present in the pictures trigger different types of comment, and provides novel insight into the connection between images posted on social media and offensive messages."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_69",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_70",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_71",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_72",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_73"
+                ],
+                "history": [
+                    "Hello!",
+                    "Can you give me a general overview of what is this paper about?",
+                    "The paper explais how a novel dataset of images and potentially offensive comments was created.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian",
+                    "Interesting!",
+                    "How did they select those images?",
+                    "The images were taken randomly from Instagram, but cannot be shared as pictures.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "How did they annotate those images?",
+                    "using human annotators or in some unsupervised fashion?",
+                    "The comments were made by teenagers during their school hours, then they were manually assigned to a semantic category.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category.",
+                    "Oh interesting!",
+                    "and have the researchers also conducted any experiment on this dataset?",
+                    "Unfortunately, I connot provide this information, but the dataset is freely available on Github and can be used for research purposes.",
+                    "The dataset is freely available on Github 2 and, since the comments were collected with the written consent of parents and teachers, they can be freely used for research purposes, without the ethical implications that would derive from using real data posted by teenage users.",
+                    "Why is dataset multimodal?",
+                    "The dataset was analysed from different perspectives.",
+                    "For example the analysys could consider the presence of human subjects or the gender of the people.",
+                    "We therefore present a novel corpus containing images and potentially offensive Italian comments and we analyse it from different perspectives, to investi-gate whether the subject of the images plays a role in triggering a comment.",
+                    "Our analysis shows that the presence of human subjects, as well as the gender of the people present in the pictures trigger different types of comment, and provides novel insight into the connection between images posted on social media and offensive messages."
+                ],
+                "facts": [
+                    "We also compare our corpus with a similar one obtained with What-sApp, showing that comments to images show different characteristics compared to text-only interactions."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_75",
+                "P_Message": "- Hello there! Can you provide to me some information about the paper? ",
+                "DE_Message": "Hi! This paper explains how a dataset composed of images and comments was collected...",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_76",
+                "P_Message": "With what strategy were the data collected?",
+                "DE_Message": "The images were randomly selected from Instagram and the comments were created by teenagers during their school hours.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_75"
+                ],
+                "history": [
+                    "- Hello there!",
+                    "Can you provide to me some information about the paper?",
+                    "Hi!",
+                    "This paper explains how a dataset composed of images and comments was collected...",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                ],
+                "facts": [
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_77",
+                "P_Message": "How was the data labeled?",
+                "DE_Message": "The comments were maually assigned to a semantic category.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ],
+                    [
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                        "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_75",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_76"
+                ],
+                "history": [
+                    "- Hello there!",
+                    "Can you provide to me some information about the paper?",
+                    "Hi!",
+                    "This paper explains how a dataset composed of images and comments was collected...",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "With what strategy were the data collected?",
+                    "The images were randomly selected from Instagram and the comments were created by teenagers during their school hours.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers."
+                ],
+                "facts": [
+                    "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_78",
+                "P_Message": "According to the authors, are there any other datasets like this in other languages?",
+                "DE_Message": "I cannot provide a complete answer, but collecting data from teenage users can be problematic due to privacy restrictions.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ],
+                    [
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                        "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers."
+                    ],
+                    [
+                        "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_75",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_76",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_77"
+                ],
+                "history": [
+                    "- Hello there!",
+                    "Can you provide to me some information about the paper?",
+                    "Hi!",
+                    "This paper explains how a dataset composed of images and comments was collected...",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "With what strategy were the data collected?",
+                    "The images were randomly selected from Instagram and the comments were created by teenagers during their school hours.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                    "How was the data labeled?",
+                    "The comments were maually assigned to a semantic category.",
+                    "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category."
+                ],
+                "facts": [
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_79",
+                "P_Message": "I think such a dataset could be too conditioned/biased by the type of annotator. What do you think about it?",
+                "DE_Message": "The aim of the dataset is to collect data specifically among teenagers to raise awareness on cyberbullying, but I think that collecting data while the teens know what they are doing could make them write less mean comments on purpose.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ],
+                    [
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                        "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers."
+                    ],
+                    [
+                        "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category."
+                    ],
+                    [
+                        "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_75",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_76",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_77",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_78"
+                ],
+                "history": [
+                    "- Hello there!",
+                    "Can you provide to me some information about the paper?",
+                    "Hi!",
+                    "This paper explains how a dataset composed of images and comments was collected...",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "With what strategy were the data collected?",
+                    "The images were randomly selected from Instagram and the comments were created by teenagers during their school hours.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                    "How was the data labeled?",
+                    "The comments were maually assigned to a semantic category.",
+                    "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category.",
+                    "According to the authors, are there any other datasets like this in other languages?",
+                    "I cannot provide a complete answer, but collecting data from teenage users can be problematic due to privacy restrictions.",
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions."
+                ],
+                "facts": [
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_80",
+                "P_Message": "Is the dataset available and free to use?",
+                "DE_Message": "Yes, you can find the comments on github. Unfortunately the images cannot be shared as pictures.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ],
+                    [
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                        "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers."
+                    ],
+                    [
+                        "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category."
+                    ],
+                    [
+                        "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions."
+                    ],
+                    [
+                        "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_75",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_76",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_77",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_78",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_79"
+                ],
+                "history": [
+                    "- Hello there!",
+                    "Can you provide to me some information about the paper?",
+                    "Hi!",
+                    "This paper explains how a dataset composed of images and comments was collected...",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "With what strategy were the data collected?",
+                    "The images were randomly selected from Instagram and the comments were created by teenagers during their school hours.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                    "How was the data labeled?",
+                    "The comments were maually assigned to a semantic category.",
+                    "Potentially offensive comments have been collected for more than 1,000 images and manually assigned to a semantic category.",
+                    "According to the authors, are there any other datasets like this in other languages?",
+                    "I cannot provide a complete answer, but collecting data from teenage users can be problematic due to privacy restrictions.",
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                    "I think such a dataset could be too conditioned/biased by the type of annotator.",
+                    "What do you think about it?",
+                    "The aim of the dataset is to collect data specifically among teenagers to raise awareness on cyberbullying, but I think that collecting data while the teens know what they are doing could make them write less mean comments on purpose.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers."
+                ],
+                "facts": [
+                    "The dataset is freely available on Github 2 and, since the comments were collected with the written consent of parents and teachers, they can be freely used for research purposes, without the ethical implications that would derive from using real data posted by teenage users.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_81",
+                "P_Message": "Hi! What is this paper about?",
+                "DE_Message": "The paper explains how a dataset of pictures and possibly offensive comments made by teenagers was collected.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_82",
+                "P_Message": "How was this dataset collected?",
+                "DE_Message": "The images were taken from Instagram and the comments were made by teenagers during their school hours.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_81"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "The paper explains how a dataset of pictures and possibly offensive comments made by teenagers was collected.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                ],
+                "facts": [
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_83",
+                "P_Message": "What was the purpose of this data collection?",
+                "DE_Message": "The authors wanted to collect multimodal data from a specific target group.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ],
+                    [
+                        "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_81",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_82"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "The paper explains how a dataset of pictures and possibly offensive comments made by teenagers was collected.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "How was this dataset collected?",
+                    "The images were taken from Instagram and the comments were made by teenagers during their school hours.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                ],
+                "facts": [
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                    "Furthermore, while text-only datasets for abusive language detection have been widely developed and used by the NLP community, limitations set by image-based social media platforms like Instagram make it difficult for researchers to experiment with multimodal data."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_84",
+                "P_Message": "What are the limits and challenges of such collection?",
+                "DE_Message": "Almos all the issues are related to privacy, collecting data from teenagers means that the authorization of their parents is necessary.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ],
+                    [
+                        "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                    ],
+                    [
+                        "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                        "Furthermore, while text-only datasets for abusive language detection have been widely developed and used by the NLP community, limitations set by image-based social media platforms like Instagram make it difficult for researchers to experiment with multimodal data."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_81",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_82",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_83"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "The paper explains how a dataset of pictures and possibly offensive comments made by teenagers was collected.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "How was this dataset collected?",
+                    "The images were taken from Instagram and the comments were made by teenagers during their school hours.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "What was the purpose of this data collection?",
+                    "The authors wanted to collect multimodal data from a specific target group.",
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                    "Furthermore, while text-only datasets for abusive language detection have been widely developed and used by the NLP community, limitations set by image-based social media platforms like Instagram make it difficult for researchers to experiment with multimodal data."
+                ],
+                "facts": [
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_85",
+                "P_Message": "How do the authors used or plan to use these data?",
+                "DE_Message": "The authors analysed the data in order to understand if there is a connection between the subject of the image and the comments.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ],
+                    [
+                        "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                    ],
+                    [
+                        "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                        "Furthermore, while text-only datasets for abusive language detection have been widely developed and used by the NLP community, limitations set by image-based social media platforms like Instagram make it difficult for researchers to experiment with multimodal data."
+                    ],
+                    [
+                        "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_81",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_82",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_83",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_84"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "The paper explains how a dataset of pictures and possibly offensive comments made by teenagers was collected.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "How was this dataset collected?",
+                    "The images were taken from Instagram and the comments were made by teenagers during their school hours.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "What was the purpose of this data collection?",
+                    "The authors wanted to collect multimodal data from a specific target group.",
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                    "Furthermore, while text-only datasets for abusive language detection have been widely developed and used by the NLP community, limitations set by image-based social media platforms like Instagram make it difficult for researchers to experiment with multimodal data.",
+                    "What are the limits and challenges of such collection?",
+                    "Almos all the issues are related to privacy, collecting data from teenagers means that the authorization of their parents is necessary.",
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions."
+                ],
+                "facts": [
+                    " We therefore present a novel corpus containing images and potentially offensive Italian comments and we analyse it from different perspectives, to investi-gate whether the subject of the images plays a role in triggering a comment."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_86",
+                "P_Message": "Where can I find this dataset? Is it available?",
+                "DE_Message": "Yes, the comments are freely available on Github but the images cannot be released in their original form because they were taken from Instagram.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ],
+                    [
+                        "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                    ],
+                    [
+                        "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                        "Furthermore, while text-only datasets for abusive language detection have been widely developed and used by the NLP community, limitations set by image-based social media platforms like Instagram make it difficult for researchers to experiment with multimodal data."
+                    ],
+                    [
+                        "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions."
+                    ],
+                    [
+                        " We therefore present a novel corpus containing images and potentially offensive Italian comments and we analyse it from different perspectives, to investi-gate whether the subject of the images plays a role in triggering a comment."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_81",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_82",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_83",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_84",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_85"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "The paper explains how a dataset of pictures and possibly offensive comments made by teenagers was collected.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "How was this dataset collected?",
+                    "The images were taken from Instagram and the comments were made by teenagers during their school hours.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "What was the purpose of this data collection?",
+                    "The authors wanted to collect multimodal data from a specific target group.",
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                    "Furthermore, while text-only datasets for abusive language detection have been widely developed and used by the NLP community, limitations set by image-based social media platforms like Instagram make it difficult for researchers to experiment with multimodal data.",
+                    "What are the limits and challenges of such collection?",
+                    "Almos all the issues are related to privacy, collecting data from teenagers means that the authorization of their parents is necessary.",
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                    "How do the authors used or plan to use these data?",
+                    "The authors analysed the data in order to understand if there is a connection between the subject of the image and the comments.",
+                    " We therefore present a novel corpus containing images and potentially offensive Italian comments and we analyse it from different perspectives, to investi-gate whether the subject of the images plays a role in triggering a comment."
+                ],
+                "facts": [
+                    "The dataset is freely available on Github 2 and, since the comments were collected with the written consent of parents and teachers, they can be freely used for research purposes, without the ethical implications that would derive from using real data posted by teenage users.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                ]
+            },
+            {
+                "id": "A Multimodal Dataset of Images and Text to Study Abusive Language_87",
+                "P_Message": "What kind of subjects do the images contain?",
+                "DE_Message": "The images can contain any subject, the analysys considers the presence of humans and their genders.",
+                "history_facts": [
+                    [
+                        "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena."
+                    ],
+                    [
+                        "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                    ],
+                    [
+                        "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                        "Furthermore, while text-only datasets for abusive language detection have been widely developed and used by the NLP community, limitations set by image-based social media platforms like Instagram make it difficult for researchers to experiment with multimodal data."
+                    ],
+                    [
+                        "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions."
+                    ],
+                    [
+                        " We therefore present a novel corpus containing images and potentially offensive Italian comments and we analyse it from different perspectives, to investi-gate whether the subject of the images plays a role in triggering a comment."
+                    ],
+                    [
+                        "The dataset is freely available on Github 2 and, since the comments were collected with the written consent of parents and teachers, they can be freely used for research purposes, without the ethical implications that would derive from using real data posted by teenage users.",
+                        "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                    ]
+                ],
+                "history_ids": [
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_81",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_82",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_83",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_84",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_85",
+                    "A Multimodal Dataset of Images and Text to Study Abusive Language_86"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "The paper explains how a dataset of pictures and possibly offensive comments made by teenagers was collected.",
+                    "In this paper, we present a novel dataset composed of images and comments in Italian, created with teenagers in classes using a simulated scenario to raise awareness on cyberbullying phenomena.",
+                    "How was this dataset collected?",
+                    "The images were taken from Instagram and the comments were made by teenagers during their school hours.",
+                    "The data collection was carried out in several school classes, being part of a 'living lab' to raise awareness on cyberbullying and, more generally, on the use of social media by teenagers.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures.",
+                    "What was the purpose of this data collection?",
+                    "The authors wanted to collect multimodal data from a specific target group.",
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                    "Furthermore, while text-only datasets for abusive language detection have been widely developed and used by the NLP community, limitations set by image-based social media platforms like Instagram make it difficult for researchers to experiment with multimodal data.",
+                    "What are the limits and challenges of such collection?",
+                    "Almos all the issues are related to privacy, collecting data from teenagers means that the authorization of their parents is necessary.",
+                    "However, when it comes to specific target groups, for example teenagers, collecting such data may be problematic due to issues with consent and privacy restrictions.",
+                    "How do the authors used or plan to use these data?",
+                    "The authors analysed the data in order to understand if there is a connection between the subject of the image and the comments.",
+                    " We therefore present a novel corpus containing images and potentially offensive Italian comments and we analyse it from different perspectives, to investi-gate whether the subject of the images plays a role in triggering a comment.",
+                    "Where can I find this dataset?",
+                    "Is it available?",
+                    "Yes, the comments are freely available on Github but the images cannot be released in their original form because they were taken from Instagram.",
+                    "The dataset is freely available on Github 2 and, since the comments were collected with the written consent of parents and teachers, they can be freely used for research purposes, without the ethical implications that would derive from using real data posted by teenage users.",
+                    "The images, instead, are released as a ResNet-18 neural network trained on ImageNet, similar to recent NLP works (Kruk et al., 2019) , since they were taken from Instagram and cannot be shared as pictures."
+                ],
+                "facts": [
+                    "Our analysis shows that the presence of human subjects, as well as the gender of the people present in the pictures trigger different types of comment, and provides novel insight into the connection between images posted on social media and offensive messages."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1
+        ],
+        "argument_mask_0.75": [
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1
+        ]
+    },
+    "Multi-Task Attentive Residual Networks for Argument Mining": {
+        "id": "Multi-Task Attentive Residual Networks for Argument Mining",
+        "title": "Multi-Task Attentive Residual Networks for Argument Mining",
+        "content": [
+            "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+            "The method we propose makes no assumptions on document or argument structure.",
+            "We propose a residual architecture that exploits attention, multi-task learning, and makes use of ensemble.",
+            "We evaluate it on a challenging data set consisting of usergenerated comments, as well as on two other datasets consisting of scientific publications.",
+            "On the user-generated content dataset, our model outperforms state-of-the-art methods that rely on domain knowledge.",
+            "On the scientific literature datasets it achieves results comparable to those yielded by BERT-based approaches but with a much smaller model size.",
+            "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] .",
+            "AM consists of several different tasks, that include argument detection, stance classification, topic-based argumentative content retrieval, and many others [2] .",
+            "In this work we focus on the challenging problem of assembling the structure of the argumentation graph of a given input document.",
+            "Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems.",
+            "While there is no unique definition of an argument, one of the most popular ones was proposed by Douglas Walton [3] , who defined an argument as the collection of three parts: (i) a claim, or assertion, about a given topic; (ii) a set of premises supporting the claim; (iii) the inference between the premises and the claim.",
+            "Relations between arguments, or argument components, typically consist of either support or attack links.",
+            "AM approaches are very often tailored to specific corpora or genres [4] - [6] , with solutions that are seldom general enough to be directly applied to different data sets without the need of any adaptation.",
+            "It is very often the case that AM systems build upon sets of handcrafted features which encode information about the underlying argument model, the genre, or the topic of interest.",
+            "These approaches typically make some assumptions on the argumentative structure of the given input document, thus constraining the resulting argument graph.",
+            "We propose a general-purpose neural architecture that is domain-agnostic, and that does not rely on specific genre-or topic-dependent features.",
+            "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them.",
+            "Experimental results conducted on a variety of different corpora show that the model is robust and achieves good performance across the considered data sets.",
+            "They also suggest that, when background information about the structure of annotations in a corpus is given, ad-hoc approaches may yield better performance.",
+            "Our main contributions are:\n\n \u2022 A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning.",
+            "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information, but only on GloVe embeddings and on a widely applicable notion of distance.",
+            "\u2022 An analytical evaluation of the contribution of each added module through an ablation study and a validation of our model on a challenging corpus, indicating that our proposed model improves state-of-the-art results in all the tasks we address.",
+            "\u2022 A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model.",
+            "With respect to our previous work [7] , this paper extends the neural architecture with attention and ensemble learning, and presents a more thorough and extensive experimental evaluation, offering comparisons with state-of-the-art systems across four different argument mining corpora.",
+            "All the code used in our experiments is publicly available.",
+            "1 The paper is organized as follows.",
+            "We present related work in Section II.",
+            "Section III introduces our architectures.",
+            "Section IV describes the data used for evaluation.",
+            "Section V describes our experimental setting, whereas results are presented and discussed in Section VI.",
+            "Section VII concludes."
+        ],
+        "message_pairs": [
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_58",
+                "P_Message": "Hi! What is the article about?",
+                "DE_Message": "The article is about a new neural architecture to perform Argument Mining. This architecture features an attention module and is validated on multiple corpora. Which aspect would you like to know more about?",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning.",
+                    "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                    "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model"
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_59",
+                "P_Message": "Can you tell me how does the attention module work?",
+                "DE_Message": "I'm sorry, but I don't have information on this aspect. Would you like to know more about the argument mining task instead?",
+                "history_facts": [
+                    [
+                        "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning. Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                        "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model"
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_58"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is the article about?",
+                    "The article is about a new neural architecture to perform Argument Mining.",
+                    "This architecture features an attention module and is validated on multiple corpora.",
+                    "Which aspect would you like to know more about?",
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning.",
+                    "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                    "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model"
+                ],
+                "facts": [
+                    "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them."
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_60",
+                "P_Message": "Yes, tell me more about it.",
+                "DE_Message": "Argument Mining is a research field related to NLP that concerns the extraction and the classification of arguments and their relationships.",
+                "history_facts": [
+                    [
+                        "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning. Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                        "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model"
+                    ],
+                    [
+                        "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them."
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_58",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_59"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is the article about?",
+                    "The article is about a new neural architecture to perform Argument Mining.",
+                    "This architecture features an attention module and is validated on multiple corpora.",
+                    "Which aspect would you like to know more about?",
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning.",
+                    "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                    "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model",
+                    "Can you tell me how does the attention module work?",
+                    "I'm sorry, but I don't have information on this aspect.",
+                    "Would you like to know more about the argument mining task instead?",
+                    "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them."
+                ],
+                "facts": [
+                    "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] .",
+                    "AM consists of several different tasks, that include argument detection, stance classification, topic-based argumentative content retrieval, and many others [2] .",
+                    "Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems."
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_61",
+                "P_Message": "What kind of corpora was the neural architecture tested on?",
+                "DE_Message": "It was tested on corpora composed by user-generated comments and by scientific publications",
+                "history_facts": [
+                    [
+                        "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning. Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                        "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model"
+                    ],
+                    [
+                        "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them."
+                    ],
+                    [
+                        "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] . AM consists of several different tasks, that include argument detection, stance classification, topic-based argumentative content retrieval, and many others [2] .",
+                        "Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems."
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_58",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_59",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_60"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is the article about?",
+                    "The article is about a new neural architecture to perform Argument Mining.",
+                    "This architecture features an attention module and is validated on multiple corpora.",
+                    "Which aspect would you like to know more about?",
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning.",
+                    "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                    "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model",
+                    "Can you tell me how does the attention module work?",
+                    "I'm sorry, but I don't have information on this aspect.",
+                    "Would you like to know more about the argument mining task instead?",
+                    "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them.",
+                    "Yes, tell me more about it.",
+                    "Argument Mining is a research field related to NLP that concerns the extraction and the classification of arguments and their relationships.",
+                    "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] .",
+                    "AM consists of several different tasks, that include argument detection, stance classification, topic-based argumentative content retrieval, and many others [2] .",
+                    "Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems."
+                ],
+                "facts": [
+                    "We evaluate it on a challenging data set consisting of usergenerated comments, as well as on two other datasets consisting of scientific publications."
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_62",
+                "P_Message": "On which of the two did the architecture perform best?",
+                "DE_Message": "The best performance was achieved on the first one",
+                "history_facts": [
+                    [
+                        "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning. Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                        "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model"
+                    ],
+                    [
+                        "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them."
+                    ],
+                    [
+                        "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] . AM consists of several different tasks, that include argument detection, stance classification, topic-based argumentative content retrieval, and many others [2] .",
+                        "Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems."
+                    ],
+                    [
+                        "We evaluate it on a challenging data set consisting of usergenerated comments, as well as on two other datasets consisting of scientific publications."
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_58",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_59",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_60",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_61"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is the article about?",
+                    "The article is about a new neural architecture to perform Argument Mining.",
+                    "This architecture features an attention module and is validated on multiple corpora.",
+                    "Which aspect would you like to know more about?",
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning.",
+                    "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                    "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model",
+                    "Can you tell me how does the attention module work?",
+                    "I'm sorry, but I don't have information on this aspect.",
+                    "Would you like to know more about the argument mining task instead?",
+                    "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them.",
+                    "Yes, tell me more about it.",
+                    "Argument Mining is a research field related to NLP that concerns the extraction and the classification of arguments and their relationships.",
+                    "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] .",
+                    "AM consists of several different tasks, that include argument detection, stance classification, topic-based argumentative content retrieval, and many others [2] .",
+                    "Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems.",
+                    "What kind of corpora was the neural architecture tested on?",
+                    "It was tested on corpora composed by user-generated comments and by scientific publications",
+                    "We evaluate it on a challenging data set consisting of usergenerated comments, as well as on two other datasets consisting of scientific publications."
+                ],
+                "facts": [
+                    "On the user-generated content dataset, our model outperforms state-of-the-art methods that rely on domain knowledge.",
+                    "On the scientific literature datasets it achieves results comparable to those yielded by BERT-based approaches but with a much smaller model size."
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_63",
+                "P_Message": "Do you know why this happened?",
+                "DE_Message": "There is no information available about this. Do you want to know more or are you satisfied?",
+                "history_facts": [
+                    [
+                        "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning. Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                        "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model"
+                    ],
+                    [
+                        "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them."
+                    ],
+                    [
+                        "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] . AM consists of several different tasks, that include argument detection, stance classification, topic-based argumentative content retrieval, and many others [2] .",
+                        "Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems."
+                    ],
+                    [
+                        "We evaluate it on a challenging data set consisting of usergenerated comments, as well as on two other datasets consisting of scientific publications."
+                    ],
+                    [
+                        "On the user-generated content dataset, our model outperforms state-of-the-art methods that rely on domain knowledge. On the scientific literature datasets it achieves results comparable to those yielded by BERT-based approaches but with a much smaller model size."
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_58",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_59",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_60",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_61",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_62"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is the article about?",
+                    "The article is about a new neural architecture to perform Argument Mining.",
+                    "This architecture features an attention module and is validated on multiple corpora.",
+                    "Which aspect would you like to know more about?",
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning.",
+                    "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information",
+                    "A set of experiments designed to assess generality, whereby we test our approach on three additional corpora that vary in domain, style of writing, formatting, length, and annotation model",
+                    "Can you tell me how does the attention module work?",
+                    "I'm sorry, but I don't have information on this aspect.",
+                    "Would you like to know more about the argument mining task instead?",
+                    "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them.",
+                    "Yes, tell me more about it.",
+                    "Argument Mining is a research field related to NLP that concerns the extraction and the classification of arguments and their relationships.",
+                    "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] .",
+                    "AM consists of several different tasks, that include argument detection, stance classification, topic-based argumentative content retrieval, and many others [2] .",
+                    "Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems.",
+                    "What kind of corpora was the neural architecture tested on?",
+                    "It was tested on corpora composed by user-generated comments and by scientific publications",
+                    "We evaluate it on a challenging data set consisting of usergenerated comments, as well as on two other datasets consisting of scientific publications.",
+                    "On which of the two did the architecture perform best?",
+                    "The best performance was achieved on the first one",
+                    "On the user-generated content dataset, our model outperforms state-of-the-art methods that rely on domain knowledge.",
+                    "On the scientific literature datasets it achieves results comparable to those yielded by BERT-based approaches but with a much smaller model size."
+                ],
+                "facts": []
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_64",
+                "P_Message": "Hi! What is this paper about?",
+                "DE_Message": "Hello! This paper is about a novel neural architecture proposed for the task of Argument Mining.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning",
+                    "We explore the use of residual networks and neural attention for argument mining and in particular link prediction."
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_65",
+                "P_Message": "What does it mean 'attentive' network?",
+                "DE_Message": "it is not explicitly stated, but it means that the network include a neural attention module",
+                "history_facts": [
+                    [
+                        "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning",
+                        "We explore the use of residual networks and neural attention for argument mining and in particular link prediction."
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_64"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "Hello!",
+                    "This paper is about a novel neural architecture proposed for the task of Argument Mining.",
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning",
+                    "We explore the use of residual networks and neural attention for argument mining and in particular link prediction."
+                ],
+                "facts": [
+                    "The model exploits neural attention",
+                    "this paper extends the neural architecture with attention and ensemble learning"
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_66",
+                "P_Message": "What is the attention module used for?",
+                "DE_Message": "I'm sorry, such information is not available. Would you like to know more about the argument mining task?",
+                "history_facts": [
+                    [
+                        "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning",
+                        "We explore the use of residual networks and neural attention for argument mining and in particular link prediction."
+                    ],
+                    [
+                        "The model exploits neural attention",
+                        "this paper extends the neural architecture with attention and ensemble learning"
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_64",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_65"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "Hello!",
+                    "This paper is about a novel neural architecture proposed for the task of Argument Mining.",
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning",
+                    "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+                    "What does it mean 'attentive' network?",
+                    "it is not explicitly stated, but it means that the network include a neural attention module",
+                    "The model exploits neural attention",
+                    "this paper extends the neural architecture with attention and ensemble learning"
+                ],
+                "facts": []
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_67",
+                "P_Message": "Yes, thank you",
+                "DE_Message": "Argument mining is a research field related to NLP, and concerns the extraction and classification of argumentative components and their relationships in documents. Are you satisfied or would you like to know more?",
+                "history_facts": [
+                    [
+                        "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning",
+                        "We explore the use of residual networks and neural attention for argument mining and in particular link prediction."
+                    ],
+                    [
+                        "The model exploits neural attention",
+                        "this paper extends the neural architecture with attention and ensemble learning"
+                    ],
+                    []
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_64",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_65",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_66"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "Hello!",
+                    "This paper is about a novel neural architecture proposed for the task of Argument Mining.",
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning",
+                    "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+                    "What does it mean 'attentive' network?",
+                    "it is not explicitly stated, but it means that the network include a neural attention module",
+                    "The model exploits neural attention",
+                    "this paper extends the neural architecture with attention and ensemble learning",
+                    "What is the attention module used for?",
+                    "I'm sorry, such information is not available.",
+                    "Would you like to know more about the argument mining task?"
+                ],
+                "facts": [
+                    "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] .",
+                    "In this work we focus on the challenging problem of assembling the structure of the argumentation graph of a given input document.",
+                    "Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems."
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_68",
+                "P_Message": "I would like to know more. For example, what type of argument mining did you do in this research?",
+                "DE_Message": "We focus on classifying the category of the component and predicting the relationships",
+                "history_facts": [
+                    [
+                        "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning",
+                        "We explore the use of residual networks and neural attention for argument mining and in particular link prediction."
+                    ],
+                    [
+                        "The model exploits neural attention",
+                        "this paper extends the neural architecture with attention and ensemble learning"
+                    ],
+                    [],
+                    [
+                        "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] .",
+                        "In this work we focus on the challenging problem of assembling the structure of the argumentation graph of a given input document. Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems."
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_64",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_65",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_66",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_67"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "Hello!",
+                    "This paper is about a novel neural architecture proposed for the task of Argument Mining.",
+                    "A novel approach to AM, which extends our previous work [7] by introducing an attention module and ensemble learning",
+                    "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+                    "What does it mean 'attentive' network?",
+                    "it is not explicitly stated, but it means that the network include a neural attention module",
+                    "The model exploits neural attention",
+                    "this paper extends the neural architecture with attention and ensemble learning",
+                    "What is the attention module used for?",
+                    "I'm sorry, such information is not available.",
+                    "Would you like to know more about the argument mining task?",
+                    "Yes, thank you",
+                    "Argument mining is a research field related to NLP, and concerns the extraction and classification of argumentative components and their relationships in documents.",
+                    "Are you satisfied or would you like to know more?",
+                    "A RGUMENT mining (AM) is an emerging research area in natural language processing (NLP) which aims to extract arguments from text collections [1] .",
+                    "In this work we focus on the challenging problem of assembling the structure of the argumentation graph of a given input document.",
+                    "Such problem comprises the detection of both argument components, and relations (or links) amongst them, and is thus one of the most difficult steps for AM systems."
+                ],
+                "facts": [
+                    "The model exploits neural attention and multi-task learning, jointly addressing the problems of identifying the category of argument components, and predicting the relations among them"
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_186",
+                "P_Message": "Hi!",
+                "DE_Message": "Hi! do you want to talk about multi-task residual networks for argument mining?",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining"
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_187",
+                "P_Message": "Yes, please. What is the paper about?",
+                "DE_Message": "The paper discusses residual network for several argumentative mining tasks, including link prediction",
+                "history_facts": [
+                    [
+                        "Multi-Task Attentive Residual Networks for Argument Mining"
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_186"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "do you want to talk about multi-task residual networks for argument mining?",
+                    "Multi-Task Attentive Residual Networks for Argument Mining"
+                ],
+                "facts": [
+                    "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+                    "We propose a residual architecture that exploits attention, multi-task learning, and makes use of ensemble."
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_188",
+                "P_Message": "Can you say something more about the method used to solve the tasks?",
+                "DE_Message": "Sure. All tasks are tackled using a single neural network with an attention module and ensemble learning. All tasks are performed jointly. there is no feature engineering.",
+                "history_facts": [
+                    [
+                        "Multi-Task Attentive Residual Networks for Argument Mining"
+                    ],
+                    [
+                        "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+                        "We propose a residual architecture that exploits attention, multi-task learning, and makes use of ensemble."
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_186",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_187"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "do you want to talk about multi-task residual networks for argument mining?",
+                    "Multi-Task Attentive Residual Networks for Argument Mining",
+                    "Yes, please.",
+                    "What is the paper about?",
+                    "The paper discusses residual network for several argumentative mining tasks, including link prediction",
+                    "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+                    "We propose a residual architecture that exploits attention, multi-task learning, and makes use of ensemble."
+                ],
+                "facts": [
+                    "this paper extends the neural architecture with attention and ensemble learning",
+                    "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information, but only on GloVe embeddings and on a widely applicable notion of distance"
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_189",
+                "P_Message": "Is the method compared to other ones?",
+                "DE_Message": "Sure, the paper offers comparisons with other state-of-the-art systems.",
+                "history_facts": [
+                    [
+                        "Multi-Task Attentive Residual Networks for Argument Mining"
+                    ],
+                    [
+                        "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+                        "We propose a residual architecture that exploits attention, multi-task learning, and makes use of ensemble."
+                    ],
+                    [
+                        "this paper extends the neural architecture with attention and ensemble learning",
+                        "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information, but only on GloVe embeddings and on a widely applicable notion of distance"
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_186",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_187",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_188"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "do you want to talk about multi-task residual networks for argument mining?",
+                    "Multi-Task Attentive Residual Networks for Argument Mining",
+                    "Yes, please.",
+                    "What is the paper about?",
+                    "The paper discusses residual network for several argumentative mining tasks, including link prediction",
+                    "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+                    "We propose a residual architecture that exploits attention, multi-task learning, and makes use of ensemble.",
+                    "Can you say something more about the method used to solve the tasks?",
+                    "Sure.",
+                    "All tasks are tackled using a single neural network with an attention module and ensemble learning.",
+                    "All tasks are performed jointly.",
+                    "there is no feature engineering.",
+                    "this paper extends the neural architecture with attention and ensemble learning",
+                    "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information, but only on GloVe embeddings and on a widely applicable notion of distance"
+                ],
+                "facts": [
+                    "this paper extends the neural architecture with attention and ensemble learning, and presents a more thorough and extensive experimental evaluation, offering comparisons with state-of-the-art systems across four different argument mining corpora"
+                ]
+            },
+            {
+                "id": "Multi-Task Attentive Residual Networks for Argument Mining_190",
+                "P_Message": "Are the results better than state-of-the-art cited in the paper?",
+                "DE_Message": "This is not clear from the information I have. The method has good performance, but the main advantage seems to be generality.",
+                "history_facts": [
+                    [
+                        "Multi-Task Attentive Residual Networks for Argument Mining"
+                    ],
+                    [
+                        "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+                        "We propose a residual architecture that exploits attention, multi-task learning, and makes use of ensemble."
+                    ],
+                    [
+                        "this paper extends the neural architecture with attention and ensemble learning",
+                        "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information, but only on GloVe embeddings and on a widely applicable notion of distance"
+                    ],
+                    [
+                        "this paper extends the neural architecture with attention and ensemble learning, and presents a more thorough and extensive experimental evaluation, offering comparisons with state-of-the-art systems across four different argument mining corpora"
+                    ]
+                ],
+                "history_ids": [
+                    "Multi-Task Attentive Residual Networks for Argument Mining_186",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_187",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_188",
+                    "Multi-Task Attentive Residual Networks for Argument Mining_189"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "do you want to talk about multi-task residual networks for argument mining?",
+                    "Multi-Task Attentive Residual Networks for Argument Mining",
+                    "Yes, please.",
+                    "What is the paper about?",
+                    "The paper discusses residual network for several argumentative mining tasks, including link prediction",
+                    "We explore the use of residual networks and neural attention for argument mining and in particular link prediction.",
+                    "We propose a residual architecture that exploits attention, multi-task learning, and makes use of ensemble.",
+                    "Can you say something more about the method used to solve the tasks?",
+                    "Sure.",
+                    "All tasks are tackled using a single neural network with an attention module and ensemble learning.",
+                    "All tasks are performed jointly.",
+                    "there is no feature engineering.",
+                    "this paper extends the neural architecture with attention and ensemble learning",
+                    "Such a model performs multiple AM tasks at the same time, and does not rely on ad-hoc features or rich contextual information, but only on GloVe embeddings and on a widely applicable notion of distance",
+                    "Is the method compared to other ones?",
+                    "Sure, the paper offers comparisons with other state-of-the-art systems.",
+                    "this paper extends the neural architecture with attention and ensemble learning, and presents a more thorough and extensive experimental evaluation, offering comparisons with state-of-the-art systems across four different argument mining corpora"
+                ],
+                "facts": [
+                    "Experimental results conducted on a variety of different corpora show that the model is robust and achieves good performance across the considered data sets.",
+                    "AM approaches are very often tailored to specific corpora or genres [4] - [6] , with solutions that are seldom general enough to be directly applied to different data sets without the need of any adaptation."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+        ]
+    }
+}

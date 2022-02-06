@@ -1,0 +1,1388 @@
+{
+    "Detecting and explaining unfairness in consumer contracts through memory networks": {
+        "id": "Detecting and explaining unfairness in consumer contracts through memory networks",
+        "title": "Detecting and explaining unfairness in consumer contracts through memory networks",
+        "content": [
+            "Recent work has demonstrated how data-driven AI methods can leverage consumer protection by supporting the automated analysis of legal documents.",
+            "However, a shortcoming of data-driven approaches is poor explainability.",
+            "We posit that in this domain useful explanations of classifier outcomes can be provided by resorting to legal rationales.",
+            "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+            "Our results show that rationales not only contribute to improve the classification accuracy, but are also able to offer meaningful, natural language explanations of otherwise opaque classifier outcomes.",
+            "Terms of service (ToS), also known as terms and conditions or simply terms, are consumer contracts governing the relation between providers and users.",
+            "Terms that cause a significant imbalance in the parties' rights and obligations, to the detriment of the consumer, are deemed unfair by Consumer Law.",
+            "Despite substantive law in place, and despite the competence of enforcers for abstract control, providers of online services still tend to use unfair and unlawful clauses in these documents (Loos and Luzak 2016; Micklitz et al.",
+            "2017) .",
+            "Consumers often cannot do anything about it.",
+            "To begin with, they rarely read the contracts they are required to accept (Obar and Oeldorf-Hirsch 2016) .",
+            "Then, even if they did, a seemingly insurmountable knowledge barrier creates a clear unbalance.",
+            "Legal knowledge is difficult, if not impossible, to access for individual consumers, as it is also difficult for consumers to know what data practices are implemented by companies and, therefore, to pinpoint unfair or unlawful conduct (Lippi et al.",
+            "2020) .",
+            "Finally, even if consumers had sufficient knowledge and awareness to take legal action, there is still the insurmountable difference between the financial resources of the average customer and those of the average provider.",
+            "To help mitigate such an unbalance, consumer protection organizations have the competence to initiate judicial or administrative proceedings.",
+            "However, they do not have the resources to fight against each unlawful practice.",
+            "It was thus suggested that Artificial Intelligence (AI) and AI-based tools can aid consumer protection organizations and leverage consumer empowerment, for example by supporting the automatic analysis and exposure of unfair ToS clauses (Lippi et al.",
+            "2019a ).",
+            "Among other initiatives, the CLAUDETTE project 1 undertook the challenge of consumer empowerment via AI, by investigating ways to automate reading and legal assessment of online consumer contracts and privacy policies with natural language processing techniques, so as to evaluate their compliance with EU consumer and data protection law.",
+            "A web service developed and maintained by the project automatically analyzes any ToS a user may feed it, and returns an annotated version of the same document, which highlights the potentially unfair clauses it contains (Lippi et al.",
+            "2019b ).",
+            "2 While this constitutes a noteworthy first step, it suffers from poor transparency.",
+            "In other words, however accurate a system like CLAUDETTE may be, it can hardly explain its output.",
+            "This shortcoming is not specific to this particular system.",
+            "Indeed, in recent years a rich debate has flourished around the opacity of AI systems that, in terms of accuracy, offer unprecedented results, but at the same time cannot be easily inspected in order to find reasons behind blatant and even possibly dangerous mistakes.",
+            "This adds to the growing concern that data-driven machine-learning systems may exasperate existing biases and social inequalities (O'Neil 2016; Lippi et al.",
+            "2020 ).",
+            "The debate is very lively as it involves thinkers with all sorts of backgrounds and complementary perspectives, governments, and, to some extent, the entire civil society.",
+            "There are good reasons for such a great interest.",
+            "Research in social science suggests that providing explanations for recommended actions deeply influences users' confidence in, and acceptance of, AI-based decisions and recommendations (Cramer et al.",
+            "2008) .",
+            "From this viewpoint, consumers, their organizations, and legal experts want to understand why a certain conclusion is made before accepting AI response.",
+            "In our opinion, a promising approach to associating explanations to the outcomes of neural-network classifiers could be enabled by Memory-Augmented Neural Networks or MANNs (Sukhbaatar et al.",
+            "2015) .",
+            "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+            "Consider for instance the following story:\n\n Joe went to the kitchen.",
+            "Fred went to the kitchen.",
+            "Joe picked up the milk.",
+            "Joe travelled to the office.",
+            "Joe left the milk.",
+            "Joe went to the bathroom.",
+            "Where is the milk now?",
+            "Answering the question requires comprehension of the actions \"picked up\" and \"left\" as well as of the time elements of the story (Weston et al.",
+            "2014) .",
+            "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query.",
+            "The list of memories used to answer a given query, for example \"Joe travelled to the office\" and \"Joe left the milk\" constitutes, in a way, an explanation to the answer \"The milk is in the kitchen\".",
+            "We believe that these tasks present similarities with the problem we are tackling, of providing an explanation to why a given clause has been labeled as potentially unfair.",
+            "In particular, our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+            "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+            "Accordingly, if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN.",
+            "Such explanations could be especially useful to legal experts and consumers because, rather than aiming to explain an underlying logical model or uncover the role of particular neural network connections, they would be more in line with a dialectical and communicative viewpoint, as advocated by Miller (2019) .",
+            "Consider for example a unilateral termination clause, giving the provider the right to suspend or terminate the service and/or the contract.",
+            "In general, this provision could be unfair because, from the consumer's perspective, it could undermine the whole purpose of entering into the contract, and it may skew the balance of power between the parties involved.",
+            "Indeed, the detection of a \"unilateral termination\" clause \"with 98.8 percent confidence\" could be a useful piece of information.",
+            "However, the reason why a specific unilateral termination clause would be potentially unfair may not be self-evident.",
+            "Instead, a more specific rationale such as \"the clause mentions the contract or access may be terminated but does not state the grounds for termination\" could provide a more compelling argument in that regard.",
+            "It would explain why a clause has been labeled as unfair, and would go in the direction of causal explanations, which are arguably more effective, in this context, than \"opaque\" confidence measures.",
+            "This paper describes our approach to exposing unfairness by providing rationales using a MANN trained on a large corpus of online ToS.",
+            "Since MANNs enable us to accommodate unstructured knowledge and easily embed raw text, we envision arbitrary knowledge integration as a middle ground between traditional structured information injection and natural language comprehension tasks.",
+            "Thus, we find this type of memory-augmented architecture quite suitable for our purposes.",
+            "The system we built relies on an extensive study made on all the possible rationales associated with 5 major categories of unfair clauses, which we explicitly stated in the form of self-contained English sentences.",
+            "This exercise served two purposes.",
+            "The first one was to build a knowledge base that could help the laymen understand the possible motivations behind unfairness in the general case, and hopefully, to a broader extent, also guide service providers in defining fair terms of services.",
+            "The other purpose was to be able to train MANN classifiers in detecting unfair clauses by encoding legal rationales in the memories.",
+            "The knowledge base of rationales constituted the basis for creating a corpus of 100 annotated ToS, which we used to train different MANN architecture configurations.",
+            "We evaluated their performance with respect to relevant baselines, including support vector machine classifiers, convolutional neural networks and long shortmemory networks.",
+            "We also run an initial qualitative evaluation with domain experts in order to understand the explanatory efficacy of rationales in this context.",
+            "The novel corpus, as well as all the code needed to reproduce our experiments, are made available for research purposes.",
+            "3 The results on the new corpus are encouraging.",
+            "The MANN architectures were able to match or outperform the baselines on all categories of unfair clauses, in some cases by a significant margin.",
+            "Moreover, unlike all other baselines, the MANN could provide meaningful references to the relevant rationales, especially if during training the MANN is fed with the information of which rationales are related to which clause, a technique known as strong supervision.",
+            "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics.",
+            "A pilot study on the use of MANN for detecting and explaining unfair clauses in consumer contracts was recently presented by Lagioia et al.",
+            "(2019) , and it gave promising results.",
+            "Compared to it, the present study relies on a significantly extended dataset, with several unfairness categories and related rationales.",
+            "Additionally, we evaluate multiple MANN configurations, limited to single-hop reasoning regarding task-related assumptions, and explore the benefits of strong supervision (see Sect.",
+            "4), from both the classification performance and the model explainability perspectives.",
+            "The rest of this paper is organized as follows.",
+            "In Sect.",
+            "2 we briefly discuss other machine-learning approaches in the consumer law domain, and the state of the art of machine-learning techniques used to address related problems.",
+            "In Sect.",
+            "3 we describe our corpus and the rationales used to annotate it.",
+            "In Sect.",
+            "4 we introduce the MANN architectures used in our study and the experimental methodology we adopted.",
+            "Results are discussed in Sect.",
+            "5.",
+            "Section 6 concludes."
+        ],
+        "message_pairs": [
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_191",
+                "P_Message": "Hi!",
+                "DE_Message": "Hi. Do you want to know something about unfairness detection in consumer contracts?",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks"
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_192",
+                "P_Message": "Yes, please. What are memory networks?",
+                "DE_Message": "Memory networks or MANNs are neural architectures that include a \"memory\" components where knowledge can be stored and used to generate the output",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_191"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi.",
+                    "Do you want to know something about unfairness detection in consumer contracts?",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks"
+                ],
+                "facts": [
+                    "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                    "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query."
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_193",
+                "P_Message": "How are MANNs employed to detect and explain unfairness?",
+                "DE_Message": "The memories could be used to store justifications of unfairness given by legal experts. Then these justifications can be used to explain the output",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                        "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query."
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_191",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_192"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi.",
+                    "Do you want to know something about unfairness detection in consumer contracts?",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "Yes, please.",
+                    "What are memory networks?",
+                    "Memory networks or MANNs are neural architectures that include a \"memory\" components where knowledge can be stored and used to generate the output",
+                    "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                    "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query."
+                ],
+                "facts": [
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                    "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN"
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_194",
+                "P_Message": "It seems very nice idea! Maybe it can be applied to other kind of tasks. What do you think?",
+                "DE_Message": "Yes indeed. For example, memory networks have been used for question-answering.",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                        "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query."
+                    ],
+                    [
+                        "our hypothesis is that useful explanations may be given in terms of rationales, i.e.  ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                        "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN"
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_191",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_192",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_193"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi.",
+                    "Do you want to know something about unfairness detection in consumer contracts?",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "Yes, please.",
+                    "What are memory networks?",
+                    "Memory networks or MANNs are neural architectures that include a \"memory\" components where knowledge can be stored and used to generate the output",
+                    "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                    "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query.",
+                    "How are MANNs employed to detect and explain unfairness?",
+                    "The memories could be used to store justifications of unfairness given by legal experts.",
+                    "Then these justifications can be used to explain the output",
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                    "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN"
+                ],
+                "facts": [
+                    "Consider for instance the following story:   Joe went to the kitchen.",
+                    "Fred went to the kitchen.",
+                    "Joe picked up the milk.",
+                    "Joe travelled to the office.",
+                    "Joe left the milk.",
+                    "Joe went to the bathroom.",
+                    "Where is the milk now?",
+                    "Answering the question requires comprehension of the actions \"picked up\" and \"left\" as well as of the time elements of the story (Weston et al.",
+                    "2014) .",
+                    "A MANN can answer these questions"
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_195",
+                "P_Message": "Can you give me more details about the experimental setup?",
+                "DE_Message": "The authors created a dataset of annotated Terms of Service and compared the performance of MANNs against relevant baselines. Do you want to know about qualitative evaluation too?",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                        "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query."
+                    ],
+                    [
+                        "our hypothesis is that useful explanations may be given in terms of rationales, i.e.  ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                        "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN"
+                    ],
+                    [
+                        "Consider for instance the following story:   Joe went to the kitchen.  Fred went to the kitchen. Joe picked up the milk. Joe travelled to the office. Joe left the milk.",
+                        "Joe went to the bathroom. Where is the milk now? Answering the question requires comprehension of the actions \"picked up\" and \"left\" as well as of the time elements of the story (Weston et al. 2014) .  A MANN can answer these questions"
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_191",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_192",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_193",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_194"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi.",
+                    "Do you want to know something about unfairness detection in consumer contracts?",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "Yes, please.",
+                    "What are memory networks?",
+                    "Memory networks or MANNs are neural architectures that include a \"memory\" components where knowledge can be stored and used to generate the output",
+                    "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                    "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query.",
+                    "How are MANNs employed to detect and explain unfairness?",
+                    "The memories could be used to store justifications of unfairness given by legal experts.",
+                    "Then these justifications can be used to explain the output",
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                    "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN",
+                    "It seems very nice idea!",
+                    "Maybe it can be applied to other kind of tasks.",
+                    "What do you think?",
+                    "Yes indeed.",
+                    "For example, memory networks have been used for question-answering.",
+                    "Consider for instance the following story:   Joe went to the kitchen.",
+                    "Fred went to the kitchen.",
+                    "Joe picked up the milk.",
+                    "Joe travelled to the office.",
+                    "Joe left the milk.",
+                    "Joe went to the bathroom.",
+                    "Where is the milk now?",
+                    "Answering the question requires comprehension of the actions \"picked up\" and \"left\" as well as of the time elements of the story (Weston et al.",
+                    "2014) .",
+                    "A MANN can answer these questions"
+                ],
+                "facts": [
+                    "The knowledge base of rationales constituted the basis for creating a corpus of 100 annotated ToS, which we used to train different MANN architecture configurations.",
+                    "We evaluated their performance with respect to relevant baselines, including support vector machine classifiers, convolutional neural networks and long shortmemory networks."
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_196",
+                "P_Message": "Yes, please.",
+                "DE_Message": "The explanations were also evaluated by domain experts. If you are interested, I can tell you about the outcome of the evaluation",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                        "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query."
+                    ],
+                    [
+                        "our hypothesis is that useful explanations may be given in terms of rationales, i.e.  ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                        "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN"
+                    ],
+                    [
+                        "Consider for instance the following story:   Joe went to the kitchen.  Fred went to the kitchen. Joe picked up the milk. Joe travelled to the office. Joe left the milk.",
+                        "Joe went to the bathroom. Where is the milk now? Answering the question requires comprehension of the actions \"picked up\" and \"left\" as well as of the time elements of the story (Weston et al. 2014) .  A MANN can answer these questions"
+                    ],
+                    [
+                        "The knowledge base of rationales constituted the basis for creating a corpus of 100 annotated ToS, which we used to train different MANN architecture configurations.",
+                        "We evaluated their performance with respect to relevant baselines, including support vector machine classifiers, convolutional neural networks and long shortmemory networks."
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_191",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_192",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_193",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_194",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_195"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi.",
+                    "Do you want to know something about unfairness detection in consumer contracts?",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "Yes, please.",
+                    "What are memory networks?",
+                    "Memory networks or MANNs are neural architectures that include a \"memory\" components where knowledge can be stored and used to generate the output",
+                    "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                    "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query.",
+                    "How are MANNs employed to detect and explain unfairness?",
+                    "The memories could be used to store justifications of unfairness given by legal experts.",
+                    "Then these justifications can be used to explain the output",
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                    "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN",
+                    "It seems very nice idea!",
+                    "Maybe it can be applied to other kind of tasks.",
+                    "What do you think?",
+                    "Yes indeed.",
+                    "For example, memory networks have been used for question-answering.",
+                    "Consider for instance the following story:   Joe went to the kitchen.",
+                    "Fred went to the kitchen.",
+                    "Joe picked up the milk.",
+                    "Joe travelled to the office.",
+                    "Joe left the milk.",
+                    "Joe went to the bathroom.",
+                    "Where is the milk now?",
+                    "Answering the question requires comprehension of the actions \"picked up\" and \"left\" as well as of the time elements of the story (Weston et al.",
+                    "2014) .",
+                    "A MANN can answer these questions",
+                    "Can you give me more details about the experimental setup?",
+                    "The authors created a dataset of annotated Terms of Service and compared the performance of MANNs against relevant baselines.",
+                    "Do you want to know about qualitative evaluation too?",
+                    "The knowledge base of rationales constituted the basis for creating a corpus of 100 annotated ToS, which we used to train different MANN architecture configurations.",
+                    "We evaluated their performance with respect to relevant baselines, including support vector machine classifiers, convolutional neural networks and long shortmemory networks."
+                ],
+                "facts": [
+                    "We also run an initial qualitative evaluation with domain experts in order to understand the explanatory efficacy of rationales in this context."
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_197",
+                "P_Message": "Yes, I am really interested in it.",
+                "DE_Message": "Results are encouraging, and some baselines were outperformed by a significant margin. One interesting thing in this paper is the application of strong supervision. Do you want to know about it?",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                        "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query."
+                    ],
+                    [
+                        "our hypothesis is that useful explanations may be given in terms of rationales, i.e.  ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                        "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN"
+                    ],
+                    [
+                        "Consider for instance the following story:   Joe went to the kitchen.  Fred went to the kitchen. Joe picked up the milk. Joe travelled to the office. Joe left the milk.",
+                        "Joe went to the bathroom. Where is the milk now? Answering the question requires comprehension of the actions \"picked up\" and \"left\" as well as of the time elements of the story (Weston et al. 2014) .  A MANN can answer these questions"
+                    ],
+                    [
+                        "The knowledge base of rationales constituted the basis for creating a corpus of 100 annotated ToS, which we used to train different MANN architecture configurations.",
+                        "We evaluated their performance with respect to relevant baselines, including support vector machine classifiers, convolutional neural networks and long shortmemory networks."
+                    ],
+                    [
+                        "We also run an initial qualitative evaluation with domain experts in order to understand the explanatory efficacy of rationales in this context."
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_191",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_192",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_193",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_194",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_195",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_196"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi.",
+                    "Do you want to know something about unfairness detection in consumer contracts?",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "Yes, please.",
+                    "What are memory networks?",
+                    "Memory networks or MANNs are neural architectures that include a \"memory\" components where knowledge can be stored and used to generate the output",
+                    "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                    "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query.",
+                    "How are MANNs employed to detect and explain unfairness?",
+                    "The memories could be used to store justifications of unfairness given by legal experts.",
+                    "Then these justifications can be used to explain the output",
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                    "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN",
+                    "It seems very nice idea!",
+                    "Maybe it can be applied to other kind of tasks.",
+                    "What do you think?",
+                    "Yes indeed.",
+                    "For example, memory networks have been used for question-answering.",
+                    "Consider for instance the following story:   Joe went to the kitchen.",
+                    "Fred went to the kitchen.",
+                    "Joe picked up the milk.",
+                    "Joe travelled to the office.",
+                    "Joe left the milk.",
+                    "Joe went to the bathroom.",
+                    "Where is the milk now?",
+                    "Answering the question requires comprehension of the actions \"picked up\" and \"left\" as well as of the time elements of the story (Weston et al.",
+                    "2014) .",
+                    "A MANN can answer these questions",
+                    "Can you give me more details about the experimental setup?",
+                    "The authors created a dataset of annotated Terms of Service and compared the performance of MANNs against relevant baselines.",
+                    "Do you want to know about qualitative evaluation too?",
+                    "The knowledge base of rationales constituted the basis for creating a corpus of 100 annotated ToS, which we used to train different MANN architecture configurations.",
+                    "We evaluated their performance with respect to relevant baselines, including support vector machine classifiers, convolutional neural networks and long shortmemory networks.",
+                    "Yes, please.",
+                    "The explanations were also evaluated by domain experts.",
+                    "If you are interested, I can tell you about the outcome of the evaluation",
+                    "We also run an initial qualitative evaluation with domain experts in order to understand the explanatory efficacy of rationales in this context."
+                ],
+                "facts": [
+                    "The results on the new corpus are encouraging.",
+                    "The MANN architectures were able to match or outperform the baselines on all categories of unfair clauses, in some cases by a significant margin.",
+                    "unlike all other baselines, the MANN could provide meaningful references to the relevant rationales"
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_198",
+                "P_Message": "I think it's enough. Thanks a lot!",
+                "DE_Message": "Bye",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                        "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query."
+                    ],
+                    [
+                        "our hypothesis is that useful explanations may be given in terms of rationales, i.e.  ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                        "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN"
+                    ],
+                    [
+                        "Consider for instance the following story:   Joe went to the kitchen.  Fred went to the kitchen. Joe picked up the milk. Joe travelled to the office. Joe left the milk.",
+                        "Joe went to the bathroom. Where is the milk now? Answering the question requires comprehension of the actions \"picked up\" and \"left\" as well as of the time elements of the story (Weston et al. 2014) .  A MANN can answer these questions"
+                    ],
+                    [
+                        "The knowledge base of rationales constituted the basis for creating a corpus of 100 annotated ToS, which we used to train different MANN architecture configurations.",
+                        "We evaluated their performance with respect to relevant baselines, including support vector machine classifiers, convolutional neural networks and long shortmemory networks."
+                    ],
+                    [
+                        "We also run an initial qualitative evaluation with domain experts in order to understand the explanatory efficacy of rationales in this context."
+                    ],
+                    [
+                        "The results on the new corpus are encouraging. The MANN architectures were able to match or outperform the baselines on all categories of unfair clauses, in some cases by a significant margin.",
+                        "unlike all other baselines, the MANN could provide meaningful references to the relevant rationales"
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_191",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_192",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_193",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_194",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_195",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_196",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_197"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi.",
+                    "Do you want to know something about unfairness detection in consumer contracts?",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "Yes, please.",
+                    "What are memory networks?",
+                    "Memory networks or MANNs are neural architectures that include a \"memory\" components where knowledge can be stored and used to generate the output",
+                    "The basic idea behind MANNs is to combine the successful learning strategies developed in the machine learning literature for inference with a memory component that can be read and written to.",
+                    "A MANN can answer these questions by storing in dedicated parts of the network, called memories, all previously seen sentences, so as to retrieve the most relevant facts to a given query.",
+                    "How are MANNs employed to detect and explain unfairness?",
+                    "The memories could be used to store justifications of unfairness given by legal experts.",
+                    "Then these justifications can be used to explain the output",
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair.",
+                    "if we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels, then a possible explanation of an unfairness prediction could be constructed based on the list of memories, i.e., the rationales, used by the MANN",
+                    "It seems very nice idea!",
+                    "Maybe it can be applied to other kind of tasks.",
+                    "What do you think?",
+                    "Yes indeed.",
+                    "For example, memory networks have been used for question-answering.",
+                    "Consider for instance the following story:   Joe went to the kitchen.",
+                    "Fred went to the kitchen.",
+                    "Joe picked up the milk.",
+                    "Joe travelled to the office.",
+                    "Joe left the milk.",
+                    "Joe went to the bathroom.",
+                    "Where is the milk now?",
+                    "Answering the question requires comprehension of the actions \"picked up\" and \"left\" as well as of the time elements of the story (Weston et al.",
+                    "2014) .",
+                    "A MANN can answer these questions",
+                    "Can you give me more details about the experimental setup?",
+                    "The authors created a dataset of annotated Terms of Service and compared the performance of MANNs against relevant baselines.",
+                    "Do you want to know about qualitative evaluation too?",
+                    "The knowledge base of rationales constituted the basis for creating a corpus of 100 annotated ToS, which we used to train different MANN architecture configurations.",
+                    "We evaluated their performance with respect to relevant baselines, including support vector machine classifiers, convolutional neural networks and long shortmemory networks.",
+                    "Yes, please.",
+                    "The explanations were also evaluated by domain experts.",
+                    "If you are interested, I can tell you about the outcome of the evaluation",
+                    "We also run an initial qualitative evaluation with domain experts in order to understand the explanatory efficacy of rationales in this context.",
+                    "Yes, I am really interested in it.",
+                    "Results are encouraging, and some baselines were outperformed by a significant margin.",
+                    "One interesting thing in this paper is the application of strong supervision.",
+                    "Do you want to know about it?",
+                    "The results on the new corpus are encouraging.",
+                    "The MANN architectures were able to match or outperform the baselines on all categories of unfair clauses, in some cases by a significant margin.",
+                    "unlike all other baselines, the MANN could provide meaningful references to the relevant rationales"
+                ],
+                "facts": []
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_199",
+                "P_Message": "Hi! What is this article about?",
+                "DE_Message": "This article is an application of memory networks for detecting unfairness in consumer contracts",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks"
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_200",
+                "P_Message": "How were memory networks used for this task?",
+                "DE_Message": "memories are used to store rationales. Do you want to know more about rationales?",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_199"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this article about?",
+                    "This article is an application of memory networks for detecting unfairness in consumer contracts",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks"
+                ],
+                "facts": [
+                    "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                    "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels"
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_201",
+                "P_Message": "Yes, thank you",
+                "DE_Message": "rationales are justifications provided by experts. Anything else you wish to know?",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                        "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels"
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_199",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_200"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this article about?",
+                    "This article is an application of memory networks for detecting unfairness in consumer contracts",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "How were memory networks used for this task?",
+                    "memories are used to store rationales.",
+                    "Do you want to know more about rationales?",
+                    "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                    "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels"
+                ],
+                "facts": [
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair"
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_202",
+                "P_Message": "Why are rationales useful?",
+                "DE_Message": "The hypothesis is that rationales are useful for explainability. Indeed, initial results are promising. What do you think about the importance of explainability?",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                        "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels"
+                    ],
+                    [
+                        "our hypothesis is that useful explanations may be given in terms of rationales, i.e.  ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair"
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_199",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_200",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_201"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this article about?",
+                    "This article is an application of memory networks for detecting unfairness in consumer contracts",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "How were memory networks used for this task?",
+                    "memories are used to store rationales.",
+                    "Do you want to know more about rationales?",
+                    "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                    "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels",
+                    "Yes, thank you",
+                    "rationales are justifications provided by experts.",
+                    "Anything else you wish to know?",
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair"
+                ],
+                "facts": [
+                    "in recent years a rich debate has flourished around the opacity of AI systems that, in terms of accuracy, offer unprecedented results, but at the same time cannot be easily inspected in order to find reasons behind blatant and even possibly dangerous mistakes.",
+                    "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics."
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_203",
+                "P_Message": "I think explainability is very useful in AI. Anything else you would like to tell me about the article?",
+                "DE_Message": "Yes. Something I like about this study is that the method is able to provide references to relevant rationales.",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                        "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels"
+                    ],
+                    [
+                        "our hypothesis is that useful explanations may be given in terms of rationales, i.e.  ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair"
+                    ],
+                    [
+                        "in recent years a rich debate has flourished around the opacity of AI systems that, in terms of accuracy, offer unprecedented results, but at the same time cannot be easily inspected in order to find reasons behind blatant and even possibly dangerous mistakes.",
+                        "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics."
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_199",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_200",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_201",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_202"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this article about?",
+                    "This article is an application of memory networks for detecting unfairness in consumer contracts",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "How were memory networks used for this task?",
+                    "memories are used to store rationales.",
+                    "Do you want to know more about rationales?",
+                    "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                    "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels",
+                    "Yes, thank you",
+                    "rationales are justifications provided by experts.",
+                    "Anything else you wish to know?",
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair",
+                    "Why are rationales useful?",
+                    "The hypothesis is that rationales are useful for explainability.",
+                    "Indeed, initial results are promising.",
+                    "What do you think about the importance of explainability?",
+                    "in recent years a rich debate has flourished around the opacity of AI systems that, in terms of accuracy, offer unprecedented results, but at the same time cannot be easily inspected in order to find reasons behind blatant and even possibly dangerous mistakes.",
+                    "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics."
+                ],
+                "facts": [
+                    "the MANN could provide meaningful references to the relevant rationales, especially if during training the MANN is fed with the information of which rationales are related to which clause, a technique known as strong supervision"
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_204",
+                "P_Message": "That's interesting! Can you tell me something more about this?",
+                "DE_Message": "I don't have further information about strong supervision, but the method seems promising",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                        "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels"
+                    ],
+                    [
+                        "our hypothesis is that useful explanations may be given in terms of rationales, i.e.  ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair"
+                    ],
+                    [
+                        "in recent years a rich debate has flourished around the opacity of AI systems that, in terms of accuracy, offer unprecedented results, but at the same time cannot be easily inspected in order to find reasons behind blatant and even possibly dangerous mistakes.",
+                        "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics."
+                    ],
+                    [
+                        "the MANN could provide meaningful references to the relevant rationales, especially if during training the MANN is fed with the information of which rationales are related to which clause, a technique known as strong supervision"
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_199",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_200",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_201",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_202",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_203"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this article about?",
+                    "This article is an application of memory networks for detecting unfairness in consumer contracts",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "How were memory networks used for this task?",
+                    "memories are used to store rationales.",
+                    "Do you want to know more about rationales?",
+                    "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                    "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels",
+                    "Yes, thank you",
+                    "rationales are justifications provided by experts.",
+                    "Anything else you wish to know?",
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair",
+                    "Why are rationales useful?",
+                    "The hypothesis is that rationales are useful for explainability.",
+                    "Indeed, initial results are promising.",
+                    "What do you think about the importance of explainability?",
+                    "in recent years a rich debate has flourished around the opacity of AI systems that, in terms of accuracy, offer unprecedented results, but at the same time cannot be easily inspected in order to find reasons behind blatant and even possibly dangerous mistakes.",
+                    "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics.",
+                    "I think explainability is very useful in AI.",
+                    "Anything else you would like to tell me about the article?",
+                    "Yes.",
+                    "Something I like about this study is that the method is able to provide references to relevant rationales.",
+                    "the MANN could provide meaningful references to the relevant rationales, especially if during training the MANN is fed with the information of which rationales are related to which clause, a technique known as strong supervision"
+                ],
+                "facts": [
+                    "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics."
+                ]
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_205",
+                "P_Message": "Ok, thank you! That's all I wanted to know",
+                "DE_Message": "That's great. Take care",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                        "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels"
+                    ],
+                    [
+                        "our hypothesis is that useful explanations may be given in terms of rationales, i.e.  ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair"
+                    ],
+                    [
+                        "in recent years a rich debate has flourished around the opacity of AI systems that, in terms of accuracy, offer unprecedented results, but at the same time cannot be easily inspected in order to find reasons behind blatant and even possibly dangerous mistakes.",
+                        "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics."
+                    ],
+                    [
+                        "the MANN could provide meaningful references to the relevant rationales, especially if during training the MANN is fed with the information of which rationales are related to which clause, a technique known as strong supervision"
+                    ],
+                    [
+                        "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics."
+                    ]
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_199",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_200",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_201",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_202",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_203",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_204"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this article about?",
+                    "This article is an application of memory networks for detecting unfairness in consumer contracts",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "How were memory networks used for this task?",
+                    "memories are used to store rationales.",
+                    "Do you want to know more about rationales?",
+                    "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                    "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels",
+                    "Yes, thank you",
+                    "rationales are justifications provided by experts.",
+                    "Anything else you wish to know?",
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair",
+                    "Why are rationales useful?",
+                    "The hypothesis is that rationales are useful for explainability.",
+                    "Indeed, initial results are promising.",
+                    "What do you think about the importance of explainability?",
+                    "in recent years a rich debate has flourished around the opacity of AI systems that, in terms of accuracy, offer unprecedented results, but at the same time cannot be easily inspected in order to find reasons behind blatant and even possibly dangerous mistakes.",
+                    "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics.",
+                    "I think explainability is very useful in AI.",
+                    "Anything else you would like to tell me about the article?",
+                    "Yes.",
+                    "Something I like about this study is that the method is able to provide references to relevant rationales.",
+                    "the MANN could provide meaningful references to the relevant rationales, especially if during training the MANN is fed with the information of which rationales are related to which clause, a technique known as strong supervision",
+                    "That's interesting!",
+                    "Can you tell me something more about this?",
+                    "I don't have further information about strong supervision, but the method seems promising",
+                    "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics."
+                ],
+                "facts": []
+            },
+            {
+                "id": "Detecting and explaining unfairness in consumer contracts through memory networks_206",
+                "P_Message": "Bye",
+                "DE_Message": "Bye",
+                "history_facts": [
+                    [
+                        "Detecting and explaining unfairness in consumer contracts through memory networks"
+                    ],
+                    [
+                        "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                        "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels"
+                    ],
+                    [
+                        "our hypothesis is that useful explanations may be given in terms of rationales, i.e.  ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair"
+                    ],
+                    [
+                        "in recent years a rich debate has flourished around the opacity of AI systems that, in terms of accuracy, offer unprecedented results, but at the same time cannot be easily inspected in order to find reasons behind blatant and even possibly dangerous mistakes.",
+                        "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics."
+                    ],
+                    [
+                        "the MANN could provide meaningful references to the relevant rationales, especially if during training the MANN is fed with the information of which rationales are related to which clause, a technique known as strong supervision"
+                    ],
+                    [
+                        "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics."
+                    ],
+                    []
+                ],
+                "history_ids": [
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_199",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_200",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_201",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_202",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_203",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_204",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks_205"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this article about?",
+                    "This article is an application of memory networks for detecting unfairness in consumer contracts",
+                    "Detecting and explaining unfairness in consumer contracts through memory networks",
+                    "How were memory networks used for this task?",
+                    "memories are used to store rationales.",
+                    "Do you want to know more about rationales?",
+                    "We thus consider several configurations of memory-augmented neural networks where rationales are given a special role in the modeling of context knowledge.",
+                    "we train a MANN classifier to identify unfair clauses by using as facts the rationales behind unfairness labels",
+                    "Yes, thank you",
+                    "rationales are justifications provided by experts.",
+                    "Anything else you wish to know?",
+                    "our hypothesis is that useful explanations may be given in terms of rationales, i.e.",
+                    "ad-hoc justifications provided by legal experts motivating their conclusion to consider a given clause as unfair",
+                    "Why are rationales useful?",
+                    "The hypothesis is that rationales are useful for explainability.",
+                    "Indeed, initial results are promising.",
+                    "What do you think about the importance of explainability?",
+                    "in recent years a rich debate has flourished around the opacity of AI systems that, in terms of accuracy, offer unprecedented results, but at the same time cannot be easily inspected in order to find reasons behind blatant and even possibly dangerous mistakes.",
+                    "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics.",
+                    "I think explainability is very useful in AI.",
+                    "Anything else you would like to tell me about the article?",
+                    "Yes.",
+                    "Something I like about this study is that the method is able to provide references to relevant rationales.",
+                    "the MANN could provide meaningful references to the relevant rationales, especially if during training the MANN is fed with the information of which rationales are related to which clause, a technique known as strong supervision",
+                    "That's interesting!",
+                    "Can you tell me something more about this?",
+                    "I don't have further information about strong supervision, but the method seems promising",
+                    "These results suggest that MANN are a promising way to address the problem of explaining unfairness in consumer contracts and pave the way to their extensive use in other areas of automated legal text analytics.",
+                    "Ok, thank you!",
+                    "That's all I wanted to know",
+                    "That's great.",
+                    "Take care"
+                ],
+                "facts": []
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning": {
+        "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning",
+        "title": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning",
+        "content": [
+            "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks.",
+            "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal.",
+            "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document (Lippi and Torroni, 2016) .",
+            "The majority of AM systems follows a pipeline scheme, starting with simpler tasks, such as argument component detection, down to more complex tasks, such as argumentation structure prediction.",
+            "Recent years have seen the development of a large number of techniques in this area, on the wake of the advancements produced by deep learning on the whole research field of natural language processing (NLP).",
+            "Yet, it is widely recognized that the existing AM systems still have a large margin of improvement, as good results have been obtained with some genres where prior knowledge on the structure of the text eases some AM tasks, but other genres, such as legal cases and social media documents still require more work (Cabrio and Villata, 2018) .",
+            "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine.",
+            "Understanding whether a given piece of evidence supports a given claim, or whether two claims attack each other, are complex problems that humans can address thanks to their ability to exploit commonsense knowledge, and to perform reasoning and inference.",
+            "Despite the remarkable impact of deep neural networks in NLP, we argue that these techniques alone will not suffice to address such complex issues.",
+            "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi et al., 2018) communities.",
+            "This issue is also widely recognized as one of the major challenges for the whole field of artificial intelligence in the coming years (LeCun et al., 2015) .",
+            "In computational argumentation, structured arguments have been studied and formalized for decades using models that can be expressed in a logic framework (Bench-Capon and Dunne, 2007) .",
+            "At the same time, AM has rapidly evolved by exploiting state-of-the-art neural architectures coming from deep learning.",
+            "So far, these two worlds have progressed largely independently of each other.",
+            "Only recently, a few works have taken some steps toward the integration of such methods, by applying techniques combining sub-symbolic classifiers with knowledge expressed in the form of rules and constraints to AM.",
+            "For instance, Niculae et al.",
+            "(2017) adopted structured support vector machines and recurrent neural networks to collectively classify argument components and their relations in short documents, by hardcoding contextual dependencies and constraints of the argument model in a factor graph.",
+            "A joint inference approach for argument component classification and relation identification was instead proposed by Persing and Ng (2016) , following a pipeline scheme where integer linear programming is used to enforce mathematical constraints on the outcomes of a first-stage set of classifiers.",
+            "More recently, Cocarascu and Toni (2018) combined a deep network for relation extraction with an argumentative reasoning system that computes the dialectical strength of arguments, for the task of determining whether a review is truthful or deceptive.",
+            "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks.",
+            "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers.",
+            "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process."
+        ],
+        "message_pairs": [
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                "P_Message": "hello there, what exactly is the main contribution of the paper?",
+                "DE_Message": "Hello! This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                "P_Message": "do you have some sort of definition of argument mining to give me some background?",
+                "DE_Message": "Sure! Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                ],
+                "facts": [
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229",
+                "P_Message": "many thanks for that. i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                "DE_Message": "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round). These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                ],
+                "facts": [
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_230",
+                "P_Message": "therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",
+                "DE_Message": "Yes, indeed. Do you think this might be an interesting research direction?",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ],
+                    [
+                        "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                        "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine",
+                    "many thanks for that.",
+                    "i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                    "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round).",
+                    "These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                ],
+                "facts": [
+                    "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                    "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_231",
+                "P_Message": "this is indeed quite interesting, i think i've seen many frameworks in this direction. I was wondering if suggested approach (at least current draft) scales well with samples and the number of relations. This is indeed one crucial point to me",
+                "DE_Message": "True: scalability is an issue in most neuro-symbolic applications. Unfortunately, we do not present experiments in this work, which is just a position paper.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ],
+                    [
+                        "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                        "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                    ],
+                    [
+                        "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                        "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_230"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine",
+                    "many thanks for that.",
+                    "i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                    "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round).",
+                    "These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks",
+                    "therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",
+                    "Yes, indeed.",
+                    "Do you think this might be an interesting research direction?",
+                    "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                    "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                ],
+                "facts": [
+                    "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_232",
+                "P_Message": "i see, do you have any more detail that you repute important? ",
+                "DE_Message": "It is worth mentioning that this goes into the direction widely recognized nowadays in AI of not relying just on deep learning for many tasks (even in NLP) but to introduce techniques that can exploit domain knowledge, and perform reasoning.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ],
+                    [
+                        "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                        "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                    ],
+                    [
+                        "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                        "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                    ],
+                    [
+                        "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_230",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_231"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine",
+                    "many thanks for that.",
+                    "i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                    "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round).",
+                    "These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks",
+                    "therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",
+                    "Yes, indeed.",
+                    "Do you think this might be an interesting research direction?",
+                    "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                    "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process",
+                    "this is indeed quite interesting, i think i've seen many frameworks in this direction.",
+                    "I was wondering if suggested approach (at least current draft) scales well with samples and the number of relations.",
+                    "This is indeed one crucial point to me",
+                    "True: scalability is an issue in most neuro-symbolic applications.",
+                    "Unfortunately, we do not present experiments in this work, which is just a position paper.",
+                    "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal"
+                ],
+                "facts": [
+                    "Despite the remarkable impact of deep neural networks in NLP, we argue that these techniques alone will not suffice to address such complex issues",
+                    "This issue is also widely recognized as one of the major challenges for the whole field of artificial intelligence in the coming years (LeCun et al., 2015)"
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+        ]
+    }
+}

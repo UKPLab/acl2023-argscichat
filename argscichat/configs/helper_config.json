@@ -1,6 +1,0 @@
-{
-  "tensorflow": {
-      "eager_execution": false
-  },
-  "torch": {}
-}

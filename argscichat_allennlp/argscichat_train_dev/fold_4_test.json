@@ -1,0 +1,940 @@
+{
+    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation": {
+        "id": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation",
+        "title": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation",
+        "content": [
+            "Question Generation (QG) is a Natural Language Processing (NLP) task that aids advances in Question Answering (QA) and conversational assistants.",
+            "Existing models focus on generating a question based on a text and possibly the answer to the generated question.",
+            "They need to determine the type of interrogative word to be generated while having to pay attention to the grammar and vocabulary of the question.",
+            "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model.",
+            "The first module predicts the interrogative word that is provided to the second module to create the question.",
+            "Owing to an increased recall of deciding the interrogative words to be used for the generated questions, the proposed model achieves new state-of-the-art results on the task of QG Question Generation (QG) is the task of creating questions about a text in natural language.",
+            "This is an important task for Question Answering (QA) since it can help create QA datasets.",
+            "It is also useful for conversational systems like Amazon Alexa.",
+            "Due to the surge of interests in these systems, QG is also drawing the attention of the research community.",
+            "One of the reasons for the fast advances in QA capabilities is the creation of large datasets like SQuAD (Rajpurkar et al., 2016) and TriviaQA (Joshi et al., 2017) .",
+            "Since the creation of such datasets is either costly if done manually or prone to error if done automatically, reliable and mean- * Equal contribution.",
+            "ingful QG can play a key role in the advances of QA (Lewis et al., 2019) .",
+            "QG is a difficult task due to the need for understanding of the text to ask about and generating a question that is grammatically correct and semantically adequate according to the given text.",
+            "This task is considered to have two parts: what to ask and how to ask.",
+            "The first one refers to the identification of relevant portions of the text to ask about.",
+            "This requires machine reading comprehension since the system has to understand the text.",
+            "The latter refers to the creation of a natural language question that is grammatically correct and semantically precise.",
+            "Most of the current approaches utilize sequence-to-sequence models, composed of an encoder model that first transforms a passage into a vector and a decoder model that given this vector, generates a question about the passage (Liu et al., 2019; Sun et al., 2018; Zhao et al., 2018; Pan et al., 2019) .",
+            "There are different settings for QG.",
+            "Some authors like (Subramanian et al., 2018) assumes that only a passage is given, attempts to find candidate key phrases that represent the core of the questions to be created.",
+            "Others follow an answer-aware setting, where the input is a passage and the answer to the question to create (Zhao et al., 2018) .",
+            "We assume this setting and consider that the answer is a span of the passage, as in SQuAD.",
+            "Follow-ing this approach, the decoder of the sequence-tosequence model has to learn to generate both the interrogative word (i.e., wh-word) and the rest of the question simultaneously.",
+            "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+            "We posit that the interrogative word must be predicted by a well-trained classifier.",
+            "We consider that selecting the right interrogative word is the key to generate high-quality questions.",
+            "For example, a question with a wrong interrogative word for the answer \"the owner\" is: \"what produces a list of requirements for a project?\".",
+            "However, with the right interrogative word, who, the question would be: \"who produces a list of requirements for a project?",
+            "\", which is clear that is more adequate regarding the answer than the first one.",
+            "According to our claim, the independent classification model can improve the recall of interrogative words of a QG model because 1) the interrogative word classification task is easier to solve than generating the interrogative word along with the full question in the QG model and 2) the QG model would be able to generate the interrogative word easily by using the copy mechanism, which can copy parts of the input of the encoder.",
+            "With these hypotheses, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative-word classifier that predicts the interrogative word and a QG model that generates a question conditioned on the predicted interrogative word.",
+            "Figure 1 shows a highlevel overview of our approach.",
+            "The proposed model achieves new state-of-theart results on the task of QG in SQuAD, improving from 46.58 to 47.69 in 21.24 to 22.33 in METEOR, and from 44.53 to 46.94 in ROUGE-L."
+        ],
+        "message_pairs": [
+            {
+                "id": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_222",
+                "P_Message": "Hi! What is this paper about?",
+                "DE_Message": "Hi! The goal of this paper is to improve question generation by dividing the task into two: interrogative word prediction and the generation of the rest of the question.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+                    "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                ]
+            },
+            {
+                "id": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_223",
+                "P_Message": "What architecture is used for question generation?",
+                "DE_Message": "The exact architecture of the question generation model is not described in the Introduction.",
+                "history_facts": [
+                    [
+                        "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance. ",
+                        "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                    ]
+                ],
+                "history_ids": [
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_222"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "Hi!",
+                    "The goal of this paper is to improve question generation by dividing the task into two: interrogative word prediction and the generation of the rest of the question.",
+                    "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+                    "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                ],
+                "facts": []
+            },
+            {
+                "id": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_224",
+                "P_Message": "How about the metrics? How are results measured?",
+                "DE_Message": "It is mentioned that their approach achieves a new state-of-the-art on SQuAD using the metrics METEOR and ROUGE-L. What do you think about their hypothesis? Does it make sense for you to generate the interrogative word independently?",
+                "history_facts": [
+                    [
+                        "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance. ",
+                        "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                    ],
+                    []
+                ],
+                "history_ids": [
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_222",
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_223"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "Hi!",
+                    "The goal of this paper is to improve question generation by dividing the task into two: interrogative word prediction and the generation of the rest of the question.",
+                    "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+                    "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model.",
+                    "What architecture is used for question generation?",
+                    "The exact architecture of the question generation model is not described in the Introduction."
+                ],
+                "facts": [
+                    "The proposed model achieves new state-of-theart results on the task of QG in SQuAD, improving from 46.58 to 47.69 in 21.24 to 22.33 in METEOR, and from 44.53 to 46.94 in ROUGE-L."
+                ]
+            },
+            {
+                "id": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_225",
+                "P_Message": "I think it makes sense, and it also seems to work. Anything else worth mentioning about this paper?",
+                "DE_Message": "I think that's all. They mentioned that their hypothesis makes the generation of the interrogative word easier since it's a classification task.",
+                "history_facts": [
+                    [
+                        "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance. ",
+                        "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                    ],
+                    [],
+                    [
+                        "The proposed model achieves new state-of-theart results on the task of QG in SQuAD, improving from 46.58 to 47.69 in 21.24 to 22.33 in METEOR, and from 44.53 to 46.94 in ROUGE-L."
+                    ]
+                ],
+                "history_ids": [
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_222",
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_223",
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_224"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "Hi!",
+                    "The goal of this paper is to improve question generation by dividing the task into two: interrogative word prediction and the generation of the rest of the question.",
+                    "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+                    "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model.",
+                    "What architecture is used for question generation?",
+                    "The exact architecture of the question generation model is not described in the Introduction.",
+                    "How about the metrics?",
+                    "How are results measured?",
+                    "It is mentioned that their approach achieves a new state-of-the-art on SQuAD using the metrics METEOR and ROUGE-L. What do you think about their hypothesis?",
+                    "Does it make sense for you to generate the interrogative word independently?",
+                    "The proposed model achieves new state-of-theart results on the task of QG in SQuAD, improving from 46.58 to 47.69 in 21.24 to 22.33 in METEOR, and from 44.53 to 46.94 in ROUGE-L."
+                ],
+                "facts": [
+                    "the interrogative word classification task is easier to solve than generating the interrogative word along with the full question in the QG model"
+                ]
+            },
+            {
+                "id": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_226",
+                "P_Message": "Thank you for the clarification. The intuition makes sense. Bye",
+                "DE_Message": "Thank you. Good bye",
+                "history_facts": [
+                    [
+                        "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance. ",
+                        "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                    ],
+                    [],
+                    [
+                        "The proposed model achieves new state-of-theart results on the task of QG in SQuAD, improving from 46.58 to 47.69 in 21.24 to 22.33 in METEOR, and from 44.53 to 46.94 in ROUGE-L."
+                    ],
+                    [
+                        "the interrogative word classification task is easier to solve than generating the interrogative word along with the full question in the QG model"
+                    ]
+                ],
+                "history_ids": [
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_222",
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_223",
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_224",
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_225"
+                ],
+                "history": [
+                    "Hi!",
+                    "What is this paper about?",
+                    "Hi!",
+                    "The goal of this paper is to improve question generation by dividing the task into two: interrogative word prediction and the generation of the rest of the question.",
+                    "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+                    "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model.",
+                    "What architecture is used for question generation?",
+                    "The exact architecture of the question generation model is not described in the Introduction.",
+                    "How about the metrics?",
+                    "How are results measured?",
+                    "It is mentioned that their approach achieves a new state-of-the-art on SQuAD using the metrics METEOR and ROUGE-L. What do you think about their hypothesis?",
+                    "Does it make sense for you to generate the interrogative word independently?",
+                    "The proposed model achieves new state-of-theart results on the task of QG in SQuAD, improving from 46.58 to 47.69 in 21.24 to 22.33 in METEOR, and from 44.53 to 46.94 in ROUGE-L.",
+                    "I think it makes sense, and it also seems to work.",
+                    "Anything else worth mentioning about this paper?",
+                    "I think that's all.",
+                    "They mentioned that their hypothesis makes the generation of the interrogative word easier since it's a classification task.",
+                    "the interrogative word classification task is easier to solve than generating the interrogative word along with the full question in the QG model"
+                ],
+                "facts": []
+            },
+            {
+                "id": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_233",
+                "P_Message": "hi, is the paper about question generation? ",
+                "DE_Message": "Hi! Yes! It is. They propose a pipelined composed of two parts: an interrogative word classifier and a question generation model",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                ]
+            },
+            {
+                "id": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_234",
+                "P_Message": "Why is interrogative classifier used in this model?",
+                "DE_Message": "That is a good question! They argue that classifying the interrogative word is easier that generating it along with the rest of the question. What do you think about this intuition? Does it make sense for you?",
+                "history_facts": [
+                    [
+                        "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                    ]
+                ],
+                "history_ids": [
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_233"
+                ],
+                "history": [
+                    "hi, is the paper about question generation?",
+                    "Hi!",
+                    "Yes!",
+                    "It is.",
+                    "They propose a pipelined composed of two parts: an interrogative word classifier and a question generation model",
+                    "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                ],
+                "facts": [
+                    "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+                    "the interrogative word classification task is easier to solve than generating the interrogative word along with the full question in the QG model"
+                ]
+            },
+            {
+                "id": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_235",
+                "P_Message": "Yes, makes sense to me. What data set is used to train a classifier? ",
+                "DE_Message": "They conduct experiments on SQuAD. Do you think SQuAD is a good benchmark for this?",
+                "history_facts": [
+                    [
+                        "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                    ],
+                    [
+                        "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+                        "the interrogative word classification task is easier to solve than generating the interrogative word along with the full question in the QG model"
+                    ]
+                ],
+                "history_ids": [
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_233",
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_234"
+                ],
+                "history": [
+                    "hi, is the paper about question generation?",
+                    "Hi!",
+                    "Yes!",
+                    "It is.",
+                    "They propose a pipelined composed of two parts: an interrogative word classifier and a question generation model",
+                    "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model.",
+                    "Why is interrogative classifier used in this model?",
+                    "That is a good question!",
+                    "They argue that classifying the interrogative word is easier that generating it along with the rest of the question.",
+                    "What do you think about this intuition?",
+                    "Does it make sense for you?",
+                    "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+                    "the interrogative word classification task is easier to solve than generating the interrogative word along with the full question in the QG model"
+                ],
+                "facts": [
+                    "The proposed model achieves new state-of-theart results on the task of QG in SQuAD, improving from 46.58 to 47.69 in 21.24 to 22.33 in METEOR, and from 44.53 to 46.94 in ROUGE-L."
+                ]
+            },
+            {
+                "id": "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_236",
+                "P_Message": "As long as I know, SQuAD is a question-answering dataset. I'm not sure if this dataset is suitable for question word clarification. What do you think?",
+                "DE_Message": "It is not clarification, but prediction. Since SQuAD includes questions, answers, and context, it would be possible to use the answers to create questions for them.",
+                "history_facts": [
+                    [
+                        "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model."
+                    ],
+                    [
+                        "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+                        "the interrogative word classification task is easier to solve than generating the interrogative word along with the full question in the QG model"
+                    ],
+                    [
+                        "The proposed model achieves new state-of-theart results on the task of QG in SQuAD, improving from 46.58 to 47.69 in 21.24 to 22.33 in METEOR, and from 44.53 to 46.94 in ROUGE-L."
+                    ]
+                ],
+                "history_ids": [
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_233",
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_234",
+                    "Let Me Know What to Ask: Interrogative-Word-Aware Question Generation_235"
+                ],
+                "history": [
+                    "hi, is the paper about question generation?",
+                    "Hi!",
+                    "Yes!",
+                    "It is.",
+                    "They propose a pipelined composed of two parts: an interrogative word classifier and a question generation model",
+                    "In this work, we propose Interrogative-Word-Aware Question Generation (IWAQG), a pipelined system composed of two modules: an interrogative word classifier and a QG model.",
+                    "Why is interrogative classifier used in this model?",
+                    "That is a good question!",
+                    "They argue that classifying the interrogative word is easier that generating it along with the rest of the question.",
+                    "What do you think about this intuition?",
+                    "Does it make sense for you?",
+                    "The main claim of our work is that separating the two tasks (i.e., interrogative-word classification and question generation) can lead to a better performance.",
+                    "the interrogative word classification task is easier to solve than generating the interrogative word along with the full question in the QG model",
+                    "Yes, makes sense to me.",
+                    "What data set is used to train a classifier?",
+                    "They conduct experiments on SQuAD.",
+                    "Do you think SQuAD is a good benchmark for this?",
+                    "The proposed model achieves new state-of-theart results on the task of QG in SQuAD, improving from 46.58 to 47.69 in 21.24 to 22.33 in METEOR, and from 44.53 to 46.94 in ROUGE-L."
+                ],
+                "facts": [
+                    "We assume this setting and consider that the answer is a span of the passage, as in SQuAD."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1
+        ]
+    },
+    "Syntactically-informed word representations from graph neural network": {
+        "id": "Syntactically-informed word representations from graph neural network",
+        "title": "Syntactically-informed word representations from graph neural network",
+        "content": [
+            "Most deep language understanding models depend only on word representations, which are mainly based on language modelling derived from a large amount of raw text.",
+            "These models encode distributional knowledge without considering syntactic structural information, although several studies have shown benefits of including such information.",
+            "Therefore, we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+            "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+            "The model is first pre-trained with only a relatively modest amount of task-independent data that are automatically annotated using existing syntactic tools.",
+            "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations.",
+            "We finally replace word representations in downstream models with SIWRs for applications.",
+            "We evaluate SIWRs on three information extraction tasks, namely nested named entity recognition (NER), binary and n-ary relation extractions (REs).",
+            "The results demonstrate that our SIWRs yield performance gains over the base representations in these NLP tasks with 3-9% relative error reduction.",
+            "Our SIWRs also perform better than finetuning BERT in binary RE.",
+            "We also conduct extensive experiments to analyse the proposed method.",
+            "Word representations have been widely used in natural language processing (NLP) tasks.",
+            "Most approaches rely on language models (LMs) to obtain static word representations [1] [2] [3] , which conflate all possible meanings of a word in a single real-valued vector.",
+            "Recent work investigated contextualised word representations, which assign a different representation to each occurrence of a word based on its local context [4, 5] .",
+            "These contextual word representations have demonstrated improvements in downstream tasks over the static ones.",
+            "Alternatively, large-scale LMs have been proposed to use in downstream application models with fine-tuning approaches [6] [7] [8] .",
+            "These fine-tuning methods have shown promising results with higher performance than contextual word representations in some applications such as text classification and textual entailment [7] .",
+            "However, not all tasks can be easily represented by large-scale LMs, therefore required an additional model architecture to be designed on top of them [9, 10] .",
+            "On the contrary, contextual representations can be easily adopted as plug-in plugout features.",
+            "Also, contextual representations are cheaper to run as they are pre-computed once only for each instance and run in many experiments with smaller models on top.",
+            "In other words, the computational costs for fine-tuning methods are much higher than contextual approaches.",
+            "All of the LMs mentioned above are mainly trained on a large amount of raw text, and thus do not explicitly encode any linguistic structures.",
+            "Recent studies have shown that downstream task performance may benefit from linguistic structures such as syntactic information [11, 12] , even when contextual word representations and pre-trained models are also used [13] [14] [15] .",
+            "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig.",
+            "1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing dependency parsing tools [16, 17] .",
+            "Many task-oriented neural models do not take into account such syntactic information despite potential performance gains.",
+            "To include such information to existing models, it is necessary to change the model architecture.",
+            "This leads to the following research question:\n\n Is there a universal way to include syntactic bias into the model without changing the architecture while retaining large-scale information?",
+            "In this paper, we will demonstrate that syntax can be pre-encoded with contextual word representations which can be beneficial for subsequent applications.",
+            "We introduce Syntactically-Informed Word Representations (SIWRs) that can incorporate syntactic information in neural models without explicitly changing their architecture.",
+            "Syntactic information is integrated into existing word representations such as GloVe [18] , ELMo [5] and BERT [19] by learning from automatically annotated data which are task-independent.",
+            "We propose the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations.",
+            "Since in English word order is important, we preserve it by adding these connections into the graph layer.",
+            "We then obtain SIWRs from the pre-trained SIWR model using a contextualised word representation extraction scheme.",
+            "Finally, we incorporate SIWRs into downstream models by only replacing the word representations with SIWRs.",
+            "We show that SIWRs enrich the base word representations with syntactic information and boost the performance in downstream tasks.",
+            "Unlike previous work [20] , our findings demonstrate that syntactic information is helpful in the advent of contextual word representations and large pre-trained models.",
+            "Fig.",
+            "2 shows the architecture of our SIWR model.",
+            "We first prepare pre-trained static and contextual word representations, e.g., GloVe, ELMo, and contextual BERT, as the base representations.",
+            "We then feed them to our SIWR model, which consists of a twostacked GCN layer over dependency trees along with self and sequential information.",
+            "The GCN is used to include syntactic information into the base word representations.",
+            "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies.",
+            "We only pre-train the SIWR model once with a relatively modest amount of task-agnostic data that are automatically annotated by using existing syntactic tools.",
+            "Once the SIWR model is obtained, we apply the model to downstream task data and obtain SIWRs by combining the outputs of all layers in the model.",
+            "We simply replace word representations in downstream task models with SIWRs to cater for different applications.",
+            "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+            "SIWRs show improvements over the base representations achieving the following relative error reductions: 3.79% in F1-score for nested NER, 6.64% in F1-score for RE, and 6.98% of accuracy for n-ary RE, which results in comparable performance to the state-of-the-art on the three tasks.",
+            "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE.",
+            "We also employ BERT as the base representations in our SIWRs BERT for comparison.",
+            "Surprisingly, our SIWRs BERT based on contextual BERT even perform better than the fine-tuning in binary RE with the F1-score of 72.45% and 66.84% respectively.",
+            "Meanwhile, our enhanced representations perform comparably to the fine-tuning BERT with less training parameters in the nested NER with the F1-score of 82.06% and 82.84% respectively.",
+            "Our extensive analysis also shows that the syntactic inductive bias can be easily transferred to subsequent NLP tasks and beneficial for performance improvement.",
+            "The contributions of our work are as follows:\n\n We propose a method for the construction of syntacticallyinformed representations (SIWRs) based on static and/or contextual representations.",
+            "SIWRs allow us to incorporate syntactic information into existing NLP neural models simply by replacing the original word representations, without altering the architecture of these models with a relatively modest amount of syntactically annotated data.",
+            "We demonstrate that SIWRs improve the performance over base representations on three downstream NLP tasks: nested NER, binary RE, and n-ary RE.",
+            "The improvement can be obtained with only a small number of weight parameters compared with training task-oriented syntactic representations in downstream models.",
+            "Extensive analysis of SIWRs over base representations indicates that syntactic dependencies can be beneficial for both static and contextual embeddings, contrary to previous findings [20] .",
+            "Last, we show that our enhanced representations can be transferred more easily to different linguistic tasks than fine-tuning large-scale language models in downstream tasks that require inference."
+        ],
+        "message_pairs": [
+            {
+                "id": "Syntactically-informed word representations from graph neural network_21",
+                "P_Message": "Hi, interesting paper title. How do you add the syntactic information into the word representations?",
+                "DE_Message": "we build a syntactic graph neural model that takes pre-trained word representations as feature input. The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_22",
+                "P_Message": "Which kind of graph neural network do you experimented with?",
+                "DE_Message": "We use a graph convolutional neural network (GCN). ",
+                "history_facts": [
+                    [
+                        "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_21"
+                ],
+                "history": [
+                    "Hi, interesting paper title.",
+                    "How do you add the syntactic information into the word representations?",
+                    "we build a syntactic graph neural model that takes pre-trained word representations as feature input.",
+                    "The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                ],
+                "facts": [
+                    "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_23",
+                "P_Message": "Do GCNs come with special properties which helps for the task?",
+                "DE_Message": "The word graph is built on syntactic dependency and other types of connections such as word order connections. Do you want to know what objectives the model trained on?",
+                "history_facts": [
+                    [
+                        "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                    ],
+                    [
+                        "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_21",
+                    "Syntactically-informed word representations from graph neural network_22"
+                ],
+                "history": [
+                    "Hi, interesting paper title.",
+                    "How do you add the syntactic information into the word representations?",
+                    "we build a syntactic graph neural model that takes pre-trained word representations as feature input.",
+                    "The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations.",
+                    "Which kind of graph neural network do you experimented with?",
+                    "We use a graph convolutional neural network (GCN).",
+                    "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                ],
+                "facts": [
+                    "Since in English word order is important, we preserve it by adding these connections into the graph layer."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_24",
+                "P_Message": "Yes, please. Which objectives did the model try to solve?",
+                "DE_Message": "The model is trained for part-of-speech tagging and syntactic dependency parsing.",
+                "history_facts": [
+                    [
+                        "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                    ],
+                    [
+                        "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                    ],
+                    [
+                        "Since in English word order is important, we preserve it by adding these connections into the graph layer."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_21",
+                    "Syntactically-informed word representations from graph neural network_22",
+                    "Syntactically-informed word representations from graph neural network_23"
+                ],
+                "history": [
+                    "Hi, interesting paper title.",
+                    "How do you add the syntactic information into the word representations?",
+                    "we build a syntactic graph neural model that takes pre-trained word representations as feature input.",
+                    "The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations.",
+                    "Which kind of graph neural network do you experimented with?",
+                    "We use a graph convolutional neural network (GCN).",
+                    "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations.",
+                    "Do GCNs come with special properties which helps for the task?",
+                    "The word graph is built on syntactic dependency and other types of connections such as word order connections.",
+                    "Do you want to know what objectives the model trained on?",
+                    "Since in English word order is important, we preserve it by adding these connections into the graph layer."
+                ],
+                "facts": [
+                    "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_25",
+                "P_Message": "And which pre-trained word representations did you use?",
+                "DE_Message": "Our model can take both static and contextualized word representations including GloVe, ELMo and BERT.",
+                "history_facts": [
+                    [
+                        "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                    ],
+                    [
+                        "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                    ],
+                    [
+                        "Since in English word order is important, we preserve it by adding these connections into the graph layer."
+                    ],
+                    [
+                        "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_21",
+                    "Syntactically-informed word representations from graph neural network_22",
+                    "Syntactically-informed word representations from graph neural network_23",
+                    "Syntactically-informed word representations from graph neural network_24"
+                ],
+                "history": [
+                    "Hi, interesting paper title.",
+                    "How do you add the syntactic information into the word representations?",
+                    "we build a syntactic graph neural model that takes pre-trained word representations as feature input.",
+                    "The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations.",
+                    "Which kind of graph neural network do you experimented with?",
+                    "We use a graph convolutional neural network (GCN).",
+                    "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations.",
+                    "Do GCNs come with special properties which helps for the task?",
+                    "The word graph is built on syntactic dependency and other types of connections such as word order connections.",
+                    "Do you want to know what objectives the model trained on?",
+                    "Since in English word order is important, we preserve it by adding these connections into the graph layer.",
+                    "Yes, please.",
+                    "Which objectives did the model try to solve?",
+                    "The model is trained for part-of-speech tagging and syntactic dependency parsing.",
+                    "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies."
+                ],
+                "facts": [
+                    "a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                    "We first prepare pre-trained static and contextual word representations, e.g., GloVe, ELMo, and contextual BERT, as the base representations."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_26",
+                "P_Message": "How did you evaluate the improvement of the new word representations?",
+                "DE_Message": "We compare performance of using the word representations in the downstream tasks compared to using the base representations. The downstream tasks include a nested named entity recognition and two relation extraction tasks.",
+                "history_facts": [
+                    [
+                        "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations."
+                    ],
+                    [
+                        "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations."
+                    ],
+                    [
+                        "Since in English word order is important, we preserve it by adding these connections into the graph layer."
+                    ],
+                    [
+                        "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies."
+                    ],
+                    [
+                        "a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                        "We first prepare pre-trained static and contextual word representations, e.g., GloVe, ELMo, and contextual BERT, as the base representations."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_21",
+                    "Syntactically-informed word representations from graph neural network_22",
+                    "Syntactically-informed word representations from graph neural network_23",
+                    "Syntactically-informed word representations from graph neural network_24",
+                    "Syntactically-informed word representations from graph neural network_25"
+                ],
+                "history": [
+                    "Hi, interesting paper title.",
+                    "How do you add the syntactic information into the word representations?",
+                    "we build a syntactic graph neural model that takes pre-trained word representations as feature input.",
+                    "The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.",
+                    "SIWRs are then obtained by applying the model to downstream task data and extracting the intermediate word representations.",
+                    "Which kind of graph neural network do you experimented with?",
+                    "We use a graph convolutional neural network (GCN).",
+                    "the SIWR model extends a graph convolutional neural network (GCN) and builds on top of these word representations.",
+                    "Do GCNs come with special properties which helps for the task?",
+                    "The word graph is built on syntactic dependency and other types of connections such as word order connections.",
+                    "Do you want to know what objectives the model trained on?",
+                    "Since in English word order is important, we preserve it by adding these connections into the graph layer.",
+                    "Yes, please.",
+                    "Which objectives did the model try to solve?",
+                    "The model is trained for part-of-speech tagging and syntactic dependency parsing.",
+                    "The SIWR model jointly predicts part-of-speech (POS) tags and syntactic dependencies.",
+                    "And which pre-trained word representations did you use?",
+                    "Our model can take both static and contextualized word representations including GloVe, ELMo and BERT.",
+                    "a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                    "We first prepare pre-trained static and contextual word representations, e.g., GloVe, ELMo, and contextual BERT, as the base representations."
+                ],
+                "facts": [
+                    "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                    "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_27",
+                "P_Message": "Hi! Thanks for joining. Can you explain what is the main idea of the paper?",
+                "DE_Message": "This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                    "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_28",
+                "P_Message": "What type of syntactic information do you use? Is it based on dependency or constituency? ",
+                "DE_Message": "We use part-of-speech and syntactic dependency. ",
+                "history_facts": [
+                    [
+                        "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                        "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_27"
+                ],
+                "history": [
+                    "Hi!",
+                    "Thanks for joining.",
+                    "Can you explain what is the main idea of the paper?",
+                    "This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.",
+                    "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                    "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                ],
+                "facts": [
+                    "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig.",
+                    "1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing"
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_29",
+                "P_Message": "Sounds great! What tasks do you test?",
+                "DE_Message": "We evaluate the extracted word representations on a nested named entity recognition task and two relation extraction tasks.",
+                "history_facts": [
+                    [
+                        "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                        "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                    ],
+                    [
+                        "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig. 1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing "
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_27",
+                    "Syntactically-informed word representations from graph neural network_28"
+                ],
+                "history": [
+                    "Hi!",
+                    "Thanks for joining.",
+                    "Can you explain what is the main idea of the paper?",
+                    "This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.",
+                    "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                    "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                    "What type of syntactic information do you use?",
+                    "Is it based on dependency or constituency?",
+                    "We use part-of-speech and syntactic dependency.",
+                    "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig.",
+                    "1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing"
+                ],
+                "facts": [
+                    "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                    "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_30",
+                "P_Message": "Can you tell me why you only select part-of-speech and dependency as the syntactic information you want to use to help pretraining?",
+                "DE_Message": "Previous work shows that part-of-speech and dependency are useful for downstream tasks. However, this doesn't limit the use of other information such as coreference in our model.",
+                "history_facts": [
+                    [
+                        "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                        "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                    ],
+                    [
+                        "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig. 1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing "
+                    ],
+                    [
+                        "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                        "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_27",
+                    "Syntactically-informed word representations from graph neural network_28",
+                    "Syntactically-informed word representations from graph neural network_29"
+                ],
+                "history": [
+                    "Hi!",
+                    "Thanks for joining.",
+                    "Can you explain what is the main idea of the paper?",
+                    "This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.",
+                    "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                    "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                    "What type of syntactic information do you use?",
+                    "Is it based on dependency or constituency?",
+                    "We use part-of-speech and syntactic dependency.",
+                    "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig.",
+                    "1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing",
+                    "Sounds great!",
+                    "What tasks do you test?",
+                    "We evaluate the extracted word representations on a nested named entity recognition task and two relation extraction tasks.",
+                    "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                    "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE."
+                ],
+                "facts": [
+                    "Recent studies have shown that downstream task performance may benefit from linguistic structures such as syntactic information [11, 12] , even when contextual word representations and pre-trained models are also used [13] [14] [15] ."
+                ]
+            },
+            {
+                "id": "Syntactically-informed word representations from graph neural network_31",
+                "P_Message": "Thanks for explaining. I love to see the results of injecting other types of information. Do you think if it would be a good idea if you try to inject syntactic information beginning from pretraining from scratch?",
+                "DE_Message": "We cannot answer given the current content. We can inject syntactic information during pre-training from scratch, however, this will cost more time and computational resources. Intermediate pretraining allows us to directly incorporate additional information into pre-trained models.",
+                "history_facts": [
+                    [
+                        "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                        "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT."
+                    ],
+                    [
+                        "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig. 1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing "
+                    ],
+                    [
+                        "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                        "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE."
+                    ],
+                    [
+                        "Recent studies have shown that downstream task performance may benefit from linguistic structures such as syntactic information [11, 12] , even when contextual word representations and pre-trained models are also used [13] [14] [15] ."
+                    ]
+                ],
+                "history_ids": [
+                    "Syntactically-informed word representations from graph neural network_27",
+                    "Syntactically-informed word representations from graph neural network_28",
+                    "Syntactically-informed word representations from graph neural network_29",
+                    "Syntactically-informed word representations from graph neural network_30"
+                ],
+                "history": [
+                    "Hi!",
+                    "Thanks for joining.",
+                    "Can you explain what is the main idea of the paper?",
+                    "This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.",
+                    "we propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch.",
+                    "To obtain SIWRs, a graph-based neural model is built on top of either static or contextualised word representations such as GloVe, ELMo and BERT.",
+                    "What type of syntactic information do you use?",
+                    "Is it based on dependency or constituency?",
+                    "We use part-of-speech and syntactic dependency.",
+                    "The syntactic information, i.e., part-of-speech (POS) tags and dependencies (see example in Fig.",
+                    "1 ; in this paper, we use the term ''syntactic information\" interchangeably with ''POS tags\" and ''dependencies\"), has been well studied and can be obtained efficiently with high accuracy using existing",
+                    "Sounds great!",
+                    "What tasks do you test?",
+                    "We evaluate the extracted word representations on a nested named entity recognition task and two relation extraction tasks.",
+                    "We compare the enriched SIWRs with their base representations ELMo [5] and biomedical word embeddings (PubMed) [21] on the existing models in three downstream NLP tasks: (a) nested named entity recognition (nested NER), (b) relation extraction (RE) and (c) n-ary relation extraction (n-ary RE).",
+                    "In addition, we implement BERT [19] in both contextual and fine-tuning methods on nested NER and binary RE.",
+                    "Can you tell me why you only select part-of-speech and dependency as the syntactic information you want to use to help pretraining?",
+                    "Previous work shows that part-of-speech and dependency are useful for downstream tasks.",
+                    "However, this doesn't limit the use of other information such as coreference in our model.",
+                    "Recent studies have shown that downstream task performance may benefit from linguistic structures such as syntactic information [11, 12] , even when contextual word representations and pre-trained models are also used [13] [14] [15] ."
+                ],
+                "facts": [
+                    "We propose new syntactically-informed word representations (SIWRs), which allow us to enrich the pre-trained word representations with syntactic information without training language models from scratch."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+        ]
+    }
+}

@@ -7,10 +7,9 @@ mephisto:
     preview_source: ${project_dir}/sci_chat/server_files/turk_preview.html
     num_conversations: 1
   task:
-    task_name: scientific-discussion-pilot-1
-    task_title: "Argumentative Scientific discussion"
+    task_name: your-task-name
+    task_title: "Your task title"
     task_description: >
-      Scientific discussion about an article abstract between a domain expert and a user
-      that wants to know more about the article.
+      Your task description
     task_reward: 0.3
-    task_tags: "dynamic,chat,testing,argumentative,scientific,discussion,information-seeking"
+    task_tags: "tag1,tag2,tag3,...,tagN"

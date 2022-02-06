@@ -30,7 +30,7 @@ defaults = [
     {"mephisto/blueprint": BLUEPRINT_TYPE},
     {"mephisto/architect": "heroku"},
     {"mephisto/provider": "mock"},
-    {"conf": "sci_chat"},
+    {"conf": "sci_chat_test"},
 ]
 
 

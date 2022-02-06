@@ -1,0 +1,543 @@
+{
+    "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents": {
+        "id": "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents",
+        "title": "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents",
+        "content": [
+            "Answering complex questions from long documents requires aggregating multiple pieces of evidence and then predicting the answers.",
+            "In this paper, we propose a multihop retrieval method, DOCHOPPER, to answer compositional questions over long documents.",
+            "At each step, DOCHOPPER retrieves a paragraph or sentence embedding from the document, mixes the retrieved result with the query, and updates the query for the next step.",
+            "In contrast to many other retrieval-based methods (e.g., RAG or REALM) the query is not augmented with a token sequence: instead, it is augmented by \"numerically\" combining it with another neural representation.",
+            "This means that model is end-to-end differentiable.",
+            "We demonstrate that utilizing document structure in this was can largely improve question-answering and retrieval performance on long documents.",
+            "We experimented with DOCHOPPER on three different QA tasks that require reading long documents to answer compositional questions: discourse entailment reasoning, factual QA with table and text, and information seeking QA from academic papers.",
+            "DOC-HOPPER outperforms all baseline models and achieves state-of-the-art results on all datasets.",
+            "Additionally, DOCHOPPER is efficient at inference time, being 3\u223c10 times faster than the baselines.",
+            "Recent advances in Transformer-based pretrained Language Models (e.g., BERT (Devlin et al., 2019) , RoBERTa (Liu et al., 2019) ) have dramatically improved performance on question answering (QA) tasks (Rajpurkar et al., 2016) .",
+            "Although effective, Transformer-based models are usually limited to documents of fixed length, typically 512 tokens, due to their O(n 2 ) memory complexity.",
+            "This is an important restrictions for reading long documents such as Wikipedia pages, academic papers, and technical reports, which can contain tens of thousands of tokens.",
+            "To address this issue, Transformer models that use sparse self-attention have been introduced (e.g., Beltagy et al., 2020) ).",
+            "For example, ETC  introduced a global-local attention mechanism, where local tokens only attend to the global tokens they are assigned to, while global tokens attend to each other to communicate information across a document.",
+            "This reduces the complexity of the model to the square of the number of global tokens.",
+            "A similar idea is also adopted by Longformer (Beltagy et al., 2020) .",
+            "However, while these models can include larger documents than the original Transformer, their input size is still limited to 4,096 on finetuning tasks.",
+            "An alternative way to perform question answering over long documents (Clark and Gardner, 2017) is to adopt the \"retrieve and read\" pipeline that is commonly used in open-domain QA.",
+            "In retrieve-and-read systems, a retriever module retrieves the top passages from the documents, and then a Transformer-based reader extracts or generates answers from the retrieved passages.",
+            "Even though dense retrievers (e.g.",
+            "DPR (Karpukhin et al., 2020) ) show competitive retrieval performance in open-domain QA tasks, and recent work (Zhao et al., 2021; Qi et al., 2021; to extend the query with tokens from previously retrieved text, and re-encode the query to perform the next round of retrieval, such multi-hop retrieval process is not end-to-end differentiable, and requires careful training to avoid cascaded errors.",
+            "These models also treat each passage independently, ignoring the rich information in document structures.",
+            "In this work we propose a multi-hop retrieval method, DOCHOPPER, to solve compositional questions over long documents.",
+            "DOCHOPPER first builds a retrieval index for each document from a pretrained language model.",
+            "At each retrieval step, DOCHOPPER retrieves a candidate (paragraph or sentence) from the index and updates the query for the next step of retrieval.",
+            "The update is computed in the dense space without having to re-encode the query or the context, making it differentiable end-to-end.",
+            "Different from previous multi-hop retrieval methods (Zhao et al., 2021; Qi et al., 2021; Sun et al., 2019) that treat each retrieval candidate independently, DOCHOPPER also utilizes the document structure to improve the retrieval accuracy: in particular, it performs retrieval at both paragraph-level and sentence-level.",
+            "DOCHOPPER performs well on complex compositional reasoning tasks over long documents.",
+            "We evaluate DOCHOPPER on three different tasks that require reading long documents to answer complex questions: conversational QA for discourse entailment reasoning (ShARC (Saeidi et al., 2018 )) 1 , factual QA with table and text (HybridQA ), and information seeking QA on academic papers (QASPER (Dasigi et al., 2021) ).",
+            "Since the outputs of the three tasks are different, additional layers or downstream models are appended to DOCHOPPER to make final predictions.",
+            "DOCHOPPER achieves state-of-the-art results on all three datasets, outperforming the baseline models by 3%-5%.",
+            "Additionally, DOCHOPPER runs 3\u223c10 faster than the baseline models, because index of documents is pre-computed, which significantly reduces computation cost at inference time."
+        ],
+        "message_pairs": [
+            {
+                "id": "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents_17",
+                "P_Message": "what is the main idea of the paper?",
+                "DE_Message": "Hello! The main idea is to approach multi-hop and sequential question answering on long documents using semantic indexing and dense-space query updates. This enables end-to-end training and higher performance.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "At each step, DOCHOPPER retrieves a paragraph or sentence embedding from the document, mixes the retrieved result with the query, and updates the query for the next step.",
+                    "This means that model is end-to-end differentiable."
+                ]
+            },
+            {
+                "id": "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents_18",
+                "P_Message": "can you describe how does the query be updated?",
+                "DE_Message": "The query is updated, intuitively speaking, by computing the residual query information that is not covered by the answer of the previous hop. This happens in the embedding space using simple vector operations. Would you like to know more about how the system deals with long documents?",
+                "history_facts": [
+                    [
+                        "At each step, DOCHOPPER retrieves a paragraph or sentence embedding from the document, mixes the retrieved result with the query, and updates the query for the next step.",
+                        "This means that model is end-to-end differentiable."
+                    ]
+                ],
+                "history_ids": [
+                    "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents_17"
+                ],
+                "history": [
+                    "what is the main idea of the paper?",
+                    "Hello!",
+                    "The main idea is to approach multi-hop and sequential question answering on long documents using semantic indexing and dense-space query updates.",
+                    "This enables end-to-end training and higher performance.",
+                    "At each step, DOCHOPPER retrieves a paragraph or sentence embedding from the document, mixes the retrieved result with the query, and updates the query for the next step.",
+                    "This means that model is end-to-end differentiable."
+                ],
+                "facts": [
+                    " At each retrieval step, DOCHOPPER retrieves a candidate (paragraph or sentence) from the index and updates the query for the next step of retrieval."
+                ]
+            },
+            {
+                "id": "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents_19",
+                "P_Message": "Yes, please tell me more how to deal long documents",
+                "DE_Message": "The transformer-based model ETC is used that is based on sparse attention. This does not only allow longer input token length, but also enables modeling paragraphs (and hereby document structure) very naturally. ",
+                "history_facts": [
+                    [
+                        "At each step, DOCHOPPER retrieves a paragraph or sentence embedding from the document, mixes the retrieved result with the query, and updates the query for the next step.",
+                        "This means that model is end-to-end differentiable."
+                    ],
+                    [
+                        " At each retrieval step, DOCHOPPER retrieves a candidate (paragraph or sentence) from the index and updates the query for the next step of retrieval."
+                    ]
+                ],
+                "history_ids": [
+                    "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents_17",
+                    "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents_18"
+                ],
+                "history": [
+                    "what is the main idea of the paper?",
+                    "Hello!",
+                    "The main idea is to approach multi-hop and sequential question answering on long documents using semantic indexing and dense-space query updates.",
+                    "This enables end-to-end training and higher performance.",
+                    "At each step, DOCHOPPER retrieves a paragraph or sentence embedding from the document, mixes the retrieved result with the query, and updates the query for the next step.",
+                    "This means that model is end-to-end differentiable.",
+                    "can you describe how does the query be updated?",
+                    "The query is updated, intuitively speaking, by computing the residual query information that is not covered by the answer of the previous hop.",
+                    "This happens in the embedding space using simple vector operations.",
+                    "Would you like to know more about how the system deals with long documents?",
+                    " At each retrieval step, DOCHOPPER retrieves a candidate (paragraph or sentence) from the index and updates the query for the next step of retrieval."
+                ],
+                "facts": [
+                    "Transformer models that use sparse self-attention have been introduced",
+                    "ETC  introduced a global-local attention mechanism, where local tokens only attend to the global tokens they are assigned to, while global tokens attend to each other to communicate information across a document."
+                ]
+            },
+            {
+                "id": "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents_20",
+                "P_Message": "how does the model decide when to retrieve a sentence or a paragraph?",
+                "DE_Message": "Good question! Both are represented in the vector space and the one most fitting one for the question is selected.",
+                "history_facts": [
+                    [
+                        "At each step, DOCHOPPER retrieves a paragraph or sentence embedding from the document, mixes the retrieved result with the query, and updates the query for the next step.",
+                        "This means that model is end-to-end differentiable."
+                    ],
+                    [
+                        " At each retrieval step, DOCHOPPER retrieves a candidate (paragraph or sentence) from the index and updates the query for the next step of retrieval."
+                    ],
+                    [
+                        "Transformer models that use sparse self-attention have been introduced",
+                        "ETC  introduced a global-local attention mechanism, where local tokens only attend to the global tokens they are assigned to, while global tokens attend to each other to communicate information across a document."
+                    ]
+                ],
+                "history_ids": [
+                    "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents_17",
+                    "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents_18",
+                    "End-to-End Multihop Retrieval for Compositional Question Answering over Long Documents_19"
+                ],
+                "history": [
+                    "what is the main idea of the paper?",
+                    "Hello!",
+                    "The main idea is to approach multi-hop and sequential question answering on long documents using semantic indexing and dense-space query updates.",
+                    "This enables end-to-end training and higher performance.",
+                    "At each step, DOCHOPPER retrieves a paragraph or sentence embedding from the document, mixes the retrieved result with the query, and updates the query for the next step.",
+                    "This means that model is end-to-end differentiable.",
+                    "can you describe how does the query be updated?",
+                    "The query is updated, intuitively speaking, by computing the residual query information that is not covered by the answer of the previous hop.",
+                    "This happens in the embedding space using simple vector operations.",
+                    "Would you like to know more about how the system deals with long documents?",
+                    " At each retrieval step, DOCHOPPER retrieves a candidate (paragraph or sentence) from the index and updates the query for the next step of retrieval.",
+                    "Yes, please tell me more how to deal long documents",
+                    "The transformer-based model ETC is used that is based on sparse attention.",
+                    "This does not only allow longer input token length, but also enables modeling paragraphs (and hereby document structure) very naturally.",
+                    "Transformer models that use sparse self-attention have been introduced",
+                    "ETC  introduced a global-local attention mechanism, where local tokens only attend to the global tokens they are assigned to, while global tokens attend to each other to communicate information across a document."
+                ],
+                "facts": [
+                    "At each retrieval step, DOCHOPPER retrieves a candidate (paragraph or sentence) from the index and updates the query for the next step of retrieval."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0
+        ]
+    },
+    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning": {
+        "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning",
+        "title": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning",
+        "content": [
+            "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks.",
+            "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal.",
+            "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document (Lippi and Torroni, 2016) .",
+            "The majority of AM systems follows a pipeline scheme, starting with simpler tasks, such as argument component detection, down to more complex tasks, such as argumentation structure prediction.",
+            "Recent years have seen the development of a large number of techniques in this area, on the wake of the advancements produced by deep learning on the whole research field of natural language processing (NLP).",
+            "Yet, it is widely recognized that the existing AM systems still have a large margin of improvement, as good results have been obtained with some genres where prior knowledge on the structure of the text eases some AM tasks, but other genres, such as legal cases and social media documents still require more work (Cabrio and Villata, 2018) .",
+            "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine.",
+            "Understanding whether a given piece of evidence supports a given claim, or whether two claims attack each other, are complex problems that humans can address thanks to their ability to exploit commonsense knowledge, and to perform reasoning and inference.",
+            "Despite the remarkable impact of deep neural networks in NLP, we argue that these techniques alone will not suffice to address such complex issues.",
+            "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi et al., 2018) communities.",
+            "This issue is also widely recognized as one of the major challenges for the whole field of artificial intelligence in the coming years (LeCun et al., 2015) .",
+            "In computational argumentation, structured arguments have been studied and formalized for decades using models that can be expressed in a logic framework (Bench-Capon and Dunne, 2007) .",
+            "At the same time, AM has rapidly evolved by exploiting state-of-the-art neural architectures coming from deep learning.",
+            "So far, these two worlds have progressed largely independently of each other.",
+            "Only recently, a few works have taken some steps toward the integration of such methods, by applying techniques combining sub-symbolic classifiers with knowledge expressed in the form of rules and constraints to AM.",
+            "For instance, Niculae et al.",
+            "(2017) adopted structured support vector machines and recurrent neural networks to collectively classify argument components and their relations in short documents, by hardcoding contextual dependencies and constraints of the argument model in a factor graph.",
+            "A joint inference approach for argument component classification and relation identification was instead proposed by Persing and Ng (2016) , following a pipeline scheme where integer linear programming is used to enforce mathematical constraints on the outcomes of a first-stage set of classifiers.",
+            "More recently, Cocarascu and Toni (2018) combined a deep network for relation extraction with an argumentative reasoning system that computes the dialectical strength of arguments, for the task of determining whether a review is truthful or deceptive.",
+            "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks.",
+            "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers.",
+            "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process."
+        ],
+        "message_pairs": [
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                "P_Message": "hello there, what exactly is the main contribution of the paper?",
+                "DE_Message": "Hello! This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                "P_Message": "do you have some sort of definition of argument mining to give me some background?",
+                "DE_Message": "Sure! Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                ],
+                "facts": [
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229",
+                "P_Message": "many thanks for that. i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                "DE_Message": "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round). These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                ],
+                "facts": [
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_230",
+                "P_Message": "therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",
+                "DE_Message": "Yes, indeed. Do you think this might be an interesting research direction?",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ],
+                    [
+                        "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                        "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine",
+                    "many thanks for that.",
+                    "i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                    "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round).",
+                    "These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                ],
+                "facts": [
+                    "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                    "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_231",
+                "P_Message": "this is indeed quite interesting, i think i've seen many frameworks in this direction. I was wondering if suggested approach (at least current draft) scales well with samples and the number of relations. This is indeed one crucial point to me",
+                "DE_Message": "True: scalability is an issue in most neuro-symbolic applications. Unfortunately, we do not present experiments in this work, which is just a position paper.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ],
+                    [
+                        "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                        "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                    ],
+                    [
+                        "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                        "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_230"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine",
+                    "many thanks for that.",
+                    "i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                    "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round).",
+                    "These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks",
+                    "therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",
+                    "Yes, indeed.",
+                    "Do you think this might be an interesting research direction?",
+                    "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                    "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                ],
+                "facts": [
+                    "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_232",
+                "P_Message": "i see, do you have any more detail that you repute important? ",
+                "DE_Message": "It is worth mentioning that this goes into the direction widely recognized nowadays in AI of not relying just on deep learning for many tasks (even in NLP) but to introduce techniques that can exploit domain knowledge, and perform reasoning.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ],
+                    [
+                        "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                        "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                    ],
+                    [
+                        "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                        "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                    ],
+                    [
+                        "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_230",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_231"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine",
+                    "many thanks for that.",
+                    "i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                    "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round).",
+                    "These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks",
+                    "therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",
+                    "Yes, indeed.",
+                    "Do you think this might be an interesting research direction?",
+                    "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                    "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process",
+                    "this is indeed quite interesting, i think i've seen many frameworks in this direction.",
+                    "I was wondering if suggested approach (at least current draft) scales well with samples and the number of relations.",
+                    "This is indeed one crucial point to me",
+                    "True: scalability is an issue in most neuro-symbolic applications.",
+                    "Unfortunately, we do not present experiments in this work, which is just a position paper.",
+                    "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal"
+                ],
+                "facts": [
+                    "Despite the remarkable impact of deep neural networks in NLP, we argue that these techniques alone will not suffice to address such complex issues",
+                    "This issue is also widely recognized as one of the major challenges for the whole field of artificial intelligence in the coming years (LeCun et al., 2015)"
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+        ]
+    }
+}

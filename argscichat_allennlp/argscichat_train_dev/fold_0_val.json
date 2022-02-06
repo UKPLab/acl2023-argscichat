@@ -1,0 +1,1298 @@
+{
+    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning": {
+        "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning",
+        "title": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning",
+        "content": [
+            "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks.",
+            "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal.",
+            "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document (Lippi and Torroni, 2016) .",
+            "The majority of AM systems follows a pipeline scheme, starting with simpler tasks, such as argument component detection, down to more complex tasks, such as argumentation structure prediction.",
+            "Recent years have seen the development of a large number of techniques in this area, on the wake of the advancements produced by deep learning on the whole research field of natural language processing (NLP).",
+            "Yet, it is widely recognized that the existing AM systems still have a large margin of improvement, as good results have been obtained with some genres where prior knowledge on the structure of the text eases some AM tasks, but other genres, such as legal cases and social media documents still require more work (Cabrio and Villata, 2018) .",
+            "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine.",
+            "Understanding whether a given piece of evidence supports a given claim, or whether two claims attack each other, are complex problems that humans can address thanks to their ability to exploit commonsense knowledge, and to perform reasoning and inference.",
+            "Despite the remarkable impact of deep neural networks in NLP, we argue that these techniques alone will not suffice to address such complex issues.",
+            "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi et al., 2018) communities.",
+            "This issue is also widely recognized as one of the major challenges for the whole field of artificial intelligence in the coming years (LeCun et al., 2015) .",
+            "In computational argumentation, structured arguments have been studied and formalized for decades using models that can be expressed in a logic framework (Bench-Capon and Dunne, 2007) .",
+            "At the same time, AM has rapidly evolved by exploiting state-of-the-art neural architectures coming from deep learning.",
+            "So far, these two worlds have progressed largely independently of each other.",
+            "Only recently, a few works have taken some steps toward the integration of such methods, by applying techniques combining sub-symbolic classifiers with knowledge expressed in the form of rules and constraints to AM.",
+            "For instance, Niculae et al.",
+            "(2017) adopted structured support vector machines and recurrent neural networks to collectively classify argument components and their relations in short documents, by hardcoding contextual dependencies and constraints of the argument model in a factor graph.",
+            "A joint inference approach for argument component classification and relation identification was instead proposed by Persing and Ng (2016) , following a pipeline scheme where integer linear programming is used to enforce mathematical constraints on the outcomes of a first-stage set of classifiers.",
+            "More recently, Cocarascu and Toni (2018) combined a deep network for relation extraction with an argumentative reasoning system that computes the dialectical strength of arguments, for the task of determining whether a review is truthful or deceptive.",
+            "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks.",
+            "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers.",
+            "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process."
+        ],
+        "message_pairs": [
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                "P_Message": "hello there, what exactly is the main contribution of the paper?",
+                "DE_Message": "Hello! This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                "P_Message": "do you have some sort of definition of argument mining to give me some background?",
+                "DE_Message": "Sure! Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                ],
+                "facts": [
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229",
+                "P_Message": "many thanks for that. i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                "DE_Message": "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round). These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                ],
+                "facts": [
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_230",
+                "P_Message": "therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",
+                "DE_Message": "Yes, indeed. Do you think this might be an interesting research direction?",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ],
+                    [
+                        "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                        "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine",
+                    "many thanks for that.",
+                    "i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                    "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round).",
+                    "These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                ],
+                "facts": [
+                    "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                    "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_231",
+                "P_Message": "this is indeed quite interesting, i think i've seen many frameworks in this direction. I was wondering if suggested approach (at least current draft) scales well with samples and the number of relations. This is indeed one crucial point to me",
+                "DE_Message": "True: scalability is an issue in most neuro-symbolic applications. Unfortunately, we do not present experiments in this work, which is just a position paper.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ],
+                    [
+                        "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                        "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                    ],
+                    [
+                        "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                        "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_230"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine",
+                    "many thanks for that.",
+                    "i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                    "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round).",
+                    "These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks",
+                    "therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",
+                    "Yes, indeed.",
+                    "Do you think this might be an interesting research direction?",
+                    "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                    "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                ],
+                "facts": [
+                    "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal"
+                ]
+            },
+            {
+                "id": "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_232",
+                "P_Message": "i see, do you have any more detail that you repute important? ",
+                "DE_Message": "It is worth mentioning that this goes into the direction widely recognized nowadays in AI of not relying just on deep learning for many tasks (even in NLP) but to introduce techniques that can exploit domain knowledge, and perform reasoning.",
+                "history_facts": [
+                    [
+                        "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                        "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks"
+                    ],
+                    [
+                        "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                        "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine"
+                    ],
+                    [
+                        "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                        "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks"
+                    ],
+                    [
+                        "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                        "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process"
+                    ],
+                    [
+                        "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal"
+                    ]
+                ],
+                "history_ids": [
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_227",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_228",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_229",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_230",
+                    "Neural-Symbolic Argumentation Mining: An Argument in Favor of Deep Learning and Reasoning_231"
+                ],
+                "history": [
+                    "hello there, what exactly is the main contribution of the paper?",
+                    "Hello!",
+                    "This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining",
+                    "we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal",
+                    "Deep learning is bringing remarkable contributions to the field of argumentation mining, but the existing approaches still need to fill the gap toward performing advanced reasoning tasks",
+                    "do you have some sort of definition of argument mining to give me some background?",
+                    "Sure!",
+                    "Argument mining is a research area in NLP which aims to extract arguments from unstructured text.",
+                    "The goal of argumentation mining (AM) is to automatically extract arguments and their relations from a given document",
+                    "Performing and understanding argumentation requires advanced reasoning capabilities, which are natural human skills, but are difficult to learn for a machine",
+                    "many thanks for that.",
+                    "i was wondering how previously mentioned techniques could be employed in the context of argument mining.",
+                    "Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round).",
+                    "These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",
+                    "We envisage that a significant advancement in AM could come from the combination of symbolic and sub-symbolic approaches, such as those developed in the Neural Symbolic (NeSy) (Garcez et al., 2015) or Statistical Relational Learning (SRL) (Getoor and Taskar, 2007; De Raedt et al., 2016; Kordjamshidi",
+                    "We propose to exploit the potential of both symbolic and sub-symbolic approaches for AM, by combining both results in systems that are capable of modeling knowledge and constraints with a logic formalism, while maintaining the computational power of deep networks",
+                    "therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",
+                    "Yes, indeed.",
+                    "Do you think this might be an interesting research direction?",
+                    "Differently from existing approaches, we advocate the use of a logic-based language for the definition of contextual dependencies and constraints, independently of the structure of the underlying classifiers",
+                    "Most importantly, the approaches we outline do not exploit a pipeline scheme, but rather perform joint detection of argument components and relations through a single learning process",
+                    "this is indeed quite interesting, i think i've seen many frameworks in this direction.",
+                    "I was wondering if suggested approach (at least current draft) scales well with samples and the number of relations.",
+                    "This is indeed one crucial point to me",
+                    "True: scalability is an issue in most neuro-symbolic applications.",
+                    "Unfortunately, we do not present experiments in this work, which is just a position paper.",
+                    "In this position paper, we posit that neural-symbolic and statistical relational learning could play a crucial role in the integration of symbolic and sub-symbolic methods to achieve this goal"
+                ],
+                "facts": [
+                    "Despite the remarkable impact of deep neural networks in NLP, we argue that these techniques alone will not suffice to address such complex issues",
+                    "This issue is also widely recognized as one of the major challenges for the whole field of artificial intelligence in the coming years (LeCun et al., 2015)"
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+        ]
+    },
+    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW": {
+        "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW",
+        "title": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW",
+        "content": [
+            "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+            "By definition a Transformer is invariant with respect to reorderings of the input.",
+            "However, language is inherently sequential and word order is essential to the semantics and syntax of an utterance.",
+            "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+            "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering; iii) indicate what characteristics of an application should be taken into account when selecting a position encoding; iv) provide stimuli for future research.",
+            "The Transformer model as introduced by Vaswani et al.",
+            "(2017) has been found to perform well for many tasks, such as machine translation or language modeling.",
+            "With the rise of pretrained language models (PLMs) (Peters et al., 2018; Howard & Ruder, 2018; Devlin et al., 2019; Brown et al., 2020) Transformer models have become even more popular.",
+            "As a result they are at the core of many state of the art natural language processing (NLP) models.",
+            "A Transformer model consists of several layers, or blocks.",
+            "Each layer is a self-attention (Vaswani et al., 2017) module followed by a feed-forward layer.",
+            "Layer normalization and residual connections are additional components of a layer.",
+            "A Transformer model itself is invariant with respect to re-orderings of the input.",
+            "However, text data is inherently sequential.",
+            "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+            "Clearly it should be beneficial to incorporate this essential inductive bias into any model that processes text data.",
+            "Therefore, there is a range of different methods to incorporate position information into NLP models, especially PLMs that are based on Transformer models.",
+            "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+            "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+            "Similarly, many papers analyze and compare a subset of position embedding variants.",
+            "But, to the best of our knowledge, there is no broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them.",
+            "The objective of this paper is to provide an overview of methods that incorporate and analyze position information in Transformer models.",
+            "More specifically we aim at i) showcasing that position information in Transformer is a vibrant and extensive research area ii) enabling the reader to compare existing methods by providing a unified notation and meaningful clustering iii) indicating what characteristics of an application should be taken into account when selecting a position encoding iv) providing stimuli for future research.",
+            "This paper is work in progress.",
+            "We plan to actively continue adding papers that we missed or that are newly published.",
+            "If you want to contribute, spot an error or miss a paper, please do reach out to us.",
+            "Figure 1 : A rough overview of a plain Transformer Encoder Block (grey block) without any position information.",
+            "They grey block is usually repeated for l layers.",
+            "An overview of the actual attention computation is shown on the right."
+        ],
+        "message_pairs": [
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                "P_Message": "Hi!",
+                "DE_Message": "Hi!",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": []
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131",
+                "P_Message": "What is the paper about?",
+                "DE_Message": "The paper is about position models in the Transformer architecture.",
+                "history_facts": [
+                    []
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!"
+                ],
+                "facts": [
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_132",
+                "P_Message": "Can you give me more information about what a position model is?",
+                "DE_Message": "The Transformer itself cannot see the order of its input tokens. A position model is what helps the Transformer to see the order. This can be embeddings or other manipulations of the self-attention.",
+                "history_facts": [
+                    [],
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "What is the paper about?",
+                    "The paper is about position models in the Transformer architecture.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                ],
+                "facts": [
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "A Transformer model itself is invariant with respect to re-orderings of the input."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_133",
+                "P_Message": "So embeddings and self-attention manipulations are the main position modes, is it correct?",
+                "DE_Message": "Yes, this is correct. There are a lot of variants but these are the two main categories.",
+                "history_facts": [
+                    [],
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                        "A Transformer model itself is invariant with respect to re-orderings of the input."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_132"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "What is the paper about?",
+                    "The paper is about position models in the Transformer architecture.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Can you give me more information about what a position model is?",
+                    "The Transformer itself cannot see the order of its input tokens.",
+                    "A position model is what helps the Transformer to see the order.",
+                    "This can be embeddings or other manipulations of the self-attention.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "A Transformer model itself is invariant with respect to re-orderings of the input."
+                ],
+                "facts": [
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_134",
+                "P_Message": "Does the authors provide a common benchmark to compare the methods?",
+                "DE_Message": "No, there is no empirical evaluation mentioned. But they compare the methods on a theoretical level. They also characterize which position model should go with what type of application. Do you think this is useful without a new benchmark?",
+                "history_facts": [
+                    [],
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                        "A Transformer model itself is invariant with respect to re-orderings of the input."
+                    ],
+                    [
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_132",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_133"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "What is the paper about?",
+                    "The paper is about position models in the Transformer architecture.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Can you give me more information about what a position model is?",
+                    "The Transformer itself cannot see the order of its input tokens.",
+                    "A position model is what helps the Transformer to see the order.",
+                    "This can be embeddings or other manipulations of the self-attention.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "A Transformer model itself is invariant with respect to re-orderings of the input.",
+                    "So embeddings and self-attention manipulations are the main position modes, is it correct?",
+                    "Yes, this is correct.",
+                    "There are a lot of variants but these are the two main categories.",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                ],
+                "facts": [
+                    "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_135",
+                "P_Message": "I think the theoretical comparison is much more important than the experimental one. Which one of two categories of position models is better?",
+                "DE_Message": "I agree that the theoretical comparison can give a lot of insights. I do not think that it can really answer the question which position model is \"best\". What criterion for \"being best\" do you have in mind?",
+                "history_facts": [
+                    [],
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                        "A Transformer model itself is invariant with respect to re-orderings of the input."
+                    ],
+                    [
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_132",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_133",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_134"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "What is the paper about?",
+                    "The paper is about position models in the Transformer architecture.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Can you give me more information about what a position model is?",
+                    "The Transformer itself cannot see the order of its input tokens.",
+                    "A position model is what helps the Transformer to see the order.",
+                    "This can be embeddings or other manipulations of the self-attention.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "A Transformer model itself is invariant with respect to re-orderings of the input.",
+                    "So embeddings and self-attention manipulations are the main position modes, is it correct?",
+                    "Yes, this is correct.",
+                    "There are a lot of variants but these are the two main categories.",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Does the authors provide a common benchmark to compare the methods?",
+                    "No, there is no empirical evaluation mentioned.",
+                    "But they compare the methods on a theoretical level.",
+                    "They also characterize which position model should go with what type of application.",
+                    "Do you think this is useful without a new benchmark?",
+                    "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ],
+                "facts": []
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_136",
+                "P_Message": "I was wondering if one of the two is more spread than the other.",
+                "DE_Message": "I do not have information about the frequency that the different types of position models occur. I believe that showing the large variety of models and analyzing their differences and common points is the main contribution of the paper.",
+                "history_facts": [
+                    [],
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                        "A Transformer model itself is invariant with respect to re-orderings of the input."
+                    ],
+                    [
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ],
+                    []
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_130",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_131",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_132",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_133",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_134",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_135"
+                ],
+                "history": [
+                    "Hi!",
+                    "Hi!",
+                    "What is the paper about?",
+                    "The paper is about position models in the Transformer architecture.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Can you give me more information about what a position model is?",
+                    "The Transformer itself cannot see the order of its input tokens.",
+                    "A position model is what helps the Transformer to see the order.",
+                    "This can be embeddings or other manipulations of the self-attention.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "A Transformer model itself is invariant with respect to re-orderings of the input.",
+                    "So embeddings and self-attention manipulations are the main position modes, is it correct?",
+                    "Yes, this is correct.",
+                    "There are a lot of variants but these are the two main categories.",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Does the authors provide a common benchmark to compare the methods?",
+                    "No, there is no empirical evaluation mentioned.",
+                    "But they compare the methods on a theoretical level.",
+                    "They also characterize which position model should go with what type of application.",
+                    "Do you think this is useful without a new benchmark?",
+                    "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding",
+                    "I think the theoretical comparison is much more important than the experimental one.",
+                    "Which one of two categories of position models is better?",
+                    "I agree that the theoretical comparison can give a lot of insights.",
+                    "I do not think that it can really answer the question which position model is \"best\".",
+                    "What criterion for \"being best\" do you have in mind?"
+                ],
+                "facts": [
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                "P_Message": "Hi, what is this work about?",
+                "DE_Message": "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                "P_Message": "What do you mean with position information? Like indices of tokens?",
+                "DE_Message": "Yes, I mean word order. A sentence only makes sense in the right order. A bag of words is ambiguous.",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                ],
+                "facts": [
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139",
+                "P_Message": "So what approaches of encoding position information does this work investigate?",
+                "DE_Message": "There is a large variety of position models that is investigated. One contribution of the paper is to show this variety. Shall I give you some examples?",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                ],
+                "facts": [
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_140",
+                "P_Message": "Yes, some examples would be great!",
+                "DE_Message": "Position embeddings representing absolute token index or the relative distance between tokens is an example. Another is injecting this information into the self-attention matrix. One work also uses an RNN to \"positionalize\" the input.",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+                    "So what approaches of encoding position information does this work investigate?",
+                    "There is a large variety of position models that is investigated.",
+                    "One contribution of the paper is to show this variety.",
+                    "Shall I give you some examples?",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                ],
+                "facts": [
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_141",
+                "P_Message": "So between those two, what works better and for which tasks?",
+                "DE_Message": "Unfortunately, I do not have access to that information. But there is a discussion of matching position models to tasks later in the paper.",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_140"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+                    "So what approaches of encoding position information does this work investigate?",
+                    "There is a large variety of position models that is investigated.",
+                    "One contribution of the paper is to show this variety.",
+                    "Shall I give you some examples?",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Yes, some examples would be great!",
+                    "Position embeddings representing absolute token index or the relative distance between tokens is an example.",
+                    "Another is injecting this information into the self-attention matrix.",
+                    "One work also uses an RNN to \"positionalize\" the input.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                ],
+                "facts": [
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_142",
+                "P_Message": "Then let me ask a different question; is there a possibility of including positional information can hurt the model's performance? Has this been observed?",
+                "DE_Message": "This is an interesting question. For natural language, this does not seem to be the case. What do you think about that?",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                    ],
+                    [
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_140",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_141"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+                    "So what approaches of encoding position information does this work investigate?",
+                    "There is a large variety of position models that is investigated.",
+                    "One contribution of the paper is to show this variety.",
+                    "Shall I give you some examples?",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Yes, some examples would be great!",
+                    "Position embeddings representing absolute token index or the relative distance between tokens is an example.",
+                    "Another is injecting this information into the self-attention matrix.",
+                    "One work also uses an RNN to \"positionalize\" the input.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "So between those two, what works better and for which tasks?",
+                    "Unfortunately, I do not have access to that information.",
+                    "But there is a discussion of matching position models to tasks later in the paper.",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ],
+                "facts": [
+                    "it should be beneficial to incorporate this essential inductive bias into any model that processes text data."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_143",
+                "P_Message": "Good question, I'd expect that in situations where positional information does not matter, models may get biased with additional noise.",
+                "DE_Message": "I agree. A task like this should have a lightweight position model if any.",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                    ],
+                    [
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ],
+                    [
+                        "it should be beneficial to incorporate this essential inductive bias into any model that processes text data."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_140",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_141",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_142"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+                    "So what approaches of encoding position information does this work investigate?",
+                    "There is a large variety of position models that is investigated.",
+                    "One contribution of the paper is to show this variety.",
+                    "Shall I give you some examples?",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Yes, some examples would be great!",
+                    "Position embeddings representing absolute token index or the relative distance between tokens is an example.",
+                    "Another is injecting this information into the self-attention matrix.",
+                    "One work also uses an RNN to \"positionalize\" the input.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "So between those two, what works better and for which tasks?",
+                    "Unfortunately, I do not have access to that information.",
+                    "But there is a discussion of matching position models to tasks later in the paper.",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding",
+                    "Then let me ask a different question; is there a possibility of including positional information can hurt the model's performance?",
+                    "Has this been observed?",
+                    "This is an interesting question.",
+                    "For natural language, this does not seem to be the case.",
+                    "What do you think about that?",
+                    "it should be beneficial to incorporate this essential inductive bias into any model that processes text data."
+                ],
+                "facts": []
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_144",
+                "P_Message": "Maybe an attention based approach that is explicitly trained in both kind of tasks could handle them separately. What do you think?",
+                "DE_Message": "In my opinion, the invariance to order can also be a strength for certain tasks. But I think it would be harder for an attention-based approach to ignore the position model if it is once trained without and once trained with it. Was this your suggestion?",
+                "history_facts": [
+                    [
+                        "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "text data is inherently sequential",
+                        "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat })."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                        "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                    ],
+                    [
+                        "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network."
+                    ],
+                    [
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ],
+                    [
+                        "it should be beneficial to incorporate this essential inductive bias into any model that processes text data."
+                    ],
+                    []
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_137",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_138",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_139",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_140",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_141",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_142",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_143"
+                ],
+                "history": [
+                    "Hi, what is this work about?",
+                    "Hi, it is about the Transformer model and specifically about ways to encode position information.",
+                    "In this paper, we provide an overview of common methods to incorporate position information into Transformer models.",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "What do you mean with position information?",
+                    "Like indices of tokens?",
+                    "Yes, I mean word order.",
+                    "A sentence only makes sense in the right order.",
+                    "A bag of words is ambiguous.",
+                    "text data is inherently sequential",
+                    "Without position information the meaning of a sentence is not well-defined (e.g., the sequence \"the cat chases the dog\" vs. the multi-set { the, the, dog, chases, cat }).",
+                    "So what approaches of encoding position information does this work investigate?",
+                    "There is a large variety of position models that is investigated.",
+                    "One contribution of the paper is to show this variety.",
+                    "Shall I give you some examples?",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area;",
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model.",
+                    "Yes, some examples would be great!",
+                    "Position embeddings representing absolute token index or the relative distance between tokens is an example.",
+                    "Another is injecting this information into the self-attention matrix.",
+                    "One work also uses an RNN to \"positionalize\" the input.",
+                    "Adding position information can be done by using position embeddings, manipulating attention matrices, or preprocessing the input with a recurrent neural network.",
+                    "So between those two, what works better and for which tasks?",
+                    "Unfortunately, I do not have access to that information.",
+                    "But there is a discussion of matching position models to tasks later in the paper.",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding",
+                    "Then let me ask a different question; is there a possibility of including positional information can hurt the model's performance?",
+                    "Has this been observed?",
+                    "This is an interesting question.",
+                    "For natural language, this does not seem to be the case.",
+                    "What do you think about that?",
+                    "it should be beneficial to incorporate this essential inductive bias into any model that processes text data.",
+                    "Good question, I'd expect that in situations where positional information does not matter, models may get biased with additional noise.",
+                    "I agree.",
+                    "A task like this should have a lightweight position model if any."
+                ],
+                "facts": [
+                    "a Transformer is invariant with respect to reorderings of the input"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145",
+                "P_Message": "Hi, the title sounds interesting, can you tell me more about the paper?",
+                "DE_Message": "Hi, I agree that the title sounds interesting. The main topic of the paper is the Transformer model. Do you need information on this model?",
+                "history_facts": [],
+                "history": [],
+                "history_ids": [],
+                "facts": [
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_146",
+                "P_Message": "No thanks, I am familiar with transformers. Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",
+                "DE_Message": "It is a survey paper. The main contribution is a theoretical overview of existing position models and no empirical analysis.",
+                "history_facts": [
+                    [
+                        "The Transformer model as introduced by Vaswani et al. (2017)",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145"
+                ],
+                "history": [
+                    "Hi, the title sounds interesting, can you tell me more about the paper?",
+                    "Hi, I agree that the title sounds interesting.",
+                    "The main topic of the paper is the Transformer model.",
+                    "Do you need information on this model?",
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                ],
+                "facts": [
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_147",
+                "P_Message": "Ah I see, so they state if there are better and worse ones?",
+                "DE_Message": "I do not think that the main goal is to define better or worse. It is more about identifying similarities and differences (supported by the unified notation). They do have a discussion on matching a given task to a certain kind of application though.",
+                "history_facts": [
+                    [
+                        "The Transformer model as introduced by Vaswani et al. (2017)",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_146"
+                ],
+                "history": [
+                    "Hi, the title sounds interesting, can you tell me more about the paper?",
+                    "Hi, I agree that the title sounds interesting.",
+                    "The main topic of the paper is the Transformer model.",
+                    "Do you need information on this model?",
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "No thanks, I am familiar with transformers.",
+                    "Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",
+                    "It is a survey paper.",
+                    "The main contribution is a theoretical overview of existing position models and no empirical analysis.",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                ],
+                "facts": [
+                    "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_148",
+                "P_Message": "Do they state if there are particular things to look out for when working with long documents?",
+                "DE_Message": "I do not have access to any concrete findings. But the position models of long document Transformers are certainly part of the survey. The authors state that they aim to complete the paper with newly published papers.",
+                "history_facts": [
+                    [
+                        "The Transformer model as introduced by Vaswani et al. (2017)",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                    ],
+                    [
+                        "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_146",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_147"
+                ],
+                "history": [
+                    "Hi, the title sounds interesting, can you tell me more about the paper?",
+                    "Hi, I agree that the title sounds interesting.",
+                    "The main topic of the paper is the Transformer model.",
+                    "Do you need information on this model?",
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "No thanks, I am familiar with transformers.",
+                    "Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",
+                    "It is a survey paper.",
+                    "The main contribution is a theoretical overview of existing position models and no empirical analysis.",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;",
+                    "Ah I see, so they state if there are better and worse ones?",
+                    "I do not think that the main goal is to define better or worse.",
+                    "It is more about identifying similarities and differences (supported by the unified notation).",
+                    "They do have a discussion on matching a given task to a certain kind of application though.",
+                    "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                ],
+                "facts": [
+                    "We plan to actively continue adding papers that we missed or that are newly published."
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_149",
+                "P_Message": "Ah that is interesting. Is there a specific purpose for the paper?",
+                "DE_Message": "They main purpose is to highlight the similarities and differences in existing position models. In that way, new possibilities for position encodings might be more evident. I think this work can be useful for the creators of new models.",
+                "history_facts": [
+                    [
+                        "The Transformer model as introduced by Vaswani et al. (2017)",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                    ],
+                    [
+                        "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ],
+                    [
+                        "We plan to actively continue adding papers that we missed or that are newly published."
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_146",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_147",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_148"
+                ],
+                "history": [
+                    "Hi, the title sounds interesting, can you tell me more about the paper?",
+                    "Hi, I agree that the title sounds interesting.",
+                    "The main topic of the paper is the Transformer model.",
+                    "Do you need information on this model?",
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "No thanks, I am familiar with transformers.",
+                    "Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",
+                    "It is a survey paper.",
+                    "The main contribution is a theoretical overview of existing position models and no empirical analysis.",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;",
+                    "Ah I see, so they state if there are better and worse ones?",
+                    "I do not think that the main goal is to define better or worse.",
+                    "It is more about identifying similarities and differences (supported by the unified notation).",
+                    "They do have a discussion on matching a given task to a certain kind of application though.",
+                    "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding",
+                    "Do they state if there are particular things to look out for when working with long documents?",
+                    "I do not have access to any concrete findings.",
+                    "But the position models of long document Transformers are certainly part of the survey.",
+                    "The authors state that they aim to complete the paper with newly published papers.",
+                    "We plan to actively continue adding papers that we missed or that are newly published."
+                ],
+                "facts": [
+                    "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                    "providing stimuli for future research"
+                ]
+            },
+            {
+                "id": "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_150",
+                "P_Message": "Is there a predominant method for position encodings that most people use?",
+                "DE_Message": "No, not really. There is a lot going on and even \"old\" position models sometimes come back in a slight variant because they have a specific property that is useful for a new model or task.",
+                "history_facts": [
+                    [
+                        "The Transformer model as introduced by Vaswani et al. (2017)",
+                        "Transformers are arguably the main workhorse in recent Natural Language Processing research."
+                    ],
+                    [
+                        "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;"
+                    ],
+                    [
+                        "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                        "indicating what characteristics of an application should be taken into account when selecting a position encoding"
+                    ],
+                    [
+                        "We plan to actively continue adding papers that we missed or that are newly published."
+                    ],
+                    [
+                        "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                        "providing stimuli for future research"
+                    ]
+                ],
+                "history_ids": [
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_145",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_146",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_147",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_148",
+                    "Work in progress POSITION INFORMATION IN TRANSFORMERS: AN OVERVIEW_149"
+                ],
+                "history": [
+                    "Hi, the title sounds interesting, can you tell me more about the paper?",
+                    "Hi, I agree that the title sounds interesting.",
+                    "The main topic of the paper is the Transformer model.",
+                    "Do you need information on this model?",
+                    "The Transformer model as introduced by Vaswani et al.",
+                    "(2017)",
+                    "Transformers are arguably the main workhorse in recent Natural Language Processing research.",
+                    "No thanks, I am familiar with transformers.",
+                    "Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",
+                    "It is a survey paper.",
+                    "The main contribution is a theoretical overview of existing position models and no empirical analysis.",
+                    "The objectives of this survey are to i) showcase that position information in Transformer is a vibrant and extensive research area; ii) enable the reader to compare existing methods by providing a unified notation and meaningful clustering;",
+                    "Ah I see, so they state if there are better and worse ones?",
+                    "I do not think that the main goal is to define better or worse.",
+                    "It is more about identifying similarities and differences (supported by the unified notation).",
+                    "They do have a discussion on matching a given task to a certain kind of application though.",
+                    "broad overview of relevant work on position information in Transformers that systematically aggregates and categorizes existing approaches and analyzes the differences between them",
+                    "indicating what characteristics of an application should be taken into account when selecting a position encoding",
+                    "Do they state if there are particular things to look out for when working with long documents?",
+                    "I do not have access to any concrete findings.",
+                    "But the position models of long document Transformers are certainly part of the survey.",
+                    "The authors state that they aim to complete the paper with newly published papers.",
+                    "We plan to actively continue adding papers that we missed or that are newly published.",
+                    "Ah that is interesting.",
+                    "Is there a specific purpose for the paper?",
+                    "They main purpose is to highlight the similarities and differences in existing position models.",
+                    "In that way, new possibilities for position encodings might be more evident.",
+                    "I think this work can be useful for the creators of new models.",
+                    "enabling the reader to compare existing methods by providing a unified notation and meaningful clustering",
+                    "providing stimuli for future research"
+                ],
+                "facts": [
+                    "Overall there is a huge variety of methods that add both absolute and relative position information to Transformer model."
+                ]
+            }
+        ],
+        "argument_mask_0.7": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+        ],
+        "argument_mask_0.75": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+        ]
+    }
+}
