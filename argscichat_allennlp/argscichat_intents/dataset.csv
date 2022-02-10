@@ -1,0 +1,898 @@
+Role,Message Number,Sentence Number,Sentence,Tag
+Proponent,0,0,Hello!,Intro
+Proponent,0,1,What is the type of knowledge that is injected in the neural networks?,Ask_Info
+Proponent,2,0,Interesting!,Give_Opinion
+Proponent,2,1,What is the problem used to perform the experiment?,Ask_Info
+Proponent,4,0,"Yes, thank you",Reply_Info
+Proponent,6,0,I understand.,Give_Opinion
+Proponent,6,1,And how is knowledge injected in these networks?,Ask_Info
+Proponent,8,0,"yes, thank you!",Reply_Info
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,We inject domain knowledge from Constrained Satisfaction Problems.,Reply_Info
+Domain Expert,3,0,We employ the Partial Latin Square completion problem.,Reply_Info
+Domain Expert,3,1,Do you want to know how does it work?,Ask_Suggestion
+Domain Expert,5,0,You have a partially filled NxN square and you have to complete it with all the values in the range from 1 to N preventing the same value to appear more than once in the same row or column.,Reply_Info
+Domain Expert,7,0,I'm sorry but I have not enough information to answer your question.,Reply_Info
+Domain Expert,7,1,Do you want to know why we choose the to inject knowledge in a data-driven approach?,Ask_Suggestion
+Domain Expert,9,0,Data-driven methods can take into account preferences that are hard to design in Constrained Satisfaction Problem.,Reply_Info
+Domain Expert,9,1,At the same time data-driven method struggle to preserve feasibility.,Reply_Info
+Proponent,0,0,Hi!,Intro
+Proponent,0,1,What is the article about?,Ask_Info
+Proponent,2,0,Can you tell me how does the attention module work?,Ask_Info
+Proponent,4,0,"Yes, tell me more about it.",Reply_Info
+Proponent,6,0,What kind of corpora was the neural architecture tested on?,Ask_Info
+Proponent,8,0,On which of the two did the architecture perform best?,Ask_Info
+Proponent,10,0,Do you know why this happened?,Ask_Info
+Domain Expert,1,0,The article is about a new neural architecture to perform Argument Mining.,Reply_Info
+Domain Expert,1,1,This architecture features an attention module and is validated on multiple corpora.,Reply_Info
+Domain Expert,1,2,Which aspect would you like to know more about?,Ask_Suggestion
+Domain Expert,3,0,"I'm sorry, but I don't have information on this aspect.",Reply_Info
+Domain Expert,3,1,Would you like to know more about the argument mining task instead?,Ask_Suggestion
+Domain Expert,5,0,Argument Mining is a research field related to NLP that concerns the extraction and the classification of arguments and their relationships.,Reply_Info
+Domain Expert,7,0,"It was tested on corpora composed by user-generated comments and by scientific publications
+ Facts:",Reply_Info
+Domain Expert,9,0,"The best performance was achieved on the first one
+ Facts:",Reply_Info
+Domain Expert,11,0,There is no information available about this.,Reply_Info
+Domain Expert,11,1,Do you want to know more or are you satisfied?,Ask_Suggestion
+Proponent,0,0,"Hi, what is this paper about?",Intro
+Proponent,0,0,"Hi, what is this paper about?",Ask_Info
+Proponent,2,0,This sounds very interesting.,Give_Opinion
+Proponent,2,1,How exactly do you inject knowledge in the network?,Ask_Info
+Proponent,4,1,Which kind of problems has the method you propose been applied to?,Ask_Info
+Proponent,6,0,"Yes, please.",Ask_Info
+Proponent,6,1,Which kind of CSP problems?,Ask_Info
+Proponent,8,1,I believe that plugging knowledge into neural architectures is a crucial issue for AI in the coming years.,Give_Opinion
+Proponent,8,2,Do you need to encode the knowledge in some language?,Ask_Info
+Proponent,8,3,Does knowledge injection affect training time?,Ask_Info
+Proponent,10,0,"Thank you, this is all I wanted to know!",Outro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,This paper assess the impact of knowledge injection in a data-driven approach.,Reply_Info
+Domain Expert,3,0,Unfourtunately I have not enough information to answer your question.,Reply_Info
+Domain Expert,5,0,We applied to a particular class of Constrained Satisfaction problem.,Reply_Info
+Domain Expert,5,1,Do you want to know which one?,Ask_Suggestion
+Domain Expert,7,0,We employ the Partial Latin Square completion problem which require to complete a partially filled NxN square with all the values in the range from 1 to N such that no value appear twice in any row and column.,Reply_Info
+Domain Expert,9,0,Our method takes inspiration from Constraint Programming  and it can be applied also at test time.,Reply_Info
+Domain Expert,11,0,You are welcome!,Outro
+Proponent,0,0,Hello!,Intro
+Proponent,0,1,Can you give me a general overview of what is this paper about?,Ask_Info
+Proponent,2,0,Interesting!,Give_Opinion
+Proponent,2,1,How did they select those images?,Ask_Info
+Proponent,4,0,How did they annotate those images?,Ask_Info
+Proponent,4,1,using human annotators or in some unsupervised fashion?,Ask_Info
+Proponent,6,0,Oh interesting!,Give_Opinion
+Proponent,6,1,and have the researchers also conducted any experiment on this dataset?,Ask_Info
+Proponent,8,0,Why is dataset multimodal?,Ask_Info
+Proponent,10,0,"Thank you, is there any other aspect worth of mention?",Ask_Info
+Domain Expert,1,0,The paper explais how a novel dataset of images and potentially offensive comments was created.,Reply_Info
+Domain Expert,3,0,"The images were taken randomly from Instagram, but cannot be shared as pictures.",Reply_Info
+Domain Expert,5,0,"The comments were made by teenagers during their school hours, then they were manually assigned to a semantic category.",Reply_Info
+Domain Expert,7,0,"Unfortunately, I connot provide this information, but the dataset is freely available on Github and can be used for research purposes.",Reply_Info
+Domain Expert,9,0,The dataset was analysed from different perspectives.,Reply_Info
+Domain Expert,9,1,For example the analysys could consider the presence of human subjects or the gender of the people.,Reply_Info
+Domain Expert,11,0,The corpus was also compared with a similar one obtained using whatsapp.,Reply_Info
+Domain Expert,11,1,This comparison showed that comments to images have different characteristics.,Reply_Info
+Proponent,0,0,- Hello there!,Intro
+Proponent,0,1,Can you provide to me some information about the paper?,Ask_Info
+Proponent,2,0,With what strategy were the data collected?,Ask_Info
+Proponent,4,0,How was the data labeled?,Ask_Info
+Proponent,6,0,"According to the authors, are there any other datasets like this in other languages?",Ask_Info
+Proponent,8,0,I think such a dataset could be too conditioned/biased by the type of annotator.,Give_Opinion
+Proponent,8,1,What do you think about it?,Ask_Rebuttal
+Proponent,10,0,Is the dataset available and free to use?,Ask_Info
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,3,0,The images were randomly selected from Instagram and the comments were created by teenagers during their school hours.,Reply_Info
+Domain Expert,5,0,The comments were maually assigned to a semantic category.,Reply_Info
+Domain Expert,7,0,"I cannot provide a complete answer, but collecting data from teenage users can be problematic due to privacy restrictions.",Reply_Info
+Domain Expert,9,0,"The aim of the dataset is to collect data specifically among teenagers to raise awareness on cyberbullying, but I think that collecting data while the teens know what they are doing could make them write less mean comments on purpose.",Give_Opinion
+Domain Expert,11,0,"Yes, you can find the comments on github.",Reply_Info
+Domain Expert,11,1,Unfortunately the images cannot be shared as pictures.,Reply_Info
+Proponent,0,0,Hi!,Intro
+Proponent,0,1,What is this paper about?,Ask_Info
+Proponent,2,0,What does it mean 'attentive' network?,Ask_Info
+Proponent,4,0,What is the attention module used for?,Ask_Info
+Proponent,6,0,"Yes, thank you",Ask_Info
+Proponent,8,0,I would like to know more.,Ask_Info
+Proponent,8,1,"For example, what type of argument mining did you do in this research?",Ask_Info
+Domain Expert,1,0,Hello!,Intro
+Domain Expert,1,1,This paper is about a novel neural architecture proposed for the task of Argument Mining.,Reply_Info
+Domain Expert,3,0,"it is not explicitly stated, but it means that the network include a neural attention module
+ Facts:",Reply_Info
+Domain Expert,5,0,"I'm sorry, such information is not available.",Reply_Info
+Domain Expert,5,1,Would you like to know more about the argument mining task?,Ask_Suggestion
+Domain Expert,7,0,"Argument mining is a research field related to NLP, and concerns the extraction and classification of argumentative components and their relationships in documents.",Reply_Info
+Domain Expert,7,1,Are you satisfied or would you like to know more?,Ask_Suggestion
+Domain Expert,9,0,"We focus on classifying the category of the component and predicting the relationships
+ Facts:",Reply_Info
+Proponent,0,0,Hi!,Intro
+Proponent,0,0,Hi!,Intro
+Proponent,2,0,"Yes, please.",Reply_Info
+Proponent,2,1,How does explaination is provided?,Ask_Info
+Proponent,4,0,Can you tell me more about the experimental setup?,Ask_Info
+Proponent,6,0,What should we talk about now?,Ask_Suggestion
+Proponent,8,0,Do they say something about comparison with other methods?,Ask_Info
+Proponent,10,0,Which one is the best among the two methods?,Ask_Info
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,Is there something you want to know about the article?,Ask_Suggestion
+Domain Expert,3,0,"I unfortunately cannot provide any detail about the explanation, but I can tell you that the algorithm, called LIME, can explain the prediction of any classifier
+ Facts:",Reply_Info
+Domain Expert,5,0,"The material I have mostly concerns the utility of this tool, I can only tell you that it was tested with human subjects that decided whether to trust a prediction or not based on the explanations provided by the tool.",Reply_Info
+Domain Expert,7,0,I can tell you more about specific use cases of this tool.,Reply_Info
+Domain Expert,7,1,"For example, it could be very beneficial when it comes to trusting machine learning for mediacal diagnosis.",Reply_Info
+Domain Expert,9,0,"Unfortunately not, they propose two different methods of their own.",Reply_Info
+Domain Expert,11,0,"They are different, but I think LIME is the most complete one as it was used by non experts to pick the best out of two classifiers and improve an untrustworthy one.",Reply_Info
+Proponent,0,0,What is this article about?,Ask_Info
+Proponent,2,0,Is the approach validated with experiments involving human users?,Ask_Info
+Proponent,4,0,How many datasets are used for validation?,Ask_Info
+Proponent,6,0,What style of interpretable model is used to explain the predictions?,Ask_Info
+Proponent,8,0,"Does the article give a formal definition of ""interpretable"" and ""faithful""?",Ask_Info
+Proponent,10,0,Is the approach applied to natural language tasks?,Ask_Info
+Domain Expert,1,0,The article explains why understanding the reasons behind a prediction made by a machine learning model can make a difference in its actual use and proposes a new explanation technique.,Reply_Info
+Domain Expert,3,0,"Yes, using LIME, non experts were able to choose the best one between different classifiers and to improve an untrustworthy one.",Reply_Info
+Domain Expert,5,0,"Unfortunately I cannot provide this information, but LIME can be used to explain the prediction of any classifier or regressor.",Reply_Info
+Domain Expert,7,0,I can only tell you that LIME provides this information in an interpretable and faithful manner by learning an interpretable model locally around the prediction.,Reply_Info
+Domain Expert,9,0,Unfortunately not in the material at my disposal.,Reply_Info
+Domain Expert,11,0,LIME was used to improve an untrustworthy classifier trained on newsgroups.,Reply_Info
+Proponent,0,0,Hi!,Intro
+Proponent,0,0,Hi!,Intro
+Proponent,2,0,"Yes, please.",Reply_Info
+Proponent,2,1,What is the paper about?,Ask_Info
+Proponent,4,0,Can you say something more about the method used to solve the tasks?,Ask_Info
+Proponent,6,0,Is the method compared to other ones?,Ask_Info
+Proponent,8,0,Are the results better than state-of-the-art cited in the paper?,Ask_Info
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,do you want to talk about multi-task residual networks for argument mining?,Ask_Suggestion
+Domain Expert,3,0,"The paper discusses residual network for several argumentative mining tasks, including link prediction
+ Facts:",Reply_Info
+Domain Expert,5,0,Sure.,Reply_Info
+Domain Expert,5,1,All tasks are tackled using a single neural network with an attention module and ensemble learning.,Reply_Info
+Domain Expert,5,2,All tasks are performed jointly.,Reply_Info
+Domain Expert,5,3,there is no feature engineering.,Reply_Info
+Domain Expert,7,0,"Sure, the paper offers comparisons with other state-of-the-art systems.",Reply_Info
+Domain Expert,9,0,This is not clear from the information I have.,Reply_Info
+Domain Expert,9,1,"The method has good performance, but the main advantage seems to be generality.",Reply_Info
+Proponent,0,0,"Hello, what is this paper about?",Intro
+Proponent,0,0,"Hello, what is this paper about?",Ask_Info
+Proponent,2,0,I think this is really a very important issue in AI.,Give_Opinion
+Proponent,2,1,How does the proposed technique work?,Ask_Info
+Proponent,2,2,Do you extract logic rules?,Ask_Info
+Proponent,4,0,On which tasks did you apply LIME?,Ask_Info
+Proponent,6,0,"Thank you, this is very interesting indeed.",Give_Opinion
+Proponent,6,1,Which do you think is the strongest point of your approach?,Ask_Rebuttal
+Proponent,8,0,Did you measure performance of the interpretable patterns extracted by LIME?,Ask_Info
+Proponent,10,0,"Thank you, this is all I wanted to know!",Outro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,"The paper explains why, in some cases, it is crucial to understand why a machine learning model made a prediction and proposes a new explanation technique.",Reply_Info
+Domain Expert,3,0,"Unfortunately I cannot provide detailed information, LIME approximates the predictions of any classifier or regressor by approximating it locally with an interpretable model.",Reply_Info
+Domain Expert,5,0,"Lime was used by non-experts to pick the best one between two classifiers, to improve an untrustworthy one and for the understanding of the predictions of a neural network on images.",Reply_Info
+Domain Expert,7,0,"I think that knowing the reasons behind a prediction could make people trust machine learning systems more, mostly in fields such as the medical one.",Give_Opinion
+Domain Expert,9,0,Unfortunately this information is not in the material at my disposal.,Reply_Info
+Domain Expert,9,1,But LIME was evaluated with simulated and human subjects.,Reply_Info
+Domain Expert,11,0,Thank you for your interest!,Outro
+Domain Expert,11,1,Do you think that a tool like LIME could be helpful in other situations?,Ask_Suggestion
+Proponent,0,0,Hi!,Intro
+Proponent,0,1,What is this paper about?,Ask_Info
+Proponent,2,0,How was this dataset collected?,Ask_Info
+Proponent,4,0,What was the purpose of this data collection?,Ask_Info
+Proponent,6,0,What are the limits and challenges of such collection?,Ask_Info
+Proponent,8,0,How do the authors used or plan to use these data?,Ask_Info
+Proponent,10,0,Where can I find this dataset?,Ask_Info
+Proponent,10,1,Is it available?,Ask_Info
+Proponent,12,0,What kind of subjects do the images contain?,Ask_Info
+Domain Expert,1,0,The paper explains how a dataset of pictures and possibly offensive comments made by teenagers was collected.,Reply_Info
+Domain Expert,3,0,The images were taken from Instagram and the comments were made by teenagers during their school hours.,Reply_Info
+Domain Expert,5,0,The authors wanted to collect multimodal data from a specific target group.,Reply_Info
+Domain Expert,7,0,"Almos all the issues are related to privacy, collecting data from teenagers means that the authorization of their parents is necessary.",Reply_Info
+Domain Expert,9,0,The authors analysed the data in order to understand if there is a connection between the subject of the image and the comments.,Reply_Info
+Domain Expert,11,0,"Yes, the comments are freely available on Github but the images cannot be released in their original form because they were taken from Instagram.",Reply_Info
+Domain Expert,13,0,"The images can contain any subject, the analysys considers the presence of humans and their genders.",Reply_Info
+Proponent,0,0,Hi!,Intro
+Proponent,2,0,"Yes, please.",Reply_Info
+Proponent,2,0,"Yes, please.",Reply_Info
+Proponent,2,1,What are memory networks?,Ask_Info
+Proponent,4,0,How are MANNs employed to detect and explain unfairness?,Ask_Info
+Proponent,6,0,It seems very nice idea!,Give_Opinion
+Proponent,6,1,Maybe it can be applied to other kind of tasks.,Give_Opinion
+Proponent,6,2,What do you think?,Ask_Rebuttal
+Proponent,8,0,Can you give me more details about the experimental setup?,Ask_Info
+Proponent,10,0,"Yes, please.",Reply_Info
+Proponent,10,0,"Yes, please.",Reply_Info
+Proponent,12,0,"Yes, I am really interested in it.",Reply_Info
+Proponent,14,0,I think it's enough.,Reply_Info
+Proponent,14,1,Thanks a lot!,Outro
+Domain Expert,1,0,Hi.,Intro
+Domain Expert,1,1,Do you want to know something about unfairness detection in consumer contracts?,Ask_Suggestion
+Domain Expert,3,0,"Memory networks or MANNs are neural architectures that include a ""memory"" components where knowledge can be stored and used to generate the output
+ Facts:",Reply_Info
+Domain Expert,5,0,The memories could be used to store justifications of unfairness given by legal experts.,Reply_Info
+Domain Expert,5,1,"Then these justifications can be used to explain the output
+ Facts:",Reply_Info
+Domain Expert,7,0,Yes indeed.,Reply_Info
+Domain Expert,7,1,"For example, memory networks have been used for question-answering.",Reply_Info
+Domain Expert,9,0,The authors created a dataset of annotated Terms of Service and compared the performance of MANNs against relevant baselines.,Reply_Info
+Domain Expert,9,1,Do you want to know about qualitative evaluation too?,Ask_Suggestion
+Domain Expert,11,0,The explanations were also evaluated by domain experts.,Reply_Info
+Domain Expert,11,1,"If you are interested, I can tell you about the outcome of the evaluation
+ Facts:",Ask_Suggestion
+Domain Expert,13,0,"Results are encouraging, and some baselines were outperformed by a significant margin.",Reply_Info
+Domain Expert,13,1,One interesting thing in this paper is the application of strong supervision.,Reply_Info
+Domain Expert,13,2,Do you want to know about it?,Ask_Suggestion
+Domain Expert,15,0,Bye,Outro
+Proponent,0,0,Hi!,Intro
+Proponent,0,1,What is this article about?,Ask_Info
+Proponent,2,0,How were memory networks used for this task?,Ask_Info
+Proponent,4,0,"Yes, thank you",Reply_Info
+Proponent,6,0,Why are rationales useful?,Ask_Info
+Proponent,8,0,I think explainability is very useful in AI.,Give_Opinion
+Proponent,8,1,Anything else you would like to tell me about the article?,Ask_Suggestion
+Proponent,10,0,That's interesting!,Give_Opinion
+Proponent,10,1,Can you tell me something more about this?,Ask_Info
+Proponent,12,0,"Ok, thank you!",Reply_Info
+Proponent,12,1,That's all I wanted to know,Outro
+Proponent,14,0,Bye,Outro
+Proponent,14,0,Bye,Outro
+Domain Expert,1,0,"This article is an application of memory networks for detecting unfairness in consumer contracts
+ Facts:",Reply_Info
+Domain Expert,3,0,memories are used to store rationales.,Reply_Info
+Domain Expert,3,1,Do you want to know more about rationales?,Ask_Suggestion
+Domain Expert,5,0,rationales are justifications provided by experts.,Reply_Info
+Domain Expert,5,1,Anything else you wish to know?,Ask_Suggestion
+Domain Expert,7,0,The hypothesis is that rationales are useful for explainability.,Reply_Info
+Domain Expert,7,1,"Indeed, initial results are promising.",Reply_Info
+Domain Expert,7,2,What do you think about the importance of explainability?,Ask_Rebuttal
+Domain Expert,9,0,Yes.,Reply_Info
+Domain Expert,9,1,Something I like about this study is that the method is able to provide references to relevant rationales.,Reply_Info
+Domain Expert,11,0,"I don't have further information about strong supervision, but the method seems promising
+ Facts:",Reply_Info
+Domain Expert,13,0,That's great.,Reply_Info
+Domain Expert,13,1,Take care,Outro
+Domain Expert,15,0,Bye,Outro
+Domain Expert,15,0,Bye,Outro
+Proponent,0,0,Hi!,Intro
+Proponent,0,0,Hi!,Intro
+Proponent,0,1,Why is annotation projection useful?,Ask_Info
+Proponent,2,0,Is this approach applicable only in legal texts?,Ask_Info
+Proponent,4,0,Can you tell me something more about how the method works?,Ask_Info
+Proponent,6,0,Is the quality of the translation tool an issue?,Ask_Info
+Proponent,8,0,Was the method tested with other language pairs besides English-German?,Ask_Info
+Proponent,10,0,Yes I think the problem is very important.,Give_Opinion
+Proponent,10,1,Thank you for the chat.,Outro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,"Because you can avoid re-constructing a corpus from scratch, but you can leverage the information coming from the same corpus in another language
+ Facts:",Reply_Info
+Domain Expert,3,0,"No, it could be applied to any domain whether you have different versions of the same document.",Reply_Info
+Domain Expert,5,0,"We exploit automatic translation tools and a distance between embeddings to find correspondences between the same document, available in to languages.",Reply_Info
+Domain Expert,7,0,"It might be, but this needs further investigation.",Reply_Info
+Domain Expert,7,1,"For sure, the method is language-agnostic.",Reply_Info
+Domain Expert,9,0,"Not in this paper, but we are currently testing two additional languages.",Reply_Info
+Domain Expert,9,1,Do you think this is an important problem?,Ask_Rebuttal
+Domain Expert,11,0,Thank you!,Outro
+Proponent,0,0,"Hi, what exactly is meant by lexical inference?",Ask_Info
+Proponent,0,0,"Hi, what exactly is meant by lexical inference?",Intro
+Proponent,0,0,"Hi, what exactly is meant by lexical inference?",Intro
+Proponent,2,0,"Ok, so the labels are the classical entailment labels (entailment, neutral, contradiction)?",Ask_Info
+Proponent,4,0,"Ok, so do they build a dataset for that?",Ask_Info
+Proponent,6,0,What makes their new models special?,Ask_Rebuttal
+Proponent,8,0,"Before I can answer your question, I need to clarify something.",Ask_Info
+Proponent,8,1,"The patterns are a form of ""prompts""?",Ask_Info
+Proponent,8,2,Like additional tokens prepended or appended to the input?,Ask_Info
+Proponent,10,0,Ah ok.,Reply_Info
+Proponent,10,1,It is interesting that such simple techniques help.,Give_Opinion
+Proponent,10,2,This is not a few-shot setting right?,Ask_Info
+Proponent,10,3,So the model has full access to the training data?,Ask_Info
+Proponent,12,0,I see.,Reply_Info
+Proponent,12,1,"Thanks for the interesting conversation, I am terminating now.",Outro
+Domain Expert,1,0,"Hi, lexical inference means that the inference is focused on lexical semantics.",Reply_Info
+Domain Expert,1,0,"Hi, lexical inference means that the inference is focused on lexical semantics.",Intro
+Domain Expert,1,0,"Hi, lexical inference means that the inference is focused on lexical semantics.",Intro
+Domain Expert,3,0,That is a good question.,Give_Opinion
+Domain Expert,3,1,Let me clarify: It is a binary classification task.,Reply_Info
+Domain Expert,3,2,So the labels are entailment vs. non-entailment.,Reply_Info
+Domain Expert,5,0,"No, they propose new models based on pretrained language models for the task.",Reply_Info
+Domain Expert,5,1,They evaluate them on two existing benchmarks.,Reply_Info
+Domain Expert,7,0,The task inputs are fed to the language models in a context of textual patterns corresponding the two classes of the task.,Give_Opinion
+Domain Expert,7,1,This outperforms approaches that do not use these patterns.,Give_Opinion
+Domain Expert,7,2,What do you think about this pattern-based approach?,Ask_Rebuttal
+Domain Expert,9,0,"Yes, this is like ""prompts"".",Reply_Info
+Domain Expert,9,1,"The additional tokens can be before the two sentences, between them, after them, or a combination of the three.",Reply_Info
+Domain Expert,11,0,There are no large-scale training set for the LIiC task.,Reply_Info
+Domain Expert,13,0,Thank you for your interest!,Outro
+Proponent,0,0,"hello there, what exactly is the main contribution of the paper?",Intro
+Proponent,0,0,"hello there, what exactly is the main contribution of the paper?",Ask_Info
+Proponent,2,0,do you have some sort of definition of argument mining to give me some background?,Ask_Info
+Proponent,4,1,i was wondering how previously mentioned techniques could be employed in the context of argument mining.,Ask_Info
+Proponent,6,0,"therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",Give_Opinion
+Proponent,6,0,"therefore the idea is to encoded relations in a symbolic way and learn the importance of these relations along with the data-driven approach of deep learning, is that correct?",Ask_Rebuttal
+Proponent,8,0,"this is indeed quite interesting, i think i've seen many frameworks in this direction.",Give_Opinion
+Proponent,8,1,I was wondering if suggested approach (at least current draft) scales well with samples and the number of relations.,Ask_Info
+Proponent,8,2,This is indeed one crucial point to me,Give_Opinion
+Domain Expert,1,0,Hello!,Intro
+Domain Expert,1,1,"This is a position paper which proposes to use neuro-symbolic and relational learning techniques to address the tasks in argumentation mining
+ Facts:",Reply_Info
+Domain Expert,3,0,Sure!,Reply_Info
+Domain Expert,3,1,Argument mining is a research area in NLP which aims to extract arguments from unstructured text.,Reply_Info
+Domain Expert,5,0,"Many argument graphs follow some typical rules (i.e., a premise supports a claim, but not the other way round).",Reply_Info
+Domain Expert,5,1,"These rules could be easily encoded in some symbolic language, and used in combination with neural networks or other classifiers.",Reply_Info
+Domain Expert,7,0,"Yes, indeed.",Give_Opinion
+Domain Expert,7,1,Do you think this might be an interesting research direction?,Ask_Rebuttal
+Domain Expert,9,0,True: scalability is an issue in most neuro-symbolic applications.,Give_Opinion
+Domain Expert,9,1,"Unfortunately, we do not present experiments in this work, which is just a position paper.",Reply_Info
+Domain Expert,11,0,"It is worth mentioning that this goes into the direction widely recognized nowadays in AI of not relying just on deep learning for many tasks (even in NLP) but to introduce techniques that can exploit domain knowledge, and perform reasoning.",Give_Opinion
+Proponent,0,0,"Hi, it is an interesting paper title.",Intro
+Proponent,0,1,What kind of knowledge does domain knowledge refer to here.,Ask_Info
+Proponent,2,0,"Interesting, how are you injecting the domain knowledge?",Give_Opinion
+Proponent,2,0,"Interesting, how are you injecting the domain knowledge?",Ask_Info
+Proponent,4,0,Have been previous Machine Learning approaches been drastically failing on this kind of task?,Ask_Info
+Proponent,6,0,"Yes, what are their advantages.",Ask_Info
+Proponent,8,0,But for some cases you still require domain knowledge?,Ask_Info
+Proponent,8,1,How did you test that?,Ask_Info
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,We refer to the knowledge supplied by the expert when designing a Constraint Satisfaction Problem.,Reply_Info
+Domain Expert,3,0,We have developed a technique inspired by Constraint Programming.,Reply_Info
+Domain Expert,5,0,"Actually, they struggle to provide feasible assignements but they have some advantages.",Reply_Info
+Domain Expert,5,1,Do you want to know which ones?,Ask_Suggestion
+Domain Expert,7,0,They can take into account some constraints that are not easy to be modelled by the domain expert but that are satisfied in past solutions.,Reply_Info
+Domain Expert,9,0,"Unfortunately, I have not enough information to answer your question.",Reply_Info
+Proponent,0,0,Hi!,Intro
+Proponent,0,0,Hi!,Intro
+Proponent,0,1,What is the constrained problem mentioned in the title?,Ask_Info
+Proponent,2,0,"Yes, please.",Reply_Info
+Proponent,2,1,What is Partial Latin Square completion problem?,Ask_Info
+Proponent,4,0,Thank you for the explanation.,Reply_Info
+Proponent,4,1,"Then, what is the domain knowledge in this case?",Ask_Info
+Proponent,6,0,I see.,Reply_Info
+Proponent,6,1,"Then, how do they inject the domain knowledge in the neural network?",Ask_Info
+Proponent,8,0,"so, is it done by adding the constraints in the loss function?",Ask_Info
+Proponent,10,0,it seems fine since it is possible to obtain domain knowledge.,Give_Opinion
+Proponent,10,1,But I'm not sure whether it is possible to adapt this approach to other domains such as NLP or computer vision.,Give_Opinion
+Proponent,10,2,What do you think?,Ask_Rebuttal
+Proponent,12,0,I see.,Reply_Info
+Proponent,12,1,Thank you for your explanations.,Outro
+Proponent,12,2,Good bye,Outro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,We consider the Partial Latin Square completion problem.,Reply_Info
+Domain Expert,1,2,Do you want to know how does it work?,Ask_Suggestion
+Domain Expert,3,0,"It requires to complete a partially filled NxN square with all the values in the range from 1 to N, preventing the same value to appear more than once in the same row or column.",Reply_Info
+Domain Expert,5,0,It is the declarative formulation of the constrained problem.,Reply_Info
+Domain Expert,7,0,Our method is inspired by Constraint Programming.,Reply_Info
+Domain Expert,9,0,I am sorry but I have not enough information to answer your question.,Reply_Info
+Domain Expert,9,1,Do you think that the Partial Latin Square is a suitable benchmark?,Ask_Rebuttal
+Domain Expert,11,0,I think that the main application are Constraints Satisfaction Problems.,Give_Opinion
+Domain Expert,13,0,Bye!,Outro
+Proponent,0,0,Hi,Intro
+Proponent,0,0,Hi,Intro
+Proponent,2,0,Is this work about natural language processing or social sciences?,Ask_Info
+Proponent,4,0,How is the study conducted?,Ask_Info
+Proponent,6,0,How many annotators were involved in corpus creation?,Ask_Info
+Proponent,8,0,Interesting work.,Give_Opinion
+Proponent,8,1,What features are more indicative of parody?,Ask_Info
+Proponent,10,0,"There may be some links to other NLP tasks, like irony detection.",Give_Opinion
+Proponent,10,1,What do you think?,Ask_Rebuttal
+Proponent,12,0,How about fact checking?,Ask_Rebuttal
+Proponent,14,0,Great work.,Give_Opinion
+Proponent,14,1,Thanks for the chat,Outro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,3,0,This is work about natural language processing.,Reply_Info
+Domain Expert,5,0,"First, we are collecting data from Twitter.",Reply_Info
+Domain Expert,5,1,"Then, we perform on analysis of the data.",Reply_Info
+Domain Expert,5,2,"Finally, we train models on our data to predict whether a tweet is parody or not.",Reply_Info
+Domain Expert,7,0,The corpus was created by automatically retrieving tweets from parody accounts.,Reply_Info
+Domain Expert,7,1,Parody accounts were identified by the authors of this work.,Reply_Info
+Domain Expert,7,2,"In total, 4 researchers took a look at the data.",Reply_Info
+Domain Expert,9,0,In our work we examine political parody.,Reply_Info
+Domain Expert,9,1,"In political parody, exaggerated views and caricatures are the main features.",Reply_Info
+Domain Expert,9,2,"Posts are also made to mimic real facts, but with a humorous twist.",Reply_Info
+Domain Expert,11,0,I agree with this statement.,Give_Opinion
+Domain Expert,11,1,"Irony can be used to make a parody post, so detecting irony could facilitate better parody detection as well.",Give_Opinion
+Domain Expert,13,0,"While fact checking could definitely help, I believe we would not get enough use out of fact checking.",Give_Opinion
+Domain Expert,13,1,Verifying facts can be very challenging and gains would be minimal.,Give_Opinion
+Domain Expert,13,2,"Furthermore, while parody can indeed be misinterpreted as facts, it mostly relies on the style of writing (ie.",Give_Opinion
+Domain Expert,13,3,mimicking the real politician) and not so much the content.,Give_Opinion
+Domain Expert,15,0,"Thank you, have a nice day!",Outro
+Proponent,0,0,"Hi, how is political parody defined the paper?",Intro
+Proponent,0,0,"Hi, how is political parody defined the paper?",Ask_Info
+Proponent,2,0,Can it be detected automatically in social media posts?,Ask_Info
+Proponent,4,0,Can the model distinguish political parody from other forms of parody?,Ask_Rebuttal
+Proponent,4,1,"The definition seemed to allow for non-political parody, too.",Give_Opinion
+Proponent,6,0,I see.,Reply_Info
+Proponent,6,1,"So the model distinguishes political parody from other posts without any parody, yes?",Ask_Rebuttal
+Proponent,6,2,Is it possible that the model only detects the political topic without learning about parody at all?,Ask_Info
+Proponent,8,0,That is very interesting.,Give_Opinion
+Proponent,8,1,The resource sounds very useful.,Give_Opinion
+Proponent,8,2,Are there annotations on the tweet-level or do you assume that a parody account only tweets parody and the others don't?,Ask_Info
+Proponent,8,3,Could the model be fooled into an author identification task?,Ask_Info
+Proponent,10,0,That is very convincing.,Give_Opinion
+Proponent,10,1,Thank you for the explanations.,Reply_Info
+Proponent,10,2,Could you tell me a bit about the analyzing part?,Ask_Info
+Domain Expert,1,0,Parody is defined as a means to mimic behavior of a target for comedic purposes.,Reply_Info
+Domain Expert,3,0,It can!,Reply_Info
+Domain Expert,3,1,In this work we show that we can reach an F1 score of up to 90% using neural-based deep learning methods.,Reply_Info
+Domain Expert,5,0,"Here we only collected political parody data, so the models only learn to identify data in that domain.",Give_Opinion
+Domain Expert,5,1,We have not investigated whether the same model could detect general parody.,Give_Opinion
+Domain Expert,5,2,"I believe that while it is possible to detect non-political parody, more general data would be needed for that task.",Give_Opinion
+Domain Expert,7,0,The data is all in the political domain.,Reply_Info
+Domain Expert,7,1,Data comes from politician accounts as well as political parody accounts.,Reply_Info
+Domain Expert,7,2,"So, the model operates entirely within the political domain, and learns to separate between parody and non-parody data.",Reply_Info
+Domain Expert,9,0,Annotations are on the account level.,Reply_Info
+Domain Expert,9,1,"That is, a parody account only tweets parody, while a real account only tweets normal speech.",Reply_Info
+Domain Expert,9,2,I do not believe this task will be reduced to author identification though.,Give_Opinion
+Domain Expert,9,3,"In our experiments, we also predict parody from previously unseen accounts (both parody and real) with the model performing well on those.",Reply_Info
+Domain Expert,9,4,This goes to show that the model is able to identify parody to an adequate level.),Give_Opinion
+Domain Expert,11,0,"We performed a linguistic analysis, showing that a major difference between politician and parody accounts is the use of first-person pronouns in parody accounts.",Reply_Info
+Domain Expert,11,1,"We also analyzed errors on the model's side, with humorous tweets from real politician's sometimes being confused for parody.",Reply_Info
+Proponent,0,0,Hi!,Intro
+Proponent,0,0,Hi!,Intro
+Proponent,0,1,What is this paper about?,Ask_Info
+Proponent,2,0,What architecture is used for question generation?,Ask_Info
+Proponent,4,0,How about the metrics?,Ask_Info
+Proponent,4,1,How are results measured?,Ask_Info
+Proponent,6,0,"I think it makes sense, and it also seems to work.",Give_Opinion
+Proponent,6,1,Anything else worth mentioning about this paper?,Ask_Suggestion
+Proponent,8,0,Thank you for the clarification.,Reply_Info
+Proponent,8,1,The intuition makes sense.,Give_Opinion
+Proponent,8,2,Bye,Outro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,The goal of this paper is to improve question generation by dividing the task into two: interrogative word prediction and the generation of the rest of the question.,Reply_Info
+Domain Expert,3,0,The exact architecture of the question generation model is not described in the Introduction.,Reply_Info
+Domain Expert,5,0,It is mentioned that their approach achieves a new state-of-the-art on SQuAD using the metrics METEOR and ROUGE-L. What do you think about their hypothesis?,Ask_Rebuttal
+Domain Expert,5,0,It is mentioned that their approach achieves a new state-of-the-art on SQuAD using the metrics METEOR and ROUGE-L. What do you think about their hypothesis?,Reply_Info
+Domain Expert,5,1,Does it make sense for you to generate the interrogative word independently?,Ask_Rebuttal
+Domain Expert,7,0,I think that's all.,Reply_Info
+Domain Expert,7,1,They mentioned that their hypothesis makes the generation of the interrogative word easier since it's a classification task.,Reply_Info
+Domain Expert,9,0,Thank you.,Outro
+Domain Expert,9,1,Good bye,Outro
+Proponent,0,0,"hi, is the paper about question generation?",Intro
+Proponent,2,0,Why is interrogative classifier used in this model?,Intro
+Proponent,2,0,Why is interrogative classifier used in this model?,Ask_Info
+Proponent,4,0,"Yes, makes sense to me.",Give_Opinion
+Proponent,4,1,What data set is used to train a classifier?,Ask_Info
+Proponent,6,0,"As long as I know, SQuAD is a question-answering dataset.",Give_Opinion
+Proponent,6,1,I'm not sure if this dataset is suitable for question word clarification.,Intro
+Proponent,6,1,I'm not sure if this dataset is suitable for question word clarification.,Give_Opinion
+Proponent,6,2,What do you think?,Intro
+Proponent,6,2,What do you think?,Ask_Rebuttal
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,Yes!,Reply_Info
+Domain Expert,1,2,It is.,Reply_Info
+Domain Expert,3,0,That is a good question!,Give_Opinion
+Domain Expert,3,1,They argue that classifying the interrogative word is easier that generating it along with the rest of the question.,Reply_Info
+Domain Expert,3,2,What do you think about this intuition?,Intro
+Domain Expert,3,2,What do you think about this intuition?,Ask_Rebuttal
+Domain Expert,3,3,Does it make sense for you?,Ask_Rebuttal
+Domain Expert,5,0,They conduct experiments on SQuAD.,Reply_Info
+Domain Expert,5,1,Do you think SQuAD is a good benchmark for this?,Intro
+Domain Expert,5,1,Do you think SQuAD is a good benchmark for this?,Ask_Rebuttal
+Domain Expert,7,0,"It is not clarification, but prediction.",Give_Opinion
+Domain Expert,7,1,"Since SQuAD includes questions, answers, and context, it would be possible to use the answers to create questions for them.",Give_Opinion
+Proponent,0,0,"Hi, what is the paper about?",Intro
+Proponent,0,0,"Hi, what is the paper about?",Ask_Info
+Proponent,0,0,"Hi, what is the paper about?",Intro
+Proponent,2,0,"That is interesting, how are the annotators then training during the annotation?",Give_Opinion
+Proponent,4,0,So the difficulty of their annotations increment over time.,Give_Opinion
+Proponent,4,1,Do you think this comes with an increase in total annotation time for the coder?,Ask_Rebuttal
+Proponent,6,0,"Ok, that's what I wanted to know.",Reply_Info
+Proponent,6,1,Another point I would be interested is how do you assess the difficulty of a sample?,Ask_Info
+Proponent,6,2,Like how do you determine the order of data you show the annotator?,Ask_Info
+Proponent,8,0,How do the non-adaptive measures perform compared to the adaptive ones?,Ask_Info
+Domain Expert,1,0,"Hi, the paper is about investigating strategies that implicitly train annotators during their annotations.",Intro
+Domain Expert,1,0,"Hi, the paper is about investigating strategies that implicitly train annotators during their annotations.",Intro
+Domain Expert,1,0,"Hi, the paper is about investigating strategies that implicitly train annotators during their annotations.",Reply_Info
+Domain Expert,3,0,The basic idea comes from curriculum learning that aims to provide exercises to a (human) learner in an ordering that matches their learning proficiency.,Reply_Info
+Domain Expert,3,1,Our goal is to implement such a learning curriculum for annotation studies by assessing the difficulty of annotated instances.,Reply_Info
+Domain Expert,5,0,"Sorry, I am not sure if I follow the question.",Give_Opinion
+Domain Expert,5,1,"By coder, do you mean the person setting up the study?",Ask_Rebuttal
+Domain Expert,5,2,If you mean the annotator; we restricted our experiments to a finite set of instances that is annotated.,Give_Opinion
+Domain Expert,5,3,So the total annotation time for annotating these instances does actually decrease with a good curriculum.,Give_Opinion
+Domain Expert,7,0,"To estimate the difficulty, we investigate several methods.",Reply_Info
+Domain Expert,7,1,"Non-adaptive ones like heuristics (e.g., sentence length) and adaptive ones that are models that are trained interactively to predict the annotation time (we use this as a proxy for difficulty).",Reply_Info
+Domain Expert,7,2,"Finally, in this work we only investigate easy-instances-first strategies, so the annotated instances are sorted in ascending difficulty.",Reply_Info
+Domain Expert,9,0,"Overall, we find that the heuristic ones perform quite well.",Reply_Info
+Domain Expert,9,1,"In fact, our best performing estimator was using the BERT mlm loss (this is not in the displayed text, but an analysis is provided in the results section).",Reply_Info
+Proponent,0,0,what is the main idea of the paper?,Ask_Info
+Proponent,2,0,can you describe how does the query be updated?,Ask_Info
+Proponent,4,0,"Yes, please tell me more how to deal long documents",Ask_Info
+Proponent,6,0,how does the model decide when to retrieve a sentence or a paragraph?,Ask_Info
+Domain Expert,1,0,Hello!,Intro
+Domain Expert,1,1,The main idea is to approach multi-hop and sequential question answering on long documents using semantic indexing and dense-space query updates.,Reply_Info
+Domain Expert,1,2,This enables end-to-end training and higher performance.,Reply_Info
+Domain Expert,3,0,"The query is updated, intuitively speaking, by computing the residual query information that is not covered by the answer of the previous hop.",Reply_Info
+Domain Expert,3,1,This happens in the embedding space using simple vector operations.,Reply_Info
+Domain Expert,3,2,Would you like to know more about how the system deals with long documents?,Ask_Suggestion
+Domain Expert,5,0,The transformer-based model ETC is used that is based on sparse attention.,Reply_Info
+Domain Expert,5,1,"This does not only allow longer input token length, but also enables modeling paragraphs (and hereby document structure) very naturally.",Reply_Info
+Domain Expert,7,0,Good question!,Give_Opinion
+Domain Expert,7,1,Both are represented in the vector space and the one most fitting one for the question is selected.,Reply_Info
+Proponent,0,0,"Hi, interesting paper title.",Intro
+Proponent,0,0,"Hi, interesting paper title.",Give_Opinion
+Proponent,0,1,How do you add the syntactic information into the word representations?,Ask_Info
+Proponent,2,0,Which kind of graph neural network do you experimented with?,Ask_Info
+Proponent,4,0,Do GCNs come with special properties which helps for the task?,Ask_Info
+Proponent,6,0,"Yes, please.",Reply_Info
+Proponent,6,1,Which objectives did the model try to solve?,Ask_Info
+Proponent,8,0,And which pre-trained word representations did you use?,Ask_Info
+Proponent,10,0,How did you evaluate the improvement of the new word representations?,Ask_Info
+Domain Expert,1,0,we build a syntactic graph neural model that takes pre-trained word representations as feature input.,Reply_Info
+Domain Expert,1,1,The pre-trained word representations and the GNN are used as contextualized word representations in downstream tasks.,Reply_Info
+Domain Expert,3,0,We use a graph convolutional neural network (GCN).,Reply_Info
+Domain Expert,5,0,The word graph is built on syntactic dependency and other types of connections such as word order connections.,Reply_Info
+Domain Expert,5,1,Do you want to know what objectives the model trained on?,Ask_Suggestion
+Domain Expert,7,0,The model is trained for part-of-speech tagging and syntactic dependency parsing.,Reply_Info
+Domain Expert,9,0,"Our model can take both static and contextualized word representations including GloVe, ELMo and BERT.",Reply_Info
+Domain Expert,11,0,We compare performance of using the word representations in the downstream tasks compared to using the base representations.,Reply_Info
+Domain Expert,11,1,The downstream tasks include a nested named entity recognition and two relation extraction tasks.,Reply_Info
+Proponent,0,0,Hi!,Intro
+Proponent,0,1,Thanks for joining.,Intro
+Proponent,0,2,Can you explain what is the main idea of the paper?,Ask_Info
+Proponent,2,0,What type of syntactic information do you use?,Ask_Info
+Proponent,2,1,Is it based on dependency or constituency?,Ask_Info
+Proponent,4,0,Sounds great!,Give_Opinion
+Proponent,4,1,What tasks do you test?,Ask_Info
+Proponent,6,0,Can you tell me why you only select part-of-speech and dependency as the syntactic information you want to use to help pretraining?,Ask_Rebuttal
+Proponent,8,0,Thanks for explaining.,Reply_Info
+Proponent,8,1,I love to see the results of injecting other types of information.,Give_Opinion
+Proponent,8,2,Do you think if it would be a good idea if you try to inject syntactic information beginning from pretraining from scratch?,Ask_Rebuttal
+Domain Expert,1,0,This paper proposes a method to incorporate syntactic information into pre-trained word representations using a graph neural network.,Reply_Info
+Domain Expert,3,0,We use part-of-speech and syntactic dependency.,Reply_Info
+Domain Expert,5,0,We evaluate the extracted word representations on a nested named entity recognition task and two relation extraction tasks.,Reply_Info
+Domain Expert,7,0,Previous work shows that part-of-speech and dependency are useful for downstream tasks.,Give_Opinion
+Domain Expert,7,1,"However, this doesn't limit the use of other information such as coreference in our model.",Give_Opinion
+Domain Expert,9,0,We cannot answer given the current content.,Reply_Info
+Domain Expert,9,1,"We can inject syntactic information during pre-training from scratch, however, this will cost more time and computational resources.",Reply_Info
+Domain Expert,9,2,Intermediate pretraining allows us to directly incorporate additional information into pre-trained models.,Reply_Info
+Proponent,0,0,Hello!,Intro
+Proponent,0,1,Interesting question as the title.,Give_Opinion
+Proponent,0,2,Do you have any conclusion in this paper?,Ask_Info
+Proponent,2,0,10 to 100 million is a rather large range of data.,Give_Opinion
+Proponent,2,1,What is the difference between learning from 10 or 100 million words?,Ask_Info
+Proponent,4,0,Can you tell me more about the information-theoretic probing?,Ask_Info
+Proponent,6,0,Which model did you use in your experiments?,Ask_Info
+Proponent,8,0,"Besides the finding regarding number of training data, do you also have other findings?",Ask_Info
+Proponent,10,0,"To integrate other forms of knowledge in a less data scenario, does the model require labeled data?",Ask_Rebuttal
+Proponent,10,1,Can we include such knowledge by defining knowledge-specific objectives and learning on the unlabeled data?,Ask_Rebuttal
+Domain Expert,1,0,Yes!,Reply_Info
+Domain Expert,1,1,"We show that most linguistic features can be learned with training data between 10 million and 100 million, while the rest requires more.",Reply_Info
+Domain Expert,3,0,The performances of our four testing cases related to syntactic information leverage the most compared to other scales.,Reply_Info
+Domain Expert,5,0,Sorry but I can only answer the questions where I can find in the abstract or introduction.,Reply_Info
+Domain Expert,9,0,We also find that commonsense knowledge could be a direction guiding pretraining of language models.,Reply_Info
+Domain Expert,11,0,"I believe we can define specific objectives regarding this, though we didn't mention what exactly to do in the paper.",Give_Opinion
+Proponent,0,0,"Hello there, what are some examples for explicit dialogue act labels?",Intro
+Proponent,0,0,"Hello there, what are some examples for explicit dialogue act labels?",Ask_Info
+Proponent,2,0,How is dialogue coherence defined?,Ask_Info
+Proponent,4,0,"I see, and how do authors suggest evaluating dialogue coherence without using ecplicit labels?",Ask_Info
+Proponent,6,0,"Sounds like an interesting approach, what type of models are examined for this purpose?",Give_Opinion
+Proponent,6,0,"Sounds like an interesting approach, what type of models are examined for this purpose?",Ask_Info
+Proponent,8,0,"Yes, I think it makes sense.",Give_Opinion
+Proponent,8,1,How do the models perform?,Ask_Info
+Proponent,8,2,Do the scores they give correlate with expectations?,Ask_Info
+Domain Expert,1,0,"Hi, The given text does not provide any specific example of DA.",Intro
+Domain Expert,1,0,"Hi, The given text does not provide any specific example of DA.",Reply_Info
+Domain Expert,1,1,"However, DA seems to related to what a speaker intention is of saying a sentence
+ Facts:",Reply_Info
+Domain Expert,3,0,dialogue coherence deals with the semantic and DA's relations between sentence in a dialogue.,Reply_Info
+Domain Expert,5,0,The remove DA labels from the test set.,Reply_Info
+Domain Expert,5,1,They perturb the order of sentences in a dialogue.,Reply_Info
+Domain Expert,7,0,"A neural model consisting of three modules: sentence encoder, coherence score prediction, and DA prediction.",Reply_Info
+Domain Expert,7,1,The model is trained in MTL regime.,Reply_Info
+Domain Expert,7,2,Does it make sense to you?,Ask_Rebuttal
+Domain Expert,9,0,the evaluation is performed on two datasets.,Reply_Info
+Domain Expert,9,1,On one the model outperforms the SoTA.,Reply_Info
+Domain Expert,9,2,On the other one the model works on par with SoTA.,Reply_Info
+Domain Expert,9,3,Do you think that alleviating the need for DA labels during evaluation is important?,Ask_Rebuttal
+Proponent,0,0,Hi!,Intro
+Proponent,0,0,Hi!,Intro
+Proponent,2,0,What is the paper about?,Ask_Info
+Proponent,4,0,Can you give me more details about the method?,Ask_Info
+Proponent,6,0,It seems a pretty nice idea!,Give_Opinion
+Proponent,6,1,How have you shown that the method work?,Ask_Info
+Proponent,8,1,Which evaluation metrics are employed?,Ask_Info
+Proponent,10,0,I think that can be done since the method has already demonstrated amazing results on quite different tasks and the aim is to learn general-purpose contextual representation.,Give_Opinion
+Proponent,10,1,What should we talk next?,Ask_Suggestion
+Proponent,12,0,Can you give more details about it?,Ask_Info
+Domain Expert,1,0,Hi,Intro
+Domain Expert,1,0,Hi,Intro
+Domain Expert,3,0,"This paper is about a novel pre-training method for QA
+ Facts:",Reply_Info
+Domain Expert,7,0,They test their method on zero-shot and few-shot QA as well as on other tasks that they frame as QA.,Reply_Info
+Domain Expert,9,0,Unfortunately I can't answer that.,Reply_Info
+Domain Expert,9,1,I wonder if this technique could be applied on other tasks.,Ask_Rebuttal
+Domain Expert,9,2,What do you think about that?,Ask_Rebuttal
+Domain Expert,11,0,Would you like to know about their data augmentation strategy?,Ask_Suggestion
+Domain Expert,13,0,They use a question generation model and train it on a QA dataset to increase the training data size.,Reply_Info
+Proponent,0,0,"Hi there, How do author suggest infusing question answering capabilities to language models during pretraining?",Intro
+Proponent,0,0,"Hi there, How do author suggest infusing question answering capabilities to language models during pretraining?",Ask_Info
+Proponent,2,0,"I see, do authors use a multi task learning regieme?",Ask_Info
+Proponent,2,1,What kind of objective do they suggest?,Ask_Info
+Proponent,4,0,"I see, do you think it makes sense for questions and passages that answer those questions to have similar representations?",Ask_Rebuttal
+Proponent,4,1,Or something more sophisticated is necessary?,Ask_Rebuttal
+Proponent,6,0,Sounds impressive results.,Give_Opinion
+Proponent,6,1,Do authors also experiment with fine-tuning the models after pretrainings?,Ask_Info
+Proponent,8,0,"I see, If I understand correctly, authors use some labelled data and perform some supervised training during the pretraining.",Give_Opinion
+Proponent,8,1,Is this correct?,Ask_Info
+Proponent,10,0,and do they also compare or combine their pretraining approach with finetuning approach?,Ask_Info
+Proponent,12,0,"thansk, that is all I wanted to know, Bye :D",Outro
+Proponent,12,0,"thansk, that is all I wanted to know, Bye :D",Outro
+Domain Expert,3,0,Their objective is based on the notion that a question and all the passages that answer the question should have a similar representation.,Reply_Info
+Domain Expert,5,0,"It seems to make sense, as they report strong performance on QA and other tasks framed as QA.",Give_Opinion
+Domain Expert,7,0,I think they mostly do few-shot experiments.,Give_Opinion
+Domain Expert,9,0,"Yes, in fact they use a data augmentation approach, where they first generate questions from context passages, then train a cross-encoder to answer these questions and finally use the cross-encoder outputs to pre-train their model.",Reply_Info
+Domain Expert,11,0,"I think yes, but I don't have more information on this unfortunately.",Give_Opinion
+Domain Expert,11,0,"I think yes, but I don't have more information on this unfortunately.",Reply_Info
+Domain Expert,13,0,Bye,Outro
+Domain Expert,13,0,Bye,Outro
+Proponent,0,0,"Hi, what is the subject of this article?",Intro
+Proponent,0,0,"Hi, what is the subject of this article?",Ask_Info
+Proponent,0,0,"Hi, what is the subject of this article?",Intro
+Proponent,2,0,This sounds quite interesting.,Give_Opinion
+Proponent,2,1,What is this new pre-training objective?,Ask_Info
+Proponent,4,1,Do they use already existing datasets or did they provide one on their own?,Ask_Info
+Proponent,6,0,Okay.,Outro
+Proponent,6,1,"This sounds computational expensive, doesn't it?",Give_Opinion
+Proponent,6,1,"This sounds computational expensive, doesn't it?",Ask_Info
+Proponent,8,0,Okay.,Outro
+Proponent,8,1,Do they only use RoBERTa as pre-trained language model?,Ask_Info
+Proponent,10,0,Yes.,Reply_Info
+Proponent,12,0,Okay.,Outro
+Proponent,12,1,Thank you for your time!,Outro
+Domain Expert,1,0,"Hi, this article is about a novel pre-training method based on question answering.",Intro
+Domain Expert,1,0,"Hi, this article is about a novel pre-training method based on question answering.",Intro
+Domain Expert,3,0,The new pre-training objective is based on the intuition that the representation of a phrase in a passage should be similar to the representations of the questions it answers.,Reply_Info
+Domain Expert,5,0,They use an existing dataset to train a question generation model.,Reply_Info
+Domain Expert,7,0,"Yes, but I think the question generation needs to be done only once to generate the pre-training data, then the model can be used in zero-shot and few-shot settings.",Reply_Info
+Domain Expert,7,1,"Also it is trained as a bi-encoder, which is more efficient than a cross-encoder.",Reply_Info
+Domain Expert,9,0,You mean as a comparison?,Ask_Info
+Domain Expert,11,0,In the information I have only Roberta is named.,Reply_Info
+Domain Expert,13,0,"Sure, thank you for your interest!",Outro
+Proponent,0,0,"Hi, what is this paper about?",Intro
+Proponent,0,0,"Hi, what is this paper about?",Ask_Info
+Proponent,2,0,This sounds quite interesting.,Give_Opinion
+Proponent,2,2,How much sentences can such an interaction span?,Ask_Info
+Proponent,4,1,Which models are used?,Ask_Info
+Proponent,4,2,"I can imagine that they build upon pre-trained language models, did they?",Give_Opinion
+Proponent,4,2,"I can imagine that they build upon pre-trained language models, did they?",Ask_Info
+Proponent,6,1,Did they use existing datasets or do they provide one on their own?,Ask_Info
+Proponent,8,0,"In the title, it is said, that they are using an ensemble of models but from our discussion I understood that they just trained different approaches and compared them with each other.",Give_Opinion
+Proponent,8,1,Is that correct?,Ask_Info
+Proponent,10,0,"Ah, okay.",Outro
+Proponent,10,1,Thanks for your time!,Outro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,This papers presents an ensemble of three deep learning models for extracting interactions between drugs and medical entities.,Reply_Info
+Domain Expert,1,2,The interactions can be within sentence or across sentences.,Reply_Info
+Domain Expert,3,0,"Unfortunately, the presented text doesn't include such information.",Reply_Info
+Domain Expert,3,2,Do you want to know which models are used for intra- and inter-sentence relation extraction?,Ask_Suggestion
+Domain Expert,5,0,"Not at all, these models only use static pre-trained word representations.",Reply_Info
+Domain Expert,5,1,The intra-sentence models are BiLSTM-based with attention mechanisms.,Reply_Info
+Domain Expert,5,2,The inter-sentence model is a Transformer-based network but not initialized by a pre-trained model.,Reply_Info
+Domain Expert,7,0,The data is from the n2c2 shared-task.,Reply_Info
+Domain Expert,9,0,An ensemble approach is used to combine these models.,Reply_Info
+Domain Expert,11,0,Thanks!,Outro
+Proponent,0,0,Hi!,Intro
+Proponent,0,1,Can you explain the main idea of the paper?,Ask_Info
+Proponent,2,0,Interesting!,Give_Opinion
+Proponent,2,1,I was wondering what kinds of model are you doing with the ensemble method?,Ask_Info
+Proponent,4,1,How do you ensemble model/model predictions?,Ask_Info
+Proponent,6,1,Would you like to explain how you do the analysis/ablation study if the information is available?,Ask_Info
+Proponent,8,0,Good to hear about systems with more training data.,Give_Opinion
+Proponent,8,1,Did you check how the pretraining affect this generalization?,Ask_Info
+Domain Expert,1,0,This paper presents an ensemble of different models for the extraction of relations between drugs and medical entities.,Reply_Info
+Domain Expert,3,0,We use different models for intra- and inter-sentence relation extraction.,Reply_Info
+Domain Expert,3,1,The intra-sentence models are based on BiLSTM with attention mechanisms.,Reply_Info
+Domain Expert,3,2,The inter-sentence model is a Transformer-based one.,Reply_Info
+Domain Expert,5,0,"Unfortunately, the presented text doesn't have information regarding the ensemble method.",Reply_Info
+Domain Expert,7,0,We have analysis showing that our approach is more generalized than systems with more training data.,Reply_Info
+Domain Expert,7,1,"We also show that the use of implicit drug-drug interactions, which are not annotated, improve the performance of extracting relations between drugs and medical entities.",Reply_Info
+Domain Expert,9,0,"Sorry, the current text cannot address this question.",Reply_Info
+Proponent,0,0,"Hi, interesting paper title.",Intro
+Proponent,0,1,What kind of deep learning methods did you use?,Ask_Info
+Proponent,2,0,Relation extraction usually requires that you find named entities.,Give_Opinion
+Proponent,2,1,Do you assume the named entities are given?,Ask_Info
+Proponent,4,0,And why do you use ensemble methods?,Ask_Info
+Proponent,4,1,Is a simple deep network not enough?,Ask_Info
+Proponent,6,0,How well are these methods doing?,Ask_Info
+Proponent,8,0,This is a high F1 score.,Give_Opinion
+Proponent,8,1,Are there any other advantages you observed during the experiments?,Ask_Info
+Domain Expert,1,0,We use BiLSTM with attention mechanisms in intra-sentence models and Transformer-based network for inter-sentence relation extraction.,Reply_Info
+Domain Expert,3,0,We have two scenarios.,Reply_Info
+Domain Expert,3,1,One uses named entity recognition models to obtain entities.,Reply_Info
+Domain Expert,5,0,"We use separate models to deal with intra- and inter-sentence relations, which performs better than using a single model.",Reply_Info
+Domain Expert,7,0,Our approach gets 94.72% in terms of micro-averaged F1 score for relation extraction and 87.65% for end-to-end RE.,Reply_Info
+Domain Expert,9,0,"Yes, there are some interesting findings.",Give_Opinion
+Domain Expert,9,1,We show that our approach is more generalized than systems with more training data or additional processing techniques.,Reply_Info
+Domain Expert,9,2,We also present the usefulness of implicit drug-drug interactions (which are not annotated) for extracting relations between drugs and medical entities.,Reply_Info
+Proponent,0,0,"Hi, what is this work about?",Intro
+Proponent,0,0,"Hi, what is this work about?",Ask_Info
+Proponent,0,0,"Hi, what is this work about?",Intro
+Proponent,2,0,What do you mean with position information?,Ask_Info
+Proponent,2,1,Like indices of tokens?,Ask_Info
+Proponent,4,0,So what approaches of encoding position information does this work investigate?,Ask_Info
+Proponent,6,0,"Yes, some examples would be great!",Ask_Info
+Proponent,8,0,"So between those two, what works better and for which tasks?",Ask_Info
+Proponent,10,0,Then let me ask a different question; is there a possibility of including positional information can hurt the model's performance?,Ask_Info
+Proponent,10,1,Has this been observed?,Ask_Info
+Proponent,12,0,"Good question, I'd expect that in situations where positional information does not matter, models may get biased with additional noise.",Give_Opinion
+Proponent,14,0,Maybe an attention based approach that is explicitly trained in both kind of tasks could handle them separately.,Give_Opinion
+Proponent,14,1,What do you think?,Ask_Rebuttal
+Domain Expert,1,0,"Hi, it is about the Transformer model and specifically about ways to encode position information.",Intro
+Domain Expert,1,0,"Hi, it is about the Transformer model and specifically about ways to encode position information.",Intro
+Domain Expert,1,0,"Hi, it is about the Transformer model and specifically about ways to encode position information.",Reply_Info
+Domain Expert,3,0,"Yes, I mean word order.",Reply_Info
+Domain Expert,3,1,A sentence only makes sense in the right order.,Reply_Info
+Domain Expert,3,2,A bag of words is ambiguous.,Reply_Info
+Domain Expert,5,0,There is a large variety of position models that is investigated.,Reply_Info
+Domain Expert,5,1,One contribution of the paper is to show this variety.,Reply_Info
+Domain Expert,5,2,Shall I give you some examples?,Ask_Suggestion
+Domain Expert,7,0,Position embeddings representing absolute token index or the relative distance between tokens is an example.,Reply_Info
+Domain Expert,7,1,Another is injecting this information into the self-attention matrix.,Reply_Info
+Domain Expert,7,2,"One work also uses an RNN to ""positionalize"" the input.",Reply_Info
+Domain Expert,9,0,"Unfortunately, I do not have access to that information.",Reply_Info
+Domain Expert,11,0,This is an interesting question.,Give_Opinion
+Domain Expert,11,1,"For natural language, this does not seem to be the case.",Give_Opinion
+Domain Expert,11,2,What do you think about that?,Ask_Rebuttal
+Domain Expert,13,0,I agree.,Give_Opinion
+Domain Expert,13,1,A task like this should have a lightweight position model if any.,Give_Opinion
+Domain Expert,15,0,"In my opinion, the invariance to order can also be a strength for certain tasks.",Give_Opinion
+Domain Expert,15,1,But I think it would be harder for an attention-based approach to ignore the position model if it is once trained without and once trained with it.,Give_Opinion
+Domain Expert,15,2,Was this your suggestion?,Ask_Rebuttal
+Proponent,0,0,"Hi, the title sounds interesting, can you tell me more about the paper?",Intro
+Proponent,0,0,"Hi, the title sounds interesting, can you tell me more about the paper?",Ask_Info
+Proponent,2,1,"Is it a pure literature review of different ways to encode position in transformers, or do the authors also conduct experiments?",Ask_Info
+Proponent,4,0,"Ah I see, so they state if there are better and worse ones?",Ask_Info
+Proponent,6,0,Do they state if there are particular things to look out for when working with long documents?,Ask_Info
+Proponent,8,0,Ah that is interesting.,Give_Opinion
+Proponent,8,1,Is there a specific purpose for the paper?,Ask_Info
+Proponent,10,0,Is there a predominant method for position encodings that most people use?,Ask_Info
+Domain Expert,1,0,"Hi, I agree that the title sounds interesting.",Intro
+Domain Expert,1,1,The main topic of the paper is the Transformer model.,Reply_Info
+Domain Expert,1,2,Do you need information on this model?,Ask_Suggestion
+Domain Expert,3,0,It is a survey paper.,Reply_Info
+Domain Expert,3,1,The main contribution is a theoretical overview of existing position models and no empirical analysis.,Reply_Info
+Domain Expert,5,0,I do not think that the main goal is to define better or worse.,Give_Opinion
+Domain Expert,5,1,It is more about identifying similarities and differences (supported by the unified notation).,Reply_Info
+Domain Expert,5,2,They do have a discussion on matching a given task to a certain kind of application though.,Reply_Info
+Domain Expert,7,0,I do not have access to any concrete findings.,Reply_Info
+Domain Expert,7,1,But the position models of long document Transformers are certainly part of the survey.,Reply_Info
+Domain Expert,7,2,The authors state that they aim to complete the paper with newly published papers.,Reply_Info
+Domain Expert,9,0,They main purpose is to highlight the similarities and differences in existing position models.,Reply_Info
+Domain Expert,9,1,"In that way, new possibilities for position encodings might be more evident.",Reply_Info
+Domain Expert,9,2,I think this work can be useful for the creators of new models.,Give_Opinion
+Domain Expert,11,0,"No, not really.",Reply_Info
+Domain Expert,11,1,"There is a lot going on and even ""old"" position models sometimes come back in a slight variant because they have a specific property that is useful for a new model or task.",Reply_Info
+Proponent,0,0,"Hi, what are information-seeking questions?",Intro
+Proponent,0,0,"Hi, what are information-seeking questions?",Ask_Info
+Proponent,2,0,Can you give an example for that?,Ask_Info
+Proponent,4,0,"Yes, please tell me more about how the data was collected and annotated.",Ask_Info
+Proponent,6,0,Was there any quality assurance process included between both steps?,Ask_Info
+Proponent,8,0,"Hm, too bad.",Give_Opinion
+Proponent,8,1,"If we don't know how good the data is, doesn't this make it difficult to assess the performance of any model?",Ask_Rebuttal
+Proponent,10,0,"Hm, interesting.",Give_Opinion
+Proponent,10,1,What models were investigated and on which QA tasks were they evaluated?,Ask_Info
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,1,Information seeking questions are goal-priented questions that seek for specific information in a specific paper unlike e.g.,Reply_Info
+Domain Expert,1,2,open domain questions.,Reply_Info
+Domain Expert,3,1,"An example would be your initial question ""What are information-seeking questions?"".",Ask_Info
+Domain Expert,3,2,For this data a set of NLP experts was asked to come up with  questions on a paper based on title and abstract.,Ask_Info
+Domain Expert,3,3,Would you like to know more about the annotation process?,Ask_Suggestion
+Domain Expert,5,0,For a limited set of papers the first set of NLP experts would come up with the mentioned information-seeking questions.,Reply_Info
+Domain Expert,5,1,Another set of experts was then presented the questions and had to write an answer and provide evidence from the paper (if possible).,Reply_Info
+Domain Expert,7,0,I cannot answer this from abstract and introduction.,Reply_Info
+Domain Expert,7,1,"But you might be interested in model performance on the data, right?",Ask_Rebuttal
+Domain Expert,9,0,"Yes, this is very true.",Give_Opinion
+Domain Expert,9,1,"In fact, the model performance is rather low, suggesting possibly a very high complexity of the task - or possibly an ill-defined task setup.",Give_Opinion
+Domain Expert,11,0,LED and IR-baselines were used.,Reply_Info
+Domain Expert,11,1,The dataset combines multiple question types that require yes/no answers or full sentences from the paper.,Reply_Info
+Proponent,0,0,Hi!,Intro
+Proponent,0,0,Hi!,Intro
+Proponent,2,0,What is the paper about?,Ask_Info
+Proponent,4,0,Can you give me more information about what a position model is?,Ask_Info
+Proponent,6,0,"So embeddings and self-attention manipulations are the main position modes, is it correct?",Give_Opinion
+Proponent,6,0,"So embeddings and self-attention manipulations are the main position modes, is it correct?",Ask_Info
+Proponent,8,0,Does the authors provide a common benchmark to compare the methods?,Ask_Info
+Proponent,10,0,I think the theoretical comparison is much more important than the experimental one.,Give_Opinion
+Proponent,10,1,Which one of two categories of position models is better?,Ask_Info
+Proponent,12,0,I was wondering if one of the two is more spread than the other.,Ask_Info
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,1,0,Hi!,Intro
+Domain Expert,3,0,The paper is about position models in the Transformer architecture.,Reply_Info
+Domain Expert,5,0,The Transformer itself cannot see the order of its input tokens.,Reply_Info
+Domain Expert,5,1,A position model is what helps the Transformer to see the order.,Reply_Info
+Domain Expert,5,2,This can be embeddings or other manipulations of the self-attention.,Reply_Info
+Domain Expert,7,0,"Yes, this is correct.",Reply_Info
+Domain Expert,7,1,There are a lot of variants but these are the two main categories.,Reply_Info
+Domain Expert,9,0,"No, there is no empirical evaluation mentioned.",Reply_Info
+Domain Expert,9,1,But they compare the methods on a theoretical level.,Reply_Info
+Domain Expert,9,2,They also characterize which position model should go with what type of application.,Reply_Info
+Domain Expert,9,3,Do you think this is useful without a new benchmark?,Ask_Rebuttal
+Domain Expert,11,0,I agree that the theoretical comparison can give a lot of insights.,Give_Opinion
+Domain Expert,11,1,"I do not think that it can really answer the question which position model is ""best"".",Give_Opinion
+Domain Expert,11,2,"What criterion for ""being best"" do you have in mind?",Ask_Info
+Domain Expert,13,0,I do not have information about the frequency that the different types of position models occur.,Reply_Info
+Domain Expert,13,1,I believe that showing the large variety of models and analyzing their differences and common points is the main contribution of the paper.,Give_Opinion
+Proponent,0,0,Hi!,Intro
+Proponent,0,1,What is the main idea of the paper?,Ask_Info
+Proponent,2,0,"Yes, that sounds very smart!",Give_Opinion
+Proponent,2,1,Is the effect of potential biases introduced this way investigated?,Ask_Info
+Proponent,4,0,"Yes, it does!",Give_Opinion
+Proponent,4,1,I see that the underlying data domain are tweets on Covid-19 -- can you tell me more about the dataset used?,Ask_Info
+Proponent,6,1,"I think it seems like a moderately difficult task, although I could imagine there are some ambiguities.",Give_Opinion
+Proponent,6,2,I would say it is fitting.,Give_Opinion
+Proponent,6,3,Can you tell me how the different sorting strategies looked like?,Ask_Info
+Proponent,8,0,"Yes, while it might not cover the whole complexity of difficulty this is the quantity we are most interested in the end.",Give_Opinion
+Proponent,8,1,Time and hereby money for annotation.,Give_Opinion
+Proponent,8,2,"I am wondering, did the annotation quality of the ""non-trained"" annotators increase towards the end of the study too?",Ask_Info
+Domain Expert,1,0,The main idea of this paper is to train annotators by sorting annotations by e.g.,Reply_Info
+Domain Expert,1,1,their difficulty so that they are gradually  introduced to the annotation project.,Reply_Info
+Domain Expert,1,2,Do you think that is a reasonable idea?,Ask_Rebuttal
+Domain Expert,3,0,We conducted a carefully constructed user study with 40 participants that showed improvements using our methods compared to not sorting and we saw no big impact in annotation quality while reducing annotation speed.,Reply_Info
+Domain Expert,3,1,Does this answer your question?,Ask_Rebuttal
+Domain Expert,5,0,"This dataset is about misconceptions about Covid-19, e.g.",Reply_Info
+Domain Expert,5,1,that Ginger Ale can cure it.,Reply_Info
+Domain Expert,5,2,Annotators were presented a tweet that mentioned such a misconception and were asked to select the most fitting category from a list of 4.,Reply_Info
+Domain Expert,5,3,Do you think that is a good task to evaluate on?,Ask_Rebuttal
+Domain Expert,7,0,We sort by difficulty where difficulty comes either from heuristics like readability or masked language model score or learn to regress annotation times.,Reply_Info
+Domain Expert,7,1,Do you think annotation time is a good proxy for difficulty?,Ask_Rebuttal
+Domain Expert,9,0,"The annotation quality stayed mostly the same on a high level for all groups, we just measured improvement in annotation time.",Reply_Info
+Domain Expert,9,1,Do you have any more question?,Ask_Suggestion
+Proponent,0,0,"Hello, could you please tell me what is Annotation Curricula?",Intro
+Proponent,0,0,"Hello, could you please tell me what is Annotation Curricula?",Ask_Info
+Proponent,2,0,Sounds good but I'm not sure.,Give_Opinion
+Proponent,2,1,What kind of task does it use for?,Ask_Info
+Proponent,4,0,Sure tell me more about that.,Ask_Info
+Proponent,6,0,That's excellent.,Give_Opinion
+Proponent,6,1,So how do you measure annotation quality?,Ask_Info
+Proponent,8,0,Yes.,Give_Opinion
+Proponent,8,1,"And you also said you reduced annotation time, what's the baseline you compare to?",Ask_Info
+Proponent,10,0,"One last question, how many time did you reduce?",Ask_Info
+Domain Expert,1,0,Annotation curricula mean that we sort the instances to be annotated by their difficulty to gradually introduce annotators to the task and data.,Reply_Info
+Domain Expert,1,1,Do you think that is a good idea?,Ask_Rebuttal
+Domain Expert,3,0,"We use it to speed up annotation or sentence and paragraph level annotation tasks, e.g.",Reply_Info
+Domain Expert,3,1,"POS, NER or sentence classification.",Reply_Info
+Domain Expert,3,2,We also conduct a user study for that.,Reply_Info
+Domain Expert,3,3,Do you want to hear more about the user study?,Ask_Suggestion
+Domain Expert,5,0,We conduct a user study to test wheter annotation curricula work.,Reply_Info
+Domain Expert,5,1,The data is about selecting the most fitting misconception about Covid-19 from a list.,Reply_Info
+Domain Expert,5,2,We show that using our method significantly reduces annotation time while not hurting annotation quality.,Reply_Info
+Domain Expert,7,0,"We have the gold labels, so we compute accuracy.",Reply_Info
+Domain Expert,7,1,Does this sound reasonable?,Ask_Rebuttal
+Domain Expert,9,0,Our user study has 40 participants some get annotation curriula and others get random orders.,Reply_Info
+Domain Expert,9,1,We also have a warmup phase with a fixed order that is the same for all groups.,Reply_Info
+Domain Expert,9,2,Do you have any questions left?,Ask_Suggestion
+Domain Expert,11,0,We were able to reduce the time by around 20% when using gold order.,Reply_Info
+Proponent,0,0,What do you mean with low resource domain?,Ask_Info
+Proponent,2,0,"Interesting, I agree.",Give_Opinion
+Proponent,2,1,So how does this approach work?,Ask_Info
+Proponent,4,0,"Can you provide a more specific answer, like what algorithms are used and how the support comes in?",Ask_Info
+Proponent,6,0,Only partly.,Give_Opinion
+Proponent,6,1,Are the spans identified by the model as well or by the user?,Ask_Info
+Proponent,8,0,so the input is the selected span and the model provides a ranking for the labels?,Ask_Info
+Proponent,10,0,Sounds promising!,Give_Opinion
+Proponent,10,1,So how well do the models perform?,Ask_Info
+Proponent,12,0,"It depends, improvement of 35% compared to what baseline?",Give_Opinion
+Proponent,12,0,"It depends, improvement of 35% compared to what baseline?",Ask_Info
+Proponent,14,0,Could you quantify if there was any bias introduced due to the recommendations?,Ask_Info
+Proponent,16,0,But couldn't it be that users were wrongly biased towards what the model suggested?,Ask_Rebuttal
+Domain Expert,1,0,"We say low resource domains are domains were data is scare, e.g.",Reply_Info
+Domain Expert,1,1,because of the language or because of the content.,Reply_Info
+Domain Expert,1,2,"In our case, that is old English texts.",Reply_Info
+Domain Expert,1,3,Is that what you also understand as low resource?,Ask_Rebuttal
+Domain Expert,3,0,We need to annotate data as it does not exist yet.,Reply_Info
+Domain Expert,3,1,"As annotating is annoying, we support users with machine learning algorithms during that.",Reply_Info
+Domain Expert,3,2,Do you want to hear more about the support our system can provide?,Ask_Suggestion
+Domain Expert,5,0,We help users to find spans that contain named entities and we help them to select the right one from the knowledge base search by reranking.,Reply_Info
+Domain Expert,5,1,Models are trained interactively in the loop.,Reply_Info
+Domain Expert,5,2,Does this clarify things?,Ask_Rebuttal
+Domain Expert,7,0,"The annotator is still in charge and needs to acutally select spans, the machine learning models are just there to give suggestions.",Reply_Info
+Domain Expert,9,0,"For the reranking part, the user selects a span and then searches for the right entity.",Reply_Info
+Domain Expert,9,1,These are both used as inputs for the reranking.,Reply_Info
+Domain Expert,11,0,"Using these in a user study, we measured an annotation time improvement of up to 35%.",Reply_Info
+Domain Expert,11,1,Do you think this is useful?,Ask_Rebuttal
+Domain Expert,13,0,To not using annotation support.,Reply_Info
+Domain Expert,13,1,Do you have any more questions?,Ask_Suggestion
+Domain Expert,15,0,That we did not measure.,Reply_Info
+Domain Expert,17,0,"The model suggest spans, but it does only rerank the candidates, so while it could bias I do not think that it did much
+ Facts:",Give_Opinion

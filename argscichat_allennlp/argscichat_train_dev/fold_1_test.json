@@ -707,34 +707,6 @@
                     "Our analysis shows that the presence of human subjects, as well as the gender of the people present in the pictures trigger different types of comment, and provides novel insight into the connection between images posted on social media and offensive messages."
                 ]
             }
-        ],
-        "argument_mask_0.7": [
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1
-        ],
-        "argument_mask_0.75": [
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1
         ]
     },
     "Multi-Task Attentive Residual Networks for Argument Mining": {
@@ -1331,72 +1303,6 @@
                     "AM approaches are very often tailored to specific corpora or genres [4] - [6] , with solutions that are seldom general enough to be directly applied to different data sets without the need of any adaptation."
                 ]
             }
-        ],
-        "argument_mask_0.7": [
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0
-        ],
-        "argument_mask_0.75": [
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0
         ]
     }
 }
