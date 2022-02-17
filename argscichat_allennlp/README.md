@@ -56,3 +56,7 @@ Other seeds (e.g. numpy) are fixed and are equal to the ones employed in [QASPER
 ### Facts selection baselines
 
 Run `scripts/fact_selection_baselines.py` to compute baseline performance on all test folds.
+
+## Dialogue Intents
+
+We provide a version of ArgSciChat with dialogue intents in `argscichat_intents/dataset.csv`.
