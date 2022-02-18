@@ -165,7 +165,7 @@ if __name__ == '__main__':
     avg_fold_f1 = {}
     for fold in tqdm(folds):
         # Load test data
-        test_data_path = os.path.join(dataset_path, '{0}fold_{1}_{2}.json'.format(prefix, fold, data_split))
+        test_data_path = os.path.join(dataset_path, 'fold_{0}_{1}.json'.format(fold, data_split))
         test_data = load_json(test_data_path)
 
         avg_fact_f1 = {}

@@ -44,7 +44,7 @@ For what concerns model training, you can try different input combinations and m
 The `context` field accepts the following inputs: `[query, article, history, facts]`. For instance, if you want to run
 the model with just the `query` as input, simply define `'context': ["query"]`.
 
-Alike [QASPER](https://github.com/allenai/qasper-led-baseline), you can train your model with direct facts selection supervision 
+Similarly to [QASPER](https://github.com/allenai/qasper-led-baseline), you can train your model with direct facts selection supervision 
 by enabling `use_evidence_scaffold`. The code remains unchanged with the only exception that in QASPER there are multiple valid answers
 for a given query.
 
